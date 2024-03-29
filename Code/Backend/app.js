@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require("cors")
+const Error = require('./app/ErrorAPI')
 
 const app = express() 
 const NhaXuatBan = require('./app/routes/NhaXuatBan.route')
@@ -22,5 +23,20 @@ app.use("/api/muontra"  , MuonTra   )
 app.get("/hello" , (req , res ) =>{
     res.json({message : "Hello World"})
 })
+
+//Middleware Xu Ly Loi
+
+//Not Found
+app.use((req , res , next )=>{
+    return next(new Error(404 , "Resource Not Found"))
+})
+
+//Haddle Error
+app.use((err,req,res,next)=>{
+    return res.status(err.statusCode || 500).json(
+        { message : err.message || "Internal Server Error" } 
+    )
+})
+
 
 module.exports = app 
