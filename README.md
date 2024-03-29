@@ -3,7 +3,7 @@
 ### Quản Lý Thư Viện
 
 ### Công Nghệ
-VueJS - Spring Boot - MySQL
+VueJS - NodeJS - MySQL
 
 ### Thành Viên 
 - Phạm Hoàng Phong
