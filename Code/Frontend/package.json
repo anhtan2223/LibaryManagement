@@ -10,9 +10,10 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.1",
+    "@popperjs/core": "^2.11.8",
+    "@rollup/rollup-darwin-x64": "^4.13.2",
     "axios": "^1.6.8",
-    "bootstrap": "^4.6.2",
-    "popper.js": "^1.16.1",
+    "bootstrap": "^5.3.3",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
