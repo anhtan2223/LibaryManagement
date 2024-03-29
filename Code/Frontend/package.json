@@ -9,14 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
     "bootstrap": "^5.3.3",
-=======
-    "@fortawesome/fontawesome-free": "^6.5.1",
-    "axios": "^1.6.8",
-    "bootstrap": "^4.6.2",
-    "popper.js": "^1.16.1",
->>>>>>> 00cd855267dbd677f0c8e8e0ca7d758543592647
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
