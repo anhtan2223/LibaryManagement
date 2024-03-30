@@ -1,16 +1,7 @@
-<!-- <template>
-    <Sidebar/>
-</template> -->
-
 <script setup>
-    import Sidebar from "../components/Sidebar.vue"
 </script>
 
 <template>
-    <div class="sidebar">
-        <Sidebar/>
-    </div>
-    
   <div class="container">
       <h1>
         HomeView
