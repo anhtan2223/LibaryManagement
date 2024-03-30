@@ -8,9 +8,9 @@
 
 <style>
 .main-body {
-    margin-top: 10vh ;
+    /* margin-top: 10vh ; */
     /* background: linear-gradient(to right , #c72092 , #6c14d0); */
-    min-height: 90vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
