@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex">
+    <div class="d-flex abc">
         <Sidebar />
         <div id="dashboard-content">
             <div class="topbar">
@@ -164,6 +164,9 @@
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 /* Card style */
+.abc {
+    transform: translateY(-10vh);
+}
 .card {
     background-color: #fff;
     border-radius: 10px;
@@ -236,7 +239,7 @@
 
 #dashboard-content h1{
     margin-top: 0;
-    height: 80px;
+    height: 20px;
 }
 
 #dashboard-content .container {
