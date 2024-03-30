@@ -4,6 +4,12 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path : '/test',
+      name: 'TestRoom' ,
+      component : () => import('../components/Navigation.vue') ,
+      props : true ,
+    } ,
+    {
       path : '/:pathMatch(.*)*',
       name: 'NotFound' ,
       component : () => import('../views/NotFound.vue') ,
