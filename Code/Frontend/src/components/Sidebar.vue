@@ -62,6 +62,32 @@
                     <span>Đăng xuất</span>
                 </a>
             </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-item">
+                    <a href="" class="sidebar-link">
+                        <i class="lni lni-home"></i>
+                        <span> Trang Chủ</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="" class="sidebar-link">
+                        <i class="lni lni-user"></i>
+                        <span> Quản lý người đọc</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="" class="sidebar-link">
+                        <i class="lni lni-book"></i>
+                        <span> Quản lý sách</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="" class="sidebar-link">
+                        <i class="lni lni-write"></i>
+                        <span> Quản lý tác giả</span>
+                    </a>
+                </li>
+            </ul>
         </aside>
     </body>
 </template>
