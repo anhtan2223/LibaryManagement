@@ -1,13 +1,14 @@
 <template>
     <body class="wrapper">
         <aside id="sidebar">
-            <div class="d-flex">
-                <div id="toggle-btn" class="sidebar-logo">
-                    <i class="fa-solid fa-book-open"></i>
+            <div class="d-flex" id="sidebar-signature">
+                <div class="sidebar-logo">
+                    <img src="../assets/logo.png" alt="logo" id="logo">
+                    <span id="sidebar-title">
+                        <a href="#"> Library Management</a>
+                    </span>
                 </div>
-                <div class="sidebar-title">
-                    <a href="#"> Library Management</a>
-                </div>
+                
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
@@ -19,7 +20,7 @@
                 <li class="sidebar-item">
                     <a href="" class="sidebar-link">
                         <i class="lni lni-user"></i>
-                        <span> Quản lý người đọc</span>
+                        <span> Quản lý người dùng</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -34,18 +35,126 @@
                         <span> Quản lý tác giả</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a href="" class="sidebar-link">
+                        <i class="lni lni-write"></i>
+                        <span> Quản lý thể loại</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="" class="sidebar-link">
+                        <i class="lni lni-write"></i>
+                        <span> Quản lý Nhà xuất bản</span>
+                    </a>
+                </li>
             </ul>
-        </aside>
-        <div class="main-p3">
-            <div class="text-center">
-                <h1>something will be here</h1>
+            <div class="sidebar-footer">
+                <a href="" class="sidebar-link">
+                    <i class="lni lni-exit"></i>
+                    <span>Đăng xuất</span>
+                </a>
             </div>
+        </aside>
+        <div >
         </div>
     </body>
 </template>
 
-<style>
-    
+<style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+::after,
+::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+h1 {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.main {
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    transition: all 0.35s ease-in-out;
+    background-color: white;
+}
+
+#sidebar {
+    width: 320px;
+    min-width: 320px;
+    background-color: #0e2238;
+    display: flex;
+    flex-direction: column;
+}
+
+#sidebar-signature {
+    margin: 5% auto;
+}
+
+#sidebar-title a {
+    color: white;
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+#logo {
+    height: 80px;
+    width: 90px;
+    background-color: white;
+}
+
+.sidebar-nav {
+    padding: 2rem 0;
+    flex: 1 1 auto
+}
+
+a.sidebar-link {
+    padding: .625rem 1.625rem;
+    color: white;
+    display: block;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    border-left: 3px solid transparent;
+}
+
+a.sidebar-link span {
+    font-size: 1.3rem;
+}
+
+a.sidebar-link:hover {
+    background-color: rgba(255, 255, 255, .075);
+    border-left: 3px solid #3b7ddd;
+}
+
+.sidebar-link i {
+    font-size: 1.1rem;
+    margin-right: .75rem;
+}
+
+.sidebar-item {
+    position: relative;
+}
+
 </style>
 
 <script setup>
