@@ -1,12 +1,13 @@
 <template>
-  <div>
+  <!-- <div>
     <div class="app-nav">
       <Navigation></Navigation>
     </div>
     <div class="main-body">
       <RouterView></RouterView>  
     </div>
-  </div>
+  </div> -->
+  <RouterView></RouterView>
 </template>
 
 <script setup>
