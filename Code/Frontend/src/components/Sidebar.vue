@@ -72,7 +72,7 @@
                 <li class="sidebar-item">
                     <a href="" class="sidebar-link">
                         <i class="lni lni-user"></i>
-                        <span> Quản lý người đọc</span>
+                        <span> Quản lý người dùng</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -85,6 +85,18 @@
                     <a href="" class="sidebar-link">
                         <i class="lni lni-write"></i>
                         <span> Quản lý tác giả</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="" class="sidebar-link">
+                        <i class="lni lni-write"></i>
+                        <span> Quản lý thể loại</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="" class="sidebar-link">
+                        <i class="lni lni-write"></i>
+                        <span> Quản lý Nhà xuất bản</span>
                     </a>
                 </li>
             </ul>
