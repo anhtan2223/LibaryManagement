@@ -1,5 +1,5 @@
 <template>
-    <body class="wrapper">
+    <body class="wrapper d-flex">
         <aside id="sidebar">
             <div class="d-flex" id="sidebar-signature">
                 <div class="sidebar-logo">
@@ -12,39 +12,39 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="" class="sidebar-link">
+                    <a @click="$router.push('/dashboard')" class="sidebar-link">
                         <i class="lni lni-home"></i>
                         <span> Trang Chủ</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="" class="sidebar-link">
+                    <a @click="$router.push('/dashboard/user')" class="sidebar-link">
                         <i class="lni lni-user"></i>
                         <span> Quản lý người dùng</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="" class="sidebar-link">
+                    <a @click="$router.push('/dashboard/book')" class="sidebar-link">
                         <i class="lni lni-book"></i>
                         <span> Quản lý sách</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="" class="sidebar-link">
+                    <a @click="$router.push('/dashboard/author')" class="sidebar-link">
                         <i class="lni lni-write"></i>
                         <span> Quản lý tác giả</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="" class="sidebar-link">
+                    <a @click="$router.push('/dashboard/category')" class="sidebar-link">
                         <i class="lni lni-write"></i>
                         <span> Quản lý thể loại</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="" class="sidebar-link">
+                    <a @click="$router.push('/dashboard/publisher')"  class="sidebar-link">
                         <i class="lni lni-write"></i>
-                        <span> Quản lý Nhà xuất bản</span>
+                        <span> Quản lý NXB</span>
                     </a>
                 </li>
             </ul>
@@ -100,8 +100,9 @@ body {
 }
 
 #sidebar {
-    width: 320px;
-    min-width: 320px;
+    height: 100vh;
+    width: 18vw;
+    min-width: 18vh;
     background-color: #0e2238;
     display: flex;
     flex-direction: column;
@@ -113,7 +114,7 @@ body {
 
 #sidebar-title a {
     color: white;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     font-weight: 600;
 }
 
@@ -129,7 +130,8 @@ body {
 }
 
 a.sidebar-link {
-    padding: .625rem 1.625rem;
+    margin: 8% 0;
+    padding: 1rem 1rem;
     color: white;
     display: block;
     font-size: 0.9rem;
@@ -154,6 +156,11 @@ a.sidebar-link:hover {
 .sidebar-item {
     position: relative;
 }
+.sidebar-item a{
+    position: relative;
+    cursor: pointer;
+}
+
 
 </style>
 
