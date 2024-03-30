@@ -1,5 +1,5 @@
 <template>
-    <body class="wrapper d-flex">
+    <body class="wrapper">
         <aside id="sidebar">
 
             <div class="d-flex" id="sidebar-signature">
@@ -101,6 +101,8 @@
                 </li>
             </ul>
         </aside>
+        <div >
+        </div>
     </body>
 </template>
 
