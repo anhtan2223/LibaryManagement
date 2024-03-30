@@ -34,11 +34,23 @@ const router = createRouter({
       props : true ,
     },
     {
-      path: '/dashboard',
+      path: '/admin',
       name: 'Admin',
       component: () => import('../views/Admin/AdminDashboard.vue') ,
       props : true ,
     },
+    {
+      path: '/employee',
+      name: 'Employee',
+      component: () => import('../views/Employee/Home.Employee.vue') ,
+      props : true ,
+    },
+    {
+      path: '/reader',
+      name: 'Reader',
+      component: () => import('../views/Reader/Home.Reader.vue') ,
+      props : true ,
+    }
   ]
 })
 
