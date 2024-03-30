@@ -1,13 +1,9 @@
 <template>
-  <!-- <div>
-    <div class="app-nav">
-      <Navigation></Navigation>
-    </div>
+  <div>
     <div class="main-body">
       <RouterView></RouterView>  
     </div>
-  </div> -->
-  <RouterView></RouterView>
+  </div>
 </template>
 
 <script setup>
@@ -16,9 +12,9 @@
 
 <style>
 .main-body {
-    margin-top: 15vh ;
+    margin-top: 10vh ;
     /* background: linear-gradient(to right , #c72092 , #6c14d0); */
-    min-height: 85vh;
+    min-height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
