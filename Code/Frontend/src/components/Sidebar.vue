@@ -101,6 +101,8 @@
                 </li>
             </ul>
         </aside>
+        <div >
+        </div>
     </body>
 </template>
 
@@ -167,8 +169,7 @@ body {
 }
 
 a.sidebar-link {
-    margin: 8% 0;
-    padding: 1rem 1rem;
+    padding: .625rem 1.625rem;
     color: white;
     display: block;
     font-size: 0.9rem;
