@@ -101,8 +101,6 @@
                 </li>
             </ul>
         </aside>
-        <div >
-        </div>
     </body>
 </template>
 
