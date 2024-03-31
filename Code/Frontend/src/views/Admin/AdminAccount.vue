@@ -8,18 +8,13 @@
             
             <div class="container">
                 <div class="action-btn">
-                    <button type="button" class="btn btn-primary">Thêm tài khoản</button>
+                    <button type="button" class="btn btn-primary" @click="add">Thêm tài khoản</button>
                 </div>
                 <!-- begin tables -->
                 <div class="row" id="dashboard-table">
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover">
                             <thead>
-                                <tr>
-                                    <h4>Danh sách độc giả</h4>
-                                </tr>
-                            </thead>
-                            <tbody>
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Tên độc giả</th>
@@ -28,6 +23,8 @@
                                     <th scope="col">Số điện thoại</th>
                                     <th scope="col">Địa chỉ</th>
                                 </tr>
+                            </thead>
+                            <tbody>
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>Phong Phạm</td>
@@ -35,7 +32,9 @@
                                     <td>phphong@gmail.com</td>
                                     <td>0192301239</td>
                                     <td>Can Tho</td>
-                                    <td><button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                                    <td>
+                                        <span><button type="button" class="btn btn-outline-primary" @click="edit"><i class="fa-solid fa-pen-to-square"></i></button></span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">2</th>
@@ -44,7 +43,9 @@
                                     <td>phphong@gmail.com</td>
                                     <td>0192301239</td>
                                     <td>Can Tho</td>
-                                    <td><button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                                    <td>
+                                        <span><button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i></button></span>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -72,7 +73,9 @@
                                     <td>phphong@gmail.com</td>
                                     <td>0192301239</td>
                                     <td>Can Tho</td>
-                                    <td><button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                                    <td>
+                                        <span><button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i></button></span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">2</th>
@@ -81,7 +84,9 @@
                                     <td>phphong@gmail.com</td>
                                     <td>0192301239</td>
                                     <td>Can Tho</td>
-                                    <td><button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                                    <td>
+                                        <span><button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i></button></span>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -123,12 +128,24 @@
 .action-btn {
     padding: 2% 4% 0% 4%;
 }
+
+button {
+    margin: 1%;
+}
 </style>
 
 <script setup>
 import Sidebar from "../../components/Sidebar.vue";
 
-function alerting(){
-    alert("ajbdahsdask")
+function add(){
+    alert("add an account")
+}
+
+function edit(){
+    alert("edit information")
+}
+
+function del(){
+    alert("delete account")
 }
 </script>

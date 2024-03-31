@@ -1,11 +1,13 @@
 <template>
     <body class="wrapper d-flex">
         <aside id="sidebar">
+
             <div class="d-flex" id="sidebar-signature">
                 <a href="#" id="sidebar-title">
                     Library Management
                 </a>
             </div>
+            
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
                     <a @click="$router.push('/dashboard')" class="sidebar-link">
