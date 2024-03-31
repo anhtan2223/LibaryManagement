@@ -1,21 +1,23 @@
 <template>
     <body class="wrapper d-flex">
         <aside id="sidebar">
+
             <div class="d-flex" id="sidebar-signature">
                 <a href="#" id="sidebar-title">
                     Library Management
                 </a>
             </div>
+
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a @click="$router.push('/dashboard')" class="sidebar-link">
+                    <a @click="$router.push('/admin')" class="sidebar-link">
                         <i class="lni lni-home"></i>
                         <span> Trang Chủ</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a
-                        @click="$router.push('/dashboard/user')"
+                        @click="$router.push('/admin/account')"
                         class="sidebar-link">
                         <i class="lni lni-user"></i>
                         <span> Quản lý người dùng</span>
@@ -23,7 +25,7 @@
                 </li>
                 <li class="sidebar-item">
                     <a
-                        @click="$router.push('/dashboard/book')"
+                        @click="$router.push('/admin/book')"
                         class="sidebar-link">
                         <i class="lni lni-book"></i>
                         <span> Quản lý sách</span>
@@ -31,7 +33,7 @@
                 </li>
                 <li class="sidebar-item">
                     <a
-                        @click="$router.push('/dashboard/author')"
+                        @click="$router.push('/admin/author')"
                         class="sidebar-link">
                         <i class="lni lni-write"></i>
                         <span> Quản lý tác giả</span>
@@ -39,7 +41,7 @@
                 </li>
                 <li class="sidebar-item">
                     <a
-                        @click="$router.push('/dashboard/category')"
+                        @click="$router.push('/admin/category')"
                         class="sidebar-link">
                         <i class="lni lni-write"></i>
                         <span> Quản lý thể loại</span>
@@ -47,7 +49,7 @@
                 </li>
                 <li class="sidebar-item">
                     <a
-                        @click="$router.push('/dashboard/publisher')"
+                        @click="$router.push('/admin/publisher')"
                         class="sidebar-link">
                         <i class="lni lni-write"></i>
                         <span> Quản lý NXB</span>
@@ -55,7 +57,7 @@
                 </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="" class="sidebar-link">
+                <a class="sidebar-link" @click="$router.push('/login')">
                     <i class="lni lni-exit"></i>
                     <span>Đăng xuất</span>
                 </a>

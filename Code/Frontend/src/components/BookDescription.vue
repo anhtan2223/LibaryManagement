@@ -1,17 +1,27 @@
 <template>
+    <Navigation/>
     <div class="container">
         <div class="card">
             <div class="container-fliud">
                 <div class="wrapper row">
                     <div class="preview col-md-6">
-                        <img src="../assets/sach8.png" alt="" id="book-image" />
+                        <img src="https://m.media-amazon.com/images/I/61tsrsmR7aS._SL1254_.jpg" alt="" id="book-image" />
                     </div>
                     <div class="details col-md-6">
                         <h3 class="product-title">
                             Essential Computer Science
                         </h3>
                         <h4 class="author">Paul D. Crutcher</h4>
-                        <h5 class="publisher">Xuất bản: 2020 - NXB Kim Đồng</h5>
+                        <div class="published">
+                            <div><b>Xuất bản: </b>2020</div>
+                            
+                            <div><b>Nhà xuất bản: </b>Kim Đồng</div>
+                        </div>
+                        <div class="categories">
+                            <div>
+                                <b>Thể loại: </b> Giáo dục
+                            </div>
+                        </div>
                         <div class="rating">
                             <div class="stars">
                                 <span class="fa fa-star checked"></span>
@@ -21,20 +31,20 @@
                                 <span class="fa fa-star"></span>
                             </div>
                         </div>
-                        <p class="product-description">
-                            Dạy cho bạn các khái niệm cơ bản từ phần cứng và
-                            kiến trúc máy tính đến học máy. Giúp bạn xem lại
-                            Vòng đời Phát triển Phần mềm (SDLC): Lập kế hoạch,
-                            Phân tích, Thiết kế, Triển khai, Thử nghiệm, Triển
-                            khai và Bảo trì. Bao gồm các công cụ và kỹ thuật cho
-                            công nghệ phần mềm tốt nhất
-                        </p>
                         <h5 class="status">
-                            Trạng thái:
-                            <span
-                                >Có sẵn!
-                                <!--Đã cho mượn--></span
-                            >
+                            <div>
+                                Trạng thái:
+                                <span>
+                                    Có sẵn!
+                                    <!--Đã cho mượn-->
+                                </span>
+                            </div>
+                            <div>
+                                Số lượng:
+                                <span>
+                                    9
+                                </span>
+                            </div>
                         </h5>
                         <p class="vote">
                             <strong>91%</strong> độc giả đề xuất
@@ -60,7 +70,7 @@ body {
 }
 
 img {
-    max-width: 80%;
+    max-width: 70%;
 }
 
 @media screen and (max-width: 996px) {
@@ -81,7 +91,7 @@ img {
 }
 
 .card {
-    margin-top: 50px;
+    margin-top: 13vh;
     background: #eee;
     padding: 3em;
     line-height: 1.5em;
@@ -144,6 +154,16 @@ img {
 .container {
     margin-top: 10vh;
 }
+
+.preview .col-md-6 {
+    align-items: center;
+}
+
+img#book-image{
+    width: 60%;
+}
 </style>
 
-<script setup></script>
+<script setup>
+import Navigation from "./Navigation.vue"
+</script>

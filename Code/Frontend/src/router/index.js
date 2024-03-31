@@ -42,7 +42,13 @@ const router = createRouter({
     {
       path: '/admin/account',
       name: 'AccountFromAdmin',
-      component: () => import('../views/Reader/Home.Reader.vue') ,
+      component: () => import('../views/Admin/AdminAccount.vue') ,
+      props : true ,
+    },
+    {
+      path: '/admin/book',
+      name: 'BookFromAdmin',
+      component: () => import('../views/Admin/AdminBook.vue') ,
       props : true ,
     },
     {
