@@ -5,7 +5,7 @@ module.exports = {
     database : {
         host : 'localhost' ,
         user : 'root' ,
-        password : 'anhtan2oo3' ,
-        database : 'FishLearning' ,
+        password : '12345' ,
+        database : 'QuanLyThuVien' ,
     }
 }

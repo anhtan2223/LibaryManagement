@@ -13,9 +13,9 @@ async function runServer()
             return ;
         }
         console.log(`Connect To ${config.database.database} Success`);
-    })
-    app.listen( port , () => {
-        console.log(`Server Now Running at Port ${3000}`) })   
+        app.listen( port , () => {
+            console.log(`Server Now Running at Port ${3000}`) })
+    })   
 }
 
 runServer()
