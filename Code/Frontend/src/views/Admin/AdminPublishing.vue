@@ -19,16 +19,20 @@
         <thead>
             <tr>
             <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Created</th>
+            <th scope="col">Mã nhà xuất bản</th>
+            <th scope="col">Tên nhà xuất bản</th>
+            <th scope="col">Địa chỉ</th>
+            <th scope="col">Người đại diện</th>
             <th scope="col">Action</th>
             </tr>
         </thead>
   <tbody>
     <tr>
       <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
+      <td >MB201hx</td>
+      <td >Nhà Xuất Bản Kim Đồng</td>
+      <td class="col_3">55 Trần Hưng Đạo, Quận Hoàn Kiếm, Hà Nội</td>
+      <td class="col_4">info@nxbkimdong.com.vn</td>
       <td class="action_button"><button class="btn btn-primary " type="submit"><i class="fas fa-wrench" style="color: #ffffff;"></i></button>
             <button class="btn btn-primary " type="submit"><i class="fas fa-trash" style="color: #ffffff;"></i></button></td>
       
@@ -37,13 +41,17 @@
       <th scope="row">2</th>
       <td>Jacob</td>
       <td>Thornton</td>
+      <td class="col_3">55 Trần Hưng Đạo, Quận Hoàn Kiếm, Hà Nội</td>
+      <td class="col_4">info@nxbkimdong.com.vn</td>
       <td class="action_button"><button class="btn btn-primary " type="submit"><i class="fas fa-wrench" style="color: #ffffff;"></i></button>
             <button class="btn btn-primary " type="submit"><i class="fas fa-trash" style="color: #ffffff;"></i></button></td>
     </tr>
     <tr>
       <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td class="col_3">55 Trần Hưng Đạo, Quận Hoàn Kiếm, Hà Nội</td>
+      <td class="col_4">info@nxbkimdong.com.vn</td>
       <td class="action_button"><button class="btn btn-primary " type="submit"><i class="fas fa-wrench" style="color: #ffffff;"></i></button>
             <button class="btn btn-primary " type="submit"><i class="fas fa-trash" style="color: #ffffff;"></i></button></td>
     </tr>
@@ -52,9 +60,18 @@
     </div>
 </template>
 <style scoped>
+    .col_3{
+        padding-right: 50px;
+        box-sizing: border-box;   
+    }
+    .col_4{
+        padding-right: 20px;
+    }
     .button_in_search_container{
         scale: 100%;
-        margin: 5px 10px 10px 3px  ;
+        margin: 5px 5px 5px 3px  ;
+        align-self: center;
+        align-items: center;
     }
     .form-control{
         width: 500px;
@@ -64,7 +81,6 @@
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        align-self: center;
 
     }
     

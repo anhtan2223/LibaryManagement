@@ -55,7 +55,7 @@
 <style scoped>
   .button_in_search_container{
       scale: 100%;
-      margin: 5px 10px 10px 3px  ;
+      margin: 5px 5px 5px 3px  ;
   }
   .form-control{
       width: 500px;
