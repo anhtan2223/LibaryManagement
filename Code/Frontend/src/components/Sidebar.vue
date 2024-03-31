@@ -2,12 +2,9 @@
     <body class="wrapper d-flex">
         <aside id="sidebar">
             <div class="d-flex" id="sidebar-signature">
-                <div class="sidebar-logo">
-                    <img src="../assets/logo.png" alt="logo" id="logo">
-                    <span id="sidebar-title">
-                        <a href="#"> Library Management</a>
-                    </span>
-                </div>
+                <a href="#" id="sidebar-title">
+                    Library Management
+                </a>
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
@@ -17,31 +14,41 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a @click="$router.push('/dashboard/user')" class="sidebar-link">
+                    <a
+                        @click="$router.push('/dashboard/user')"
+                        class="sidebar-link">
                         <i class="lni lni-user"></i>
                         <span> Quản lý người dùng</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a @click="$router.push('/dashboard/book')" class="sidebar-link">
+                    <a
+                        @click="$router.push('/dashboard/book')"
+                        class="sidebar-link">
                         <i class="lni lni-book"></i>
                         <span> Quản lý sách</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a @click="$router.push('/dashboard/author')" class="sidebar-link">
+                    <a
+                        @click="$router.push('/dashboard/author')"
+                        class="sidebar-link">
                         <i class="lni lni-write"></i>
                         <span> Quản lý tác giả</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a @click="$router.push('/dashboard/category')" class="sidebar-link">
+                    <a
+                        @click="$router.push('/dashboard/category')"
+                        class="sidebar-link">
                         <i class="lni lni-write"></i>
                         <span> Quản lý thể loại</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a @click="$router.push('/dashboard/publisher')"  class="sidebar-link">
+                    <a
+                        @click="$router.push('/dashboard/publisher')"
+                        class="sidebar-link">
                         <i class="lni lni-write"></i>
                         <span> Quản lý NXB</span>
                     </a>
@@ -97,36 +104,31 @@ body {
 }
 
 #sidebar {
-    width: 320px;
-    min-width: 320px;
+    height: 100vh;
+    width: 20vw;
+    min-width: 18vh;
     background-color: #0e2238;
     display: flex;
     flex-direction: column;
 }
 
-#sidebar-signature {
-    margin: 5% auto;
-}
 
-#sidebar-title a {
+#sidebar-title {
     color: white;
-    font-size: 1.15rem;
+    font-size: 1.2vw;
     font-weight: 600;
-}
-
-#logo {
-    height: 80px;
-    width: 90px;
-    background-color: white;
+    padding-top: 5vh;
+    padding-left: 3vh;
 }
 
 .sidebar-nav {
     padding: 2rem 0;
-    flex: 1 1 auto
+    flex: 1 1 auto;
 }
 
 a.sidebar-link {
-    padding: .625rem 1.625rem;
+    margin: 8% 0;
+    padding: 1rem 1rem;
     color: white;
     display: block;
     font-size: 0.9rem;
@@ -135,24 +137,33 @@ a.sidebar-link {
 }
 
 a.sidebar-link span {
-    font-size: 1.3rem;
+    font-size: 1.2vw;
 }
 
 a.sidebar-link:hover {
-    background-color: rgba(255, 255, 255, .075);
+    background-color: rgba(255, 255, 255, 0.075);
     border-left: 3px solid #3b7ddd;
 }
 
 .sidebar-link i {
-    font-size: 1.1rem;
-    margin-right: .75rem;
+    font-size: 1.2vw;
+    margin-right: 0.75rem;
 }
 
 .sidebar-item {
     position: relative;
+    /* margin-left: 5%; */
+}
+.sidebar-item a {
+    position: relative;
+    cursor: pointer;
 }
 
+/* .sidebar-footer {
+    margin-left: 5%;
+} */
 </style>
 
 <script setup>
+
 </script>

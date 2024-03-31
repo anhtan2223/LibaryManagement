@@ -7,16 +7,15 @@ const port = config.app.port
 async function runServer()
 {
     await MySQL.connect(config.database)
-    MySQL.con.connect((err)=>{
+    MySQL.connection.connect((err)=>{
         if(err){
             console.log("Connect Fail" , err);
-            return 
+            return ;
         }
         console.log(`Connect To ${config.database.database} Success`);
     })
-
-    await app.listen( port , () => {
-        console.log(`Server Now Running at Port ${3000}`) })
+    app.listen( port , () => {
+        console.log(`Server Now Running at Port ${3000}`) })   
 }
 
 runServer()

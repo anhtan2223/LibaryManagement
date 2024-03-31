@@ -3,24 +3,24 @@
         <Sidebar />
         <div id="dashboard-content">
             <div class="topbar">
-                <h1>Dashboard</h1>
-                <span>Username</span>
+                <!-- just here for the top bar, nothing else -->
             </div>
             
             <div class="container">
+                <!-- begin statistic -->
                 <div class="row" id="statistic">
                     <div class="col-xl-6 col-lg-6">
                         <div class="card l-bg-cherry">
                             <div class="card-statistic-3 p-4">
                                 <div class="card-icon card-icon-large">
-                                    <i class="fas fa-shopping-cart"></i>
+                                    <i class="fas fa-users"></i>
                                 </div>
                                 <div class="mb-4">
-                                    <h5 class="card-title mb-0">Số lượng đọc giả</h5>
+                                    <h5 class="card-title mb-0">Số lượng độc giả</h5>
                                 </div>
                                 <div class="row align-items-center mb-2 d-flex">
                                     <div class="col-8">
-                                        <h2 class="d-flex align-items-center mb-0">123</h2>
+                                        <h2 class="d-flex align-items-center mb-0"><!-- count the number of user here -->123</h2> 
                                     </div>
                                 </div>
                             </div>
@@ -30,7 +30,7 @@
                         <div class="card l-bg-blue-dark">
                             <div class="card-statistic-3 p-4">
                                 <div class="card-icon card-icon-large">
-                                    <i class="fas fa-users"></i>
+                                    <i class="fas fa-book"></i>
                                 </div>
                                 <div class="mb-4">
                                     <h5 class="card-title mb-0">Số lượng sách</h5>
@@ -39,7 +39,7 @@
                                     <div class="col-8">
                                         <h2
                                             class="d-flex align-items-center mb-0">
-                                            1234
+                                            <!-- count the number of books here -->1234
                                         </h2>
                                     </div>
                                 </div>
@@ -61,7 +61,7 @@
                                     <div class="col-8">
                                         <h2
                                             class="d-flex align-items-center mb-0">
-                                            578
+                                            <!-- count the number of borrowed books here -->578
                                         </h2>
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
                         <div class="card l-bg-orange-dark">
                             <div class="card-statistic-3 p-4">
                                 <div class="card-icon card-icon-large">
-                                    <i class="fas fa-dollar-sign"></i>
+                                    <i class="fas fa-chart-pie"></i>
                                 </div>
                                 <div class="mb-4">
                                     <h5 class="card-title mb-0">
@@ -83,7 +83,7 @@
                                     <div class="col-8">
                                         <h2
                                             class="d-flex align-items-center mb-0">
-                                            12
+                                            <!-- count the number of expired books here -->12
                                         </h2>
                                     </div>
                                 </div>
@@ -91,34 +91,35 @@
                         </div>
                     </div>
                 </div>
+                <!-- end statistic -->
+
+                <!-- begin tables -->
                 <div class="row" id="dashboard-table">
                     <div class="table-responsive col-md-6">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                                    <h4>Sách mượn gần đây</h4>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Người mượn</th>
+                                    <th scope="col">Tên sách</th>
+                                    <th scope="col">Ngày hết hạn</th>
                                 </tr>
                                 <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
                                 </tr>
                                 <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -127,67 +128,34 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                                    <h4>Sách quá hạn trả</h4>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Người mượn</th>
+                                    <th scope="col">Tên sách</th>
+                                    <th scope="col">Ngày hết hạn</th>
                                 </tr>
                                 <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
                                 </tr>
                                 <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="table-responsive col-md-6">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                </tr>
-                                <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                <!-- end tables -->
+
             </div>
         </div>
     </div>
@@ -196,6 +164,9 @@
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 /* Card style */
+.abc {
+    transform: translateY(-10vh);
+}
 .card {
     background-color: #fff;
     border-radius: 10px;
@@ -240,7 +211,7 @@
     margin-left: 15px;
     color: #000;
     position: absolute;
-    right: -5px;
+    right: 5%;
     top: 20px;
     opacity: 0.1;
 }
@@ -268,23 +239,26 @@
 
 #dashboard-content h1{
     margin-top: 0;
-    height: 80px;
+    height: 20px;
 }
 
 #dashboard-content .container {
-    margin-left: 3%;
+    margin-left: 0;
 }
 
 #statistic {
-    margin-top: 5%;
+    margin-top: 2%;
 }
 
 .topbar {
     background-color: #0e2238;
+    width: 80vw;
+    height: 12vh;
 }
 
 .topbar h1 {
-    color: white
+    color: white;
+    text-align: center;
 }
 
 </style>
