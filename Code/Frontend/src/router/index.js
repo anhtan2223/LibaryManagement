@@ -56,6 +56,19 @@ const router = createRouter({
       name: 'AdminCategory',
       component: () => import('../views/Admin/AdminCategory.vue') ,
       props : true ,
+    },
+    {
+      path: '/adminauthor',
+      name: 'AdminAuthor',
+      component: () => import('../views/Admin/AdminAuthor.vue') ,
+      props : true ,
+    }
+    ,
+    {
+      path: '/adminpublishing',
+      name: 'AdminPublishing',
+      component: () => import('../views/Admin/AdminPublishing.vue') ,
+      props : true ,
     }
   ]
 })
