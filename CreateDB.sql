@@ -1,3 +1,4 @@
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '12345';
 drop database if exists QuanLyThuVien ;
 create database QuanLyThuVien ;
 use QuanLyThuVien ;
