@@ -25,6 +25,13 @@
       >
         Sign In
       </button>
+      <button 
+      type="button" 
+      class="btn btn-outline-info"
+      @click = "$router.push('/admincategory')"
+      >
+        admincategory
+      </button>
 
   </div>
 </template>
