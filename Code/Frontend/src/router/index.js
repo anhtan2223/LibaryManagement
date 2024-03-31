@@ -63,6 +63,12 @@ const router = createRouter({
       component: () => import('../views/Reader/Home.Reader.vue') ,
       props : true ,
     },
+    {
+      path: '/admincategory',
+      name: 'AdminCategory',
+      component: () => import('../views/Admin/AdminCategory.vue') ,
+      props : true ,
+    }
   ]
 })
 

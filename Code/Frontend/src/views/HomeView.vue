@@ -15,7 +15,22 @@ import Navigation from "../components/Navigation.vue";
           @click="$router.push('/login')">
           Login
       </button>
-    </div>
+      <button 
+      type="button" 
+      class="btn btn-outline-info"
+      @click = "$router.push('/signin')"
+      >
+        Sign In
+      </button>
+      <button 
+      type="button" 
+      class="btn btn-outline-info"
+      @click = "$router.push('/admincategory')"
+      >
+        admincategory
+      </button>
+
+  </div>
 </template>
 
 <style scoped>
