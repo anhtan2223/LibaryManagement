@@ -1,10 +1,10 @@
 <template class="Test">
     <div class="fixed">
-        <nav class="navbar navbar-expand-lg navbar-white bg-white">
+        <nav class="navbar navbar-expand-lg ">
             <div class="container-fluid" id="nav-before-login">
                 <span class="navbar-brand" href="#" @click="$router.push('/')">
                     <!-- <img src="../img/Logo.png" alt="" width="" height="100" class="d-inline-block align-text-top" > -->
-                    Libary
+                    <div id="title">Libary Management</div>
                 </span>
                 <button
                     class="navbar-toggler"
@@ -47,6 +47,12 @@ const data = ref({
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+template {
+    font-family: "Poppins", sans-serif;
+}
+
 .NavMove {
     display: flex;
     justify-content: end;
@@ -57,8 +63,9 @@ const data = ref({
 
 .navbar {
     box-shadow: 0 0 30px rgb(82, 39, 82);
-    background-color: #333;
+    background-color: #0654a8;
 }
+
 .navbar-brand {
     cursor: pointer;
 }
@@ -72,11 +79,19 @@ const data = ref({
     top: 0;
     width: 100%;
     z-index: 200;
+    height: 56px;
 }
+
 .navbar-nav a {
-    color: rgb(221, 40, 40);
+    /* color: rgb(221, 40, 40); */
+    color: white;
 }
+
 .navbar-nav a:hover {
-    color: rgb(16, 7, 7);
+    color: rgb(220, 119, 37);
+}
+
+#title {
+    color: white;
 }
 </style>

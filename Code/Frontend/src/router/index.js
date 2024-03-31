@@ -53,8 +53,20 @@ const router = createRouter({
     },
     {
       path: '/employee',
-      name: 'Employee',
-      component: () => import('../views/Employee/Home.Employee.vue') ,
+      name: 'EmployeeInfo',
+      component: () => import('../views/Employee/EmployeeInfo.vue') ,
+      props : true ,
+    },
+    {
+      path: '/employee/card',
+      name: 'EmployeeCard',
+      component: () => import('../views/Employee/EmployeeCard.vue') ,
+      props : true ,
+    },
+    {
+      path: '/employee/search',
+      name: 'EmployeeSearch',
+      component: () => import('../views/Employee/EmployeeSearch.vue') ,
       props : true ,
     },
     {
