@@ -114,9 +114,15 @@ const router = createRouter({
       props : true ,
     } ,
     {
-      path: '/readerBorrowHistory',
+      path: '/reader/borrowhistory',
       name: 'ReaderBorrowHistory',
-      component: () => import('../views/Reader/ReaderBorrowHistory.Reader.vue') ,
+      component: () => import('../views/Reader/BorrowHistory.Reader.vue') ,
+      props : true ,
+    },
+    {
+      path: '/reader/borrowdetail',
+      name: 'ReaderBorrowDetail',
+      component: () => import('../views/Reader/BorrowDetail.Reader.vue') ,
       props : true ,
     },
   ]
