@@ -64,21 +64,21 @@ const router = createRouter({
       props : true ,
     },
     {
-      path: '/admincategory',
+      path: '/admin/category',
       name: 'AdminCategory',
       component: () => import('../views/Admin/AdminCategory.vue') ,
       props : true ,
     },
     {
-      path: '/adminauthor',
+      path: '/admin/author',
       name: 'AdminAuthor',
       component: () => import('../views/Admin/AdminAuthor.vue') ,
       props : true ,
     }
     ,
     {
-      path: '/adminpublishing',
-      name: 'AdminPublishing',
+      path: '/admin/publisher',
+      name: 'AdminPublisher',
       component: () => import('../views/Admin/AdminPublishing.vue') ,
       props : true ,
     }
