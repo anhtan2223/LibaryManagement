@@ -112,7 +112,13 @@ const router = createRouter({
       name: 'ReaderChangePassword',
       component: () => import('../views/Reader/Pass.Reader.vue') ,
       props : true ,
-    }
+    } ,
+    {
+      path: '/readerBorrowHistory',
+      name: 'ReaderBorrowHistory',
+      component: () => import('../views/Reader/ReaderBorrowHistory.Reader.vue') ,
+      props : true ,
+    },
   ]
 })
 
