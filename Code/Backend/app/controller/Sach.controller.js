@@ -10,9 +10,6 @@ exports.getAllBook = async (req , res , next) =>{
             return res.json(result)
     })
 }
-
-
-
 exports.importBook = async (req , res , next) =>{
     try {
         const connection = MySQL.connection
@@ -24,7 +21,6 @@ exports.importBook = async (req , res , next) =>{
         for (let index = 1 ; index < book.number ; index++) {
             insert = oneBook + ',' + insert
         }
-
         const command = `insert into Sach(TenSach,MaTL,MaTG,MaNXB,NamXB) values ${insert}`
             connection.query(command , (err, result , field)=>{
             if(!err){
@@ -36,9 +32,7 @@ exports.importBook = async (req , res , next) =>{
     } catch (error) {
         return next(new ErrorAPI(400 , "Get Error"))
     }
-    
 }
-
 exports.getBookByID = async (req , res , next) =>{
     try {
         const connection = MySQL.connection
@@ -55,9 +49,38 @@ exports.getBookByID = async (req , res , next) =>{
 
     }
 }
+exports.deleteBook = async (req , res , next) =>{
+        try {
+            const connection = MySQL.connection
+            const command = `delete from sach where masach = ${req.params.bid}`
+                connection.query(command , (err, result , field)=>{
+
+                if(!err){
+                    if(result.affectedRows != 0)
+                        return res.json({message : `Delete ${result.affectedRows} book success `})
+                    return res.json({message : "Book Not Found"})
+                }
+                console.log(err);
+                return next(new ErrorAPI(400 , "Get Error When Query"))
+            })
+        } catch (error) {
+            return next(new ErrorAPI(400 , "Get Error"))
+        }   
+    }
 
 
-
-// exports.getAllBook = async (req , res , next) =>{
-//     res.json("Hello Sach")
+// exports.example = async (req , res , next) =>{
+//     try {
+//         const connection = MySQL.connection
+//         const command = ``
+//             connection.query(command , (err, result , field)=>{
+//             if(!err){
+//                 return res.json(result)
+//             }
+//             console.log(err)
+//             return next(new ErrorAPI(400 , "Get Error When Query"))
+//         })
+//     } catch (error) {
+//         return next(new ErrorAPI(400 , "Get Error"))
+//     }   
 // }

@@ -8,5 +8,6 @@ router.route('/')
 
 router.route('/:bid')
     .get(controller.getBookByID)
+    .delete(controller.deleteBook)
 
 module.exports = router
