@@ -7,9 +7,6 @@
             </div>
             
             <div class="container">
-                <div class="action-btn">
-                    <button type="button" class="btn btn-primary" @click="add">Thêm tài khoản</button>
-                </div>
                 <!-- begin tables -->
                 
                 <div class="row" id="dashboard-table">

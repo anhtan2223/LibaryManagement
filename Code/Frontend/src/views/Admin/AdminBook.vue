@@ -1,148 +1,254 @@
 <template>
     <div class="d-flex">
-        <Sidebar />
-        <div id="dashboard-content">
+        <Sidebar/>
+        <div class="author-content">
+
             <div class="topbar">
                 <!-- just here for the top bar, nothing else -->
             </div>
-            
+
+            <!-- category content -->
             <div class="container">
-                <div class="action-btn">
-                    <button type="button" class="btn btn-primary" @click="add">Thêm tài khoản</button>
+                <div id="author-title"><h2>Quản lý sách</h2></div>
+                <div class="search-container">
+                    <div class="input-group search-container flex-end">
+                        <div class="form-outline" data-mdb-input-init>
+                            <input type="search" id="form1" class="form-control" />
+                        </div>
+                        <button
+                            type="button"
+                            class="button_in_search_container btn btn-primary"
+                            data-mdb-ripple-init>
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <button
+                        @click="() => togglePopup()"
+                        type="button"
+                        class="button_in_search_container btn btn-primary">
+                        <i class="fas fa-plus" style="color: #ffffff"></i>
+                        </button>
+                    </div>
                 </div>
-                <!-- begin tables -->
-                
-                <div class="row" id="dashboard-table">
-                    <h3 class="table-name">Danh sách độc giả</h3>
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
+
+                <Popup v-if="popupTrigger" :Toggle="()=> togglePopup()">
+                    <div class="popup-title"><h3>Thêm tác phẩm</h3></div>
+                    <div class="input-container">
+                        <div class="row">
+                            <div class="col-4 text-start">
+                                <h3>Mã sách</h3>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" placeholder="Mã sách">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 text-start">
+                                <h3>Tên sách</h3>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" placeholder="Tên sách">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 text-start">
+                                <h3>Mã tác giả</h3>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" placeholder="Mã tác giả">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 text-start">
+                                <h3>Mã thể loại</h3>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" placeholder="Mã thể loại">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 text-start">
+                                <h3>Ảnh bìa</h3>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" placeholder="Đường dẫn...">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 text-start">
+                                <h3>Mã NXB</h3>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" placeholder="Mã nhà xuất bản">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 text-start">
+                                <h3>Năm xuất bản</h3>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" placeholder="Năm xuất bản">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-container">
+                        <button @click="() => togglePopup()" class="btn btn-outline-success">Lưu thay đổi</button>
+                        <button @click="() => togglePopup()" class="btn btn-outline-danger">Huỷ</button>
+                    </div>
+                    
+                </Popup>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered caption-top">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Ảnh bìa</th>
+                                <th scope="col">Tên</th>
+                                <th scope="col">Tác giả</th>
+                                <th scope="col">Thể loại</th>
+                                <th scope="col">Nhà xuất bản</th>
+                                <th scope="col">Số lượng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><img src="https://m.media-amazon.com/images/I/61tsrsmR7aS._SL1254_.jpg" alt="" id="book-image" style="width: 80px;"/></td>
+                                <td>Essential Computer Science</td>
+                                <td>Paul D. Crutcher</td>
+                                <td>Khoa học</td>
+                                <td>NXB Kim Đồng</td>
+                                <td>9</td>
+                                <td class="action_button">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fas fa-wrench" style="color: #ffffff"></i>
+                                    </button>
+                                    <button class="btn btn-primary" type="submit" @click="">
+                                        <i class="fas fa-trash" style="color: #ffffff"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><img src="https://m.media-amazon.com/images/I/61tsrsmR7aS._SL1254_.jpg" alt="" id="book-image" style="width: 80px;"/></td>
+                                <td>Essential Computer Science</td>
+                                <td>Paul D. Crutcher</td>
+                                <td>Khoa học</td>
+                                <td>NXB Kim Đồng</td>
+                                <td>9</td>
+                                <td class="action_button">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fas fa-wrench" style="color: #ffffff"></i>
+                                    </button>
+                                    <button class="btn btn-primary" type="submit" @click="">
+                                        <i class="fas fa-trash" style="color: #ffffff"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><img src="https://m.media-amazon.com/images/I/61tsrsmR7aS._SL1254_.jpg" alt="" id="book-image" style="width: 80px;"/></td>
+                                <td>Essential Computer Science</td>
+                                <td>Paul D. Crutcher</td>
+                                <td>Khoa học</td>
+                                <td>NXB Kim Đồng</td>
+                                <td>9</td>
+                                <td class="action_button">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fas fa-wrench" style="color: #ffffff"></i>
+                                    </button>
+                                    <button class="btn btn-primary" type="submit" @click="">
+                                        <i class="fas fa-trash" style="color: #ffffff"></i>
+                                    </button>
+                                </td>
+                            </tr>
                             
-                            <thead>
-                                <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col">Tên độc giả</th>
-                                    <th scope="col">Tên tài khoản</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Số điện thoại</th>
-                                    <th scope="col">Địa chỉ</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr @click="edit">
-                                    <th scope="row">1</th>
-                                    <td>Phong Phạm</td>
-                                    <td>phphong</td>
-                                    <td>phphong@gmail.com</td>
-                                    <td>0192301239</td>
-                                    <td>Can Tho</td>
-                                </tr>
-                                <tr @click="edit">
-                                    <th scope="row">2</th>
-                                    <td>Phong Phạm</td>
-                                    <td>phphong</td>
-                                    <td>phphong@gmail.com</td>
-                                    <td>0192301239</td>
-                                    <td>Can Tho</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <h3 class="table-name">Danh sách nhân viên</h3>
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col">Tên nhân viên</th>
-                                    <th scope="col">Tên tài khoản</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Số điện thoại</th>
-                                    <th scope="col">Địa chỉ</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr @click="edit">
-                                    <th scope="row">1</th>
-                                    <td>Phong Phạm</td>
-                                    <td>phphong</td>
-                                    <td>phphong@gmail.com</td>
-                                    <td>0192301239</td>
-                                    <td>Can Tho</td>
-                                </tr>
-                                <tr @click="edit">
-                                    <th scope="row">2</th>
-                                    <td>Phong Phạm</td>
-                                    <td>phphong</td>
-                                    <td>phphong@gmail.com</td>
-                                    <td>0192301239</td>
-                                    <td>Can Tho</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
-                <!-- end tables -->
             </div>
         </div>
+        <!-- end category content -->
     </div>
 </template>
-
 <style scoped>
-
-#dashboard-content h1{
-    margin-top: 0;
-    height: 20px;
+.container {
+    padding: 0 3%;
 }
 
-#dashboard-content .container {
-    margin-left: 0;
-    margin-top:1vh;
+.button_in_search_container {
+    scale: 100%;
+    margin: 5px 5px 5px 3px;
+}
+.form-control {
+    width: 500px;
+}
+.search-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    align-self: center;
+    margin-bottom: 1%;
 }
 
+.add_button {
+    float: inline-end;
+    width: 150px;
+}
+.action_button {
+    width: 150px;
+}
+table {
+    border: 1px solid #111111;
+    border-radius: 5px;
+}
+button {
+    align-items: center;
+    justify-self: center;
+    scale: 80%;
+    margin-right: 1px;
+}
 .topbar {
     background-color: #0e2238;
     width: 80vw;
     height: 12vh;
 }
-
-.topbar h1 {
-    color: white;
+#author-title {
+    margin: 2% 0;
+}
+.popup-title {
+    margin: 2% 0;
     text-align: center;
 }
 
-.table-responsive {
-    padding: 3% 5%;
+.input-container {
+    padding: 2% 10%;
+    /* margin-left: 5%; */
 }
 
-.action-btn {
-    padding: 2% 4% 0% 4%;
+.row {
+    margin-bottom: 20px;
 }
 
-button {
-    margin: 1%;
+.button-container {
+    /* margin-top: 5%; */
+    margin-left: 40%;
+    margin-right: 30%;
 }
 
-.table-name {
-    margin-left: 4%;
-    margin-top: 3%;
-    margin-bottom: 0;
-    width: 20vw;
-}
 </style>
-
 <script setup>
-import Sidebar from "../../components/Sidebar.vue";
+import Popup from "../../components/Popup.vue"
+import Sidebar from "../../components/Sidebar.vue"
+import { ref } from "vue";
 
-function add(){
-    alert("add an account")
+function del() {
+    alert("Delete an author!")
 }
 
-function edit(){
-    alert("edit information")
-}
+const popupTrigger = ref(false)
 
-function del(){
-    alert("delete account")
+const togglePopup = () => {
+    popupTrigger.value = !popupTrigger.value
 }
 </script>
-    

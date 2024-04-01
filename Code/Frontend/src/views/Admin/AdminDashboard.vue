@@ -104,7 +104,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col"></th>
                                     <th scope="col">Người mượn</th>
                                     <th scope="col">Tên sách</th>
                                     <th scope="col">Ngày hết hạn</th>
@@ -133,7 +133,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col"></th>
                                     <th scope="col">Người mượn</th>
                                     <th scope="col">Tên sách</th>
                                     <th scope="col">Ngày hết hạn</th>

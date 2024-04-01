@@ -152,14 +152,11 @@
 }
 
 .card {
-    height: 50vh;
     margin: 5% 0;
 }
 
 .card img {
     width: 100%;
-    height: 50%;
-    object-fit: cover;
     border-radius: 15px;
     padding: 3%
 }
@@ -185,6 +182,7 @@
     cursor: pointer;
     width: fit-content;
 }
+
 
 </style>
 

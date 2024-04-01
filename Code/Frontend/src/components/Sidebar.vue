@@ -1,11 +1,8 @@
 <template>
     <body class="wrapper d-flex">
         <aside id="sidebar">
-
             <div class="d-flex" id="sidebar-signature">
-                <a href="#" id="sidebar-title">
-                    Library Management
-                </a>
+                <a href="#" id="sidebar-title"> Library Management </a>
             </div>
 
             <ul class="sidebar-nav">
@@ -43,7 +40,7 @@
                     <a
                         @click="$router.push('/admin/category')"
                         class="sidebar-link">
-                        <i class="lni lni-write"></i>
+                        <i class="fa-solid fa-list"></i>
                         <span> Quản lý thể loại</span>
                     </a>
                 </li>
@@ -51,7 +48,7 @@
                     <a
                         @click="$router.push('/admin/publisher')"
                         class="sidebar-link">
-                        <i class="lni lni-write"></i>
+                        <i class="fa-solid fa-upload"></i>
                         <span> Quản lý NXB</span>
                     </a>
                 </li>
@@ -116,7 +113,6 @@ body {
     flex-direction: column;
 }
 
-
 #sidebar-title {
     color: white;
     font-size: 1.2vw;
@@ -131,7 +127,7 @@ body {
 }
 
 a.sidebar-link {
-    padding: .625rem 1.625rem;
+    padding: 0.625rem 1.625rem;
     color: white;
     display: block;
     font-size: 0.9rem;
@@ -151,6 +147,8 @@ a.sidebar-link:hover {
 .sidebar-link i {
     font-size: 1.2vw;
     margin-right: 0.75rem;
+    margin-bottom: 5%;
+    margin-top: 5%;
 }
 
 .sidebar-item {
@@ -162,9 +160,10 @@ a.sidebar-link:hover {
     cursor: pointer;
 }
 
-/* .sidebar-footer {
-    margin-left: 5%;
-} */
+.sidebar-footer a {
+    cursor: pointer;
+}
+    
 </style>
 
 <script setup>
