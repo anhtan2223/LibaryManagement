@@ -3,10 +3,10 @@
   <div class="wrap">
     <div class="login-form">
     <form >
-      <div class="text-center m-3">
+      <div class="text-center mt-3">
           <h2 class="mt-3">Đăng Nhập</h2>
       </div>
-
+  
               <!-- Username input -->
       <div class="form-outline form-floating m-4">
           <input type="text" id="registerUsername" 
@@ -25,10 +25,10 @@
          />
           <label class="form-label" for="registerPassword">Mật Khẩu</label>
       </div>
-
+  
       <span class="text-center">
               <router-link to="/signin">
-                <p class="register">
+                <p class="move-register">
                   Chưa Có Tài Khoản ? Đăng Ký Ngay !
                 </p>
               </router-link>
@@ -41,6 +41,7 @@
       </div>
     </form>
     {{ inputData }}
+    {{ result }}
   </div>
   </div>
 </template>
@@ -48,7 +49,6 @@
 <script setup>
 import AxiosAPI from '../services/api.service.js'
 import Navigation from '../components/Navigation.vue'
-
 
   import {ref} from 'vue'
   import { useRouter } from 'vue-router'
@@ -58,13 +58,11 @@ import Navigation from '../components/Navigation.vue'
       password : undefined ,
   })
 
-
   const router = useRouter()
-
   const result = ref("Init")
 
   if(sessionStorage.isLogin)
-    router.push('/info')
+    router.push(`${sessionStorage.isLogin}`)
 
   async function Login()
   {
@@ -89,35 +87,34 @@ import Navigation from '../components/Navigation.vue'
       }
 
       sessionStorage.info = JSON.stringify(result.value.infomation)
-      sessionStorage.isLogin = roleTable[result.value.infomation.role]
+      sessionStorage.isLogin = roleTable[result.value.infomation.RoleID]
       
-      router.push(`/info`)
+      router.push(`/${sessionStorage.isLogin}`)
   }
 </script>
 
 <style scoped>
 .login-form {
-  width : 60vw ;
+  /* min-width : 60vw ; */
   border-radius: 5%;
   box-shadow: 0 0 20px #000000;
   color: black ;
-  background: linear-gradient(to right , #ed1c24 , #fcee21);
+  background: linear-gradient(to right , #00ffa9 , #0d4dff);
 }
 .form-control {
-  border-radius: 20px;
+  border-radius: 30px;
 }
 .form-label {
   color : black ;
 }
-.register {
+.move-register {
   text-decoration: none;
   color: black;
 }
 
 .wrap {
   margin-top: 20vh;
-  margin-left: 20%;
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
-
-
 </style>

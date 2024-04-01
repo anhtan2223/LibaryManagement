@@ -107,6 +107,7 @@
   import {ref} from 'vue'
   import AxiosAPI from '../services/api.service'
   import Nav from '../components/Navigation.vue'
+import router from '@/router'
   const rePass = ref()
   const data = ref(
     {
@@ -147,6 +148,7 @@
     // await AxiosAPI.Register(data.value)
     // data.value = {role : 1}
     // rePass.value = ""
+    router.push('/login')
     return alert("Đăng Kí Thành Công")
   }
 </script>
@@ -159,7 +161,7 @@
   box-shadow: 0px 0px 20px black;
   text-align: center;
   color: black ;
-  background: linear-gradient(to right ,  #ed1c24 , #fcee21);
+  background: linear-gradient(to right ,  #00ffa9 , #0d4dff);
 }
 .form-control {
   border-radius: 20px ;

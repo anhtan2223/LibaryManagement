@@ -56,11 +56,13 @@
                     </a>
                 </li>
             </ul>
-            <div class="sidebar-footer">
-                <a class="sidebar-link" @click="$router.push('/login')">
-                    <i class="lni lni-exit"></i>
-                    <span>Đăng xuất</span>
-                </a>
+            <div class="sidebar-footer" >
+                <router-link to="/login">
+                    <a class="sidebar-link" @click="DangXuat" >
+                        <i class="lni lni-exit"></i>
+                        <span>Đăng xuất</span>
+                    </a>
+                </router-link>
             </div>
         </aside>
     </body>
@@ -166,5 +168,8 @@ a.sidebar-link:hover {
 </style>
 
 <script setup>
-
+    function DangXuat()
+    {
+       sessionStorage.clear()
+    }
 </script>

@@ -3,22 +3,30 @@
     <div class="container">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link" @click="$router.push('./')"
-                    >Thông tin cá nhân</a
-                >
-            </li>
-            <li class="nav-item">
                 <a class="nav-link active">Quản lý thẻ mượn</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" @click="$router.push('./search')"
-                    >Tra cứu sách</a
+                    >Quản Lý sách</a
                 >
             </li>
         </ul>
 
         <div class="tab-content">
-            <h3 class="table-name">Danh sách thẻ mượn</h3>
+            <h3 class="table-name">Quản Lý Thẻ Mượn Sách</h3>
+            <div class="search-bar">
+                <div class="input-group rounded">
+                    <input
+                        type="search"
+                        class="form-control rounded"
+                        placeholder="Mã Thẻ Mượn Sách"
+                        aria-label="Search"
+                        aria-describedby="search-addon" />
+                    <span class="input-group-text border-0" id="search-addon">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </div>
+            </div>
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
                     <thead>
@@ -28,7 +36,6 @@
                             <th scope="col">Trạng thái</th>
                             <th scope="col">Ngày bắt đầu</th>
                             <th scope="col">Ngày kết thúc</th>
-                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,10 +45,6 @@
                             <td>Đã kích hoạt</td>
                             <td>21/01/2024</td>
                             <td>21/04/2024</td>
-                            <td>
-                                <button type="button" class="btn btn-outline-success"><i class="fa-solid fa-check" style="color: #005716;"></i></button>
-                                <button type="button" class="btn btn-outline-warning"><i class="fa-solid fa-rotate" style="color: #FFD43B;"></i></button>
-                            </td>
                         </tr>
                         <tr @click="edit">
                             <th scope="row">2</th>
@@ -49,10 +52,6 @@
                             <td>Chưa kích hoạt</td>
                             <td>-</td>
                             <td>-</td>
-                            <td>
-                                <button type="button" class="btn btn-outline-success"><i class="fa-solid fa-check" style="color: #005716;"></i></button>
-                                <button type="button" class="btn btn-outline-warning"><i class="fa-solid fa-rotate" style="color: #FFD43B;"></i></button>
-                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -62,7 +61,7 @@
 </template>
 
 <script setup>
-import Navigation from "../../components/Navigation.vue";
+import Navigation from "../../components/Navigation.Employee.vue";
 </script>
 
 <style scoped>
@@ -80,6 +79,9 @@ import Navigation from "../../components/Navigation.vue";
 
 button {
     margin: 0 6%;
+}
+.search-bar {
+    margin: 0 0 3% 0;
 }
 
 </style>

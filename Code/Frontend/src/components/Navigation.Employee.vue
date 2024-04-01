@@ -40,9 +40,9 @@
 import { ref } from "vue";
 
 const data = ref({
-    nav1: { name: "Thư Viện", to: "/", icon: "fas fa-book" },
-    nav2: { name: "Đăng Nhập", to: "/login", icon: "None" },
-    nav3: { name: "Đăng Kí", to: "/signin", icon: "None" },
+    nav1: { name: "Thư Viện", to: "/employee", icon: "fas fa-book" },
+    nav2: { name: "Thẻ Mượn Sách", to: "/employee/card", icon: "fa-solid fa-id-card" },
+    nav3: { name: "Tài Khoản", to: "/employee/info", icon: "fa-solid fa-user" },
 });
 </script>
 

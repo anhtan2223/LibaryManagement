@@ -52,35 +52,12 @@ const router = createRouter({
       props : true ,
     },
     {
-      path: '/employee',
-      name: 'EmployeeInfo',
-      component: () => import('../views/Employee/EmployeeInfo.vue') ,
-      props : true ,
-    },
-    {
-      path: '/employee/card',
-      name: 'EmployeeCard',
-      component: () => import('../views/Employee/EmployeeCard.vue') ,
-      props : true ,
-    },
-    {
-      path: '/employee/search',
-      name: 'EmployeeSearch',
-      component: () => import('../views/Employee/EmployeeSearch.vue') ,
-      props : true ,
-    },
-    {
-      path: '/reader',
-      name: 'Reader',
-      component: () => import('../views/Reader/Home.Reader.vue') ,
-      props : true ,
-    },
-    {
       path: '/admin/category',
       name: 'AdminCategory',
       component: () => import('../views/Admin/AdminCategory.vue') ,
       props : true ,
     },
+    
     {
       path: '/admin/author',
       name: 'AdminAuthor',
@@ -92,6 +69,48 @@ const router = createRouter({
       path: '/admin/publisher',
       name: 'AdminPublisher',
       component: () => import('../views/Admin/AdminPublishing.vue') ,
+      props : true ,
+    } ,
+    {
+      path: '/employee',
+      name: 'EmployeeHome',
+      component: () => import('../views/Employee/Home.Employee.vue') ,
+      props : true ,
+    },
+    {
+      path: '/employee/info',
+      name: 'EmployeeInfo',
+      component: () => import('../views/Employee/Info.Employee.vue') ,
+      props : true ,
+    },
+    {
+      path: '/employee/card',
+      name: 'EmployeeCard',
+      component: () => import('../views/Employee/Card.Employee.vue') ,
+      props : true ,
+    },
+    {
+      path: '/employee/search',
+      name: 'EmployeeSearch',
+      component: () => import('../views/Employee/Book.Employee.vue') ,
+      props : true ,
+    },
+    {
+      path: '/reader',
+      name: 'Reader',
+      component: () => import('../views/Reader/Home.Reader.vue') ,
+      props : true ,
+    },
+    {
+      path: '/reader/info',
+      name: 'userinfo',
+      component: () => import('../views/Reader/Info.Reader.vue') ,
+      props : true ,
+    },
+    {
+      path: '/reader/password',
+      name: 'ReaderChangePassword',
+      component: () => import('../views/Reader/Pass.Reader.vue') ,
       props : true ,
     }
   ]

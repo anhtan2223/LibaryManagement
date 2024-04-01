@@ -58,7 +58,7 @@
                             <h5 class="card-title">Essential Computer Science</h5>
                             <div class="author">Paul D. Crutcher</div>
                             <div class="status">Trạng thái: {{ "Có sẵn" }}</div>
-                            <a class="btn btn-primary see-detail">Xem chi tiết</a>
+                            <div class="btn btn-primary see-detail">Xem chi tiết</div>
                         </div>
                     </div>
                 </div>
@@ -189,5 +189,5 @@
 </style>
 
 <script setup>
-import Navigation from "../../components/Navigation.Reader.vue";
+import Navigation from "../../components/Navigation.Employee.vue";
 </script>

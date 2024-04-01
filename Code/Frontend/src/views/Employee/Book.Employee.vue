@@ -4,25 +4,22 @@
         <!-- Nav pills -->
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link " @click="$router.push('./')">Thông tin cá nhân</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link " @click="$router.push('./card')">Quản lý thẻ mượn</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active">Tra cứu sách</a>
+                <a class="nav-link active">Quản Lý Sách</a>
             </li>
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
-            <h3 class="table-name">Tra cứu sách</h3>
+            <h3 class="table-name">Quản Lý Sách</h3>
             <div class="search-bar">
                 <div class="input-group rounded">
                     <input
                         type="search"
                         class="form-control rounded"
-                        placeholder="Search"
+                        placeholder="Tên Sách"
                         aria-label="Search"
                         aria-describedby="search-addon" />
                     <span class="input-group-text border-0" id="search-addon">
@@ -37,7 +34,8 @@
                             <th scope="col"></th>
                             <th scope="col">Tiêu đề</th>
                             <th scope="col">Tác giả</th>
-                            <th scope="col">Thể loại</th>
+                            <th scope="col">Thể Loại</th>
+                            <th scope="col">Người Mượn</th>
                             <th scope="col">Ngày hẹn trả</th>
                             <th scope="col">Trạng thái</th>
                         </tr>
@@ -47,17 +45,19 @@
                             <th scope="row">1</th>
                             <td>Essential Computer Science</td>
                             <td>Paul D. Crutcher</td>
-                            <td>Khoa học</td>
+                            <td>Khoa Học</td>
+                            <td>Lê Sỹ Anh Tấn</td>
                             <td>21/03/2024</td>
-                            <td>Chưa hoàn trả</td>
+                            <td>Chưa Trả</td>
                         </tr>
                         <tr @click="edit">
                             <th scope="row">2</th>
                             <td>Vũ trụ trong vỏ hạt dẻ</td>
                             <td>Stephen Hawking</td>
                             <td>Khoa học</td>
+                            <td>Lê Sỹ Anh Tấn</td>
                             <td>21/01/2024</td>
-                            <td>Đã hoàn trả</td>
+                            <td>Quá Hạn</td>
                         </tr>
                     </tbody>
                 </table>
@@ -67,7 +67,7 @@
 </template>
 
 <script setup>
-import Navigation from "../../components/Navigation.vue";
+import Navigation from "../../components/Navigation.Employee.vue";
 </script>
 
 <style scoped>
