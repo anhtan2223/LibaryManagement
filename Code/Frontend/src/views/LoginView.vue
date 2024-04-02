@@ -37,7 +37,8 @@
       <div class="text-center mb-3 mt-3">
           <button type="submit" class="btn btn-outline-primary "
           @click.prevent="Login"
-          >Đăng Nhập</button>               
+          >Đăng Nhập</button>    
+          {{ info }}           
       </div>
     </form>
   </div>
@@ -82,6 +83,12 @@ import Navigation from '../components/Navigation.vue'
       {
         inputData.value.password = ''
         return alert('Nhập Sai Mật Khẩu Vui Lòng Nhập Lại')
+      }
+
+
+      if(!result.value.information.isActive)
+      {
+        return alert('Tài Khoản Đang Bị Khoá Liên Hệ Quản Lý để Mở')
       }
 
       sessionStorage.info = JSON.stringify(result.value.information)

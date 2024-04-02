@@ -32,18 +32,10 @@
                     <div class="input-container">
                         <div class="row">
                             <div class="col-4 text-start">
-                                <h3>Mã tác giả</h3>
-                            </div>
-                            <div class="col-8">
-                                <input type="text" class="form-control" placeholder="Mã sách">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 text-start">
                                 <h3>Tên tác giả</h3>
                             </div>
                             <div class="col-8">
-                                <input type="text" class="form-control" placeholder="Tên sách">
+                                <input v-model="newInfo.TenTG" type="text" class="form-control" placeholder="Tên Tác Giả">
                             </div>
                         </div>
                         <div class="row">
@@ -51,20 +43,21 @@
                                 <h3>Website</h3>
                             </div>
                             <div class="col-8">
-                                <input type="text" class="form-control" placeholder="Mã thể loại">
+                                <input v-model="newInfo.Website" type="text" class="form-control" placeholder="Website Tác Giả">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
                                 <label for="textArea" style="font-size: larger;"><b>Ghi chú</b></label>
                                 <div class="form-floating">
-                                    <textarea id="textArea" style="width: 100%;" rows="7" placeholder="Ghi chú về tác giả"></textarea>
+                                    <textarea v-model="newInfo.GhiChu" id="textArea" style="width: 100%;" rows="7" placeholder="Ghi chú về tác giả"></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="button-container">
-                        <button @click="() => togglePopup()" class="btn btn-outline-success">Lưu thay đổi</button>
+                        {{ newInfo }}
+                        <button @click="createNewInfo" class="btn btn-outline-success">Lưu thay đổi</button>
                         <button @click="() => togglePopup()" class="btn btn-outline-danger">Huỷ</button>
                     </div>
                     
@@ -166,12 +159,29 @@ button {
 import Popup from "../../components/Popup.vue"
 import Sidebar from "../../components/Sidebar.vue"
 import { ref } from "vue";
+import Axios from "../../services/api.service"
+
 const popupTrigger = ref(false)
 const togglePopup = () => {
     popupTrigger.value = !popupTrigger.value
 }
+var pattern = {
+        "TenTG": null,
+        "Website": null,
+        "GhiChu": null
+    }
 
-import Axios from "../../services/api.service"
+const newInfo = ref({...pattern})
+async function createNewInfo()
+{
+    if(!newInfo.value.TenTG) return alert("Không Thể Để Trống Tên Tác Giả")
+    const result = await Axios.AddAuthor(newInfo.value)
+    alert(result.message)
+    newInfo.value = pattern
+    togglePopup()
+    GetAuthor()
+}
+
 const authorList = ref([])
 async function GetAuthor() {
     authorList.value = await Axios.GetAllAuthor()

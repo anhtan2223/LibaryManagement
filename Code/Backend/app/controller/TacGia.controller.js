@@ -31,12 +31,15 @@ exports.updateTacGia = async (req , res , next) =>{
     try {
         const connection = MySQL.connection
         const data = req.body
-        const command = `UPDATE theloai
+        
+        const command = `UPDATE tacgia
         SET
-        ${data.TenTG != undefined ? "TenTG = '"+data.TenTG+"'" : ""} 
-        ${data.Website != undefined ? "Website = '"+data.Website+"'" : ""} 
-        ${data.GhiChu != undefined ? "GhiChu = '"+data.GhiChu+"'" : ""} 
-        WHERE matl = ${req.params.id}`
+        matg = ${req.params.id}
+        ${data.TenTG != undefined ? ",TenTG = '"+data.TenTG+"'" : ""} 
+        ${data.Website != undefined ? ",Website = '"+data.Website+"'" : ""} 
+        ${data.GhiChu != undefined ? ",GhiChu = '"+data.GhiChu+"'" : ""} 
+        WHERE matg = ${req.params.id}`
+        // console.log(command);
             connection.query(command , (err, result , field)=>{
             if(!err){
                 return res.json(result)
@@ -58,7 +61,7 @@ exports.deleteTacGia = async (req , res , next) =>{
             if(!err){
                 if(!err){
                     if(result.affectedRows != 0)
-                        return res.json({message : `Delete ${result.affectedRows} TheLoai success `})
+                        return res.json({message : `Xoá Tác Giả ID = ${req.params.id} Thành Công`})
                     return res.json({message : "TacGia Not Found"})
                 }
             }
@@ -75,10 +78,10 @@ exports.createTacGia = async (req , res , next) =>{
         const connection = MySQL.connection
         const data = req.body
         const command = `INSERT INTO TacGia (tentg${data.Website ? ",Website":""}${data.GhiChu ? ",GhiChu":""}) VALUES 
-            ('${data.tentg} 
-            ${data.Website ? "'"+data.Website+"'"  :""}
-            ${data.GhiChu ? "'"+data.GhiChu+"'"  :""}
-            ')`
+            ('${data.TenTG}' 
+            ${data.Website ? ",'"+data.Website+"'"  :""}
+            ${data.GhiChu ? ",'"+data.GhiChu+"'"  :""}
+            )`
             connection.query(command , (err, result , field)=>{
             if(!err){
                 return res.json({message : `Thêm vào thành công TacGia có ID là : ${result.insertId}`})

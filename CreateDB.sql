@@ -63,15 +63,15 @@ value 	('Tô Hoài') ,
 create table Sach(
 	MaSach int auto_increment ,
     TenSach varchar(200) not null ,
-    MaTG int not null ,
+    MaTG int  ,
     MaTL int ,
-    MaNXB int not null ,
-    NamXB year not null ,
+    MaNXB int  ,
+    NamXB year  ,
     Image varchar(1000) ,
     constraint hello primary key(MaSach , TenSach , MaTG , MaNXB , namXB ) ,
-    foreign key (MaTG) references TacGia(MaTG) on delete cascade ,
-    foreign key (MaNXB) references NhaXuatBan(MaNXB) on delete cascade , 
-    foreign key (MaTL) references TheLoai(MaTL) on delete cascade
+    foreign key (MaTG) references TacGia(MaTG)  ,
+    foreign key (MaNXB) references NhaXuatBan(MaNXB)  , 
+    foreign key (MaTL) references TheLoai(MaTL) 
 );
 insert into Sach(TenSach,MaTL,MaTG,MaNXB,NamXB,Image) value
 	("Dế Mèn Phiêu Lưu Ký",2,1,1,2024,'https://static.8cache.com/cover/o/eJzLyTDW1_VIzDROLfM3Noh31A8LM8zQLQlx8Uj11HeEgrw8V_0o5-Ck1IDyQEf3bP1yI0NT3QxjIyMARh4SLA==/de-men-phieu-luu-ky.jpg') ,
@@ -156,10 +156,11 @@ create table TheThuVien(
     NgayBD date not null ,
     NgayKT date not null ,
     GhiChu varchar(100)  ,
+    isActive boolean default false ,
     foreign key(MaDG) references NguoiDung(UID) ,
 	constraint HetHan check (NgayBD < NgayKT) 
 );
-INSERT INTO TheThuVien (MaDG, NgayBD, NgayKT, GhiChu)
+INSERT INTO TheThuVien (MaDG, NgayBD, NgayKT, GhiChu )
 VALUES
     (10, '2024-11-10', '2025-11-10', 'Thẻ hết hạn vào ngày 10/11/2025'),
     (11, '2024-12-15', '2025-12-15', 'Thẻ hết hạn vào ngày 15/12/2025'),

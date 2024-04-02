@@ -69,7 +69,7 @@
                         </button>
                     </router-link>
                 </div>
-                {{ root }}
+                <!-- {{ root }} -->
             </div>
     </div> 
 </template>

@@ -33,7 +33,8 @@ exports.updateNXB = async (req , res , next) =>{
         const data = req.body
         const command = `UPDATE nhaxuatban
         SET
-        ${data.TenNXB != undefined ? "TenNXB = '"+data.TenNXB+"'" : ""} 
+        manxb = ${req.params.id}
+        ${data.TenNXB != undefined ? ",TenNXB = '"+data.TenNXB+"'" : ""} 
         ${data.DiaChi != undefined ? ",DiaChi = '"+data.DiaChi+"'" : ""} 
         ${data.Email != undefined ? ",Email = '"+data.Email+"'" : ""} 
         ${data.NguoiDaiDien != undefined ? "NguoiDaiDien = '"+data.NguoiDaiDien+"'" : ""} 
@@ -59,7 +60,7 @@ exports.deleteNXB = async (req , res , next) =>{
             if(!err){
                 if(!err){
                     if(result.affectedRows != 0)
-                        return res.json({message : `Delete ${result.affectedRows} NXB success `})
+                        return res.json({message : `Xoá ${result.affectedRows} Nhà Xuất Bản ID = ${req.params.id} Thành Công `})
                     return res.json({message : "NhaXuatBan Not Found"})
                 }
             }
@@ -80,6 +81,7 @@ exports.createNXB = async (req , res , next) =>{
             '${data.TenNXB}'
             ${data.DiaChi ? ",'"+data.DiaChi+"'"  :""}
             ${data.Email ? ",'"+data.Email+"'" :""}
+            ${data.NguoiDaiDien ? ",'"+data.NguoiDaiDien+"'" :""}
 
             )`
             connection.query(command , (err, result , field)=>{

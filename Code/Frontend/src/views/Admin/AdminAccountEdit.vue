@@ -20,10 +20,10 @@
                                 </div>
 
                                 <div class="col-2">
-                                    <label for="phone" class="col-form-label">Vai Trò</label>
+                                    <label for="phone" class="col-form-label">Trạng Thái</label>
                                 </div>
                                 <div class="col-4">
-                                        {{ mappingTable[info.RoleID] }}
+                                        {{ info.isActive ? "Hoạt Đông" : "Đang Khoá" }}
                                 </div>
                                 
                         </div>
@@ -39,7 +39,7 @@
                                     <label for="password" class="col-form-label">Mật khẩu</label>
                                 </div>
                                 <div class="col-4">
-                                    <input type="text" id="password" class="form-control" v-model="newPassword" >
+                                    <input type="text" id="password" class="form-control" v-model="info.password" >
                                 </div>
                         </div>
 
@@ -72,10 +72,21 @@
                     <hr>
                     <div class="footer-element m-4">
                         <div class="d-grid gap-3 d-md-flex justify-content-md-around">
-                            <button class="btn btn-outline-primary" type="button" >Sửa Thông Tin </button>
+                            <button class="btn btn-outline-primary" 
+                            @click="UpdateInfo"
+                            type="button" >
+                                Sửa Thông Tin 
+                            </button>
                             <button class="btn btn-outline-danger"
                                 type="button" 
+                                v-if="info.isActive == 1"
                                 @click="LockAccount"> Khoá Tài Khoản  
+                            </button>
+
+                            <button class="btn btn-outline-success"
+                                type="button" 
+                                v-else
+                                @click="UnockAccount"> Mở Khoá Tài Khoản  
                             </button>
 
                             <!-- <button class="btn btn-outline-primary" type="button" @click="$router.push('/employee/info')">
@@ -87,7 +98,7 @@
                                     Quay Về</button>
                             <!-- </router-link> -->
                         </div>
-                            <!-- {{ root }} -->
+                            <!-- {{ info }} -->
                         </div>
                 </div> 
             </div>
@@ -112,15 +123,29 @@ const mappingTable = [
 const props = defineProps(["id"])
 import Axios from "../../services/api.service"
 const info = ref()
-const isSetting = ref(false)
 const newPassword = ref("")
 async function GetInfo() {
     info.value = await Axios.GetAccountByID(props.id)
 }
 GetInfo()
-async function UpdateAccount()
-{
-    alert("Setting")
+async function UpdateInfo(){
+    if(!info.value.HoTen) return alert("Không Thể Để Trống Tên Người Dùng")
+    if(!info.value.password) delete info.value.password 
+    await Axios.UpdateAccount(props.id , info.value)
+    alert("Cập Nhật Thành Công")
+    newPassword.value = ""
+    useRouter().go(-1)
 }
+async function LockAccount() {
+    await Axios.LockAccount(props.id)
+    info.value.isActive = 0
+    alert(`Đã Khoá Tài Khoản ${info.value.username} Thành Công `)
+}
+async function UnockAccount() {
+    await Axios.UnlockAccount(props.id)
+    info.value.isActive = 1
+    alert(`Đã Mở Khoá Tài Khoản ${info.value.username} Thành Công `)
+}
+
 
 </script>

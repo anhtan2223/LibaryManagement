@@ -34,6 +34,7 @@
                                     type="text"
                                     id="name"
                                     v-model = "info.TenNXB"
+                                    @keydown.enter="UpdateInfo"
                                     class="form-control"/>
                             </div>
                         </div>
@@ -49,6 +50,7 @@
                                     type="text"
                                     id="represent"
                                     class="form-control"
+                                    @keydown.enter="UpdateInfo"
                                     v-model="info.NguoiDaiDien"
                                     />
                             </div>
@@ -60,6 +62,7 @@
                                     type="text"
                                     id="email"
                                     v-model="info.Email"
+                                    @keydown.enter="UpdateInfo"
                                     class="form-control"/>
                             </div>
                         </div>
@@ -76,6 +79,7 @@
                                     type="text"
                                     id="address"
                                     v-model = "info.DiaChi"
+                                    @keydown.enter="UpdateInfo"
                                     class="form-control"/>
                             </div>
                         </div>
@@ -85,8 +89,16 @@
                         <div class="d-grid gap-3 d-md-flex justify-content-md-around">
                             <button
                                 class="btn btn-outline-success"
+                                @click="UpdateInfo"
                                 type="button">
                                 Xác Nhận 
+                            </button>
+
+                            <button
+                                class="btn btn-outline-danger"
+                                @click="DeleteInfo"
+                                type="button">
+                                Xoá 
                             </button>
                             
                             <!-- <button class="btn btn-outline-primary" type="button" @click="$router.push('/employee/info')">
@@ -122,9 +134,23 @@ import { ref } from "vue";
 
 const props = defineProps(["id"])
 import Axios from "../../services/api.service"
+import { useRouter } from "vue-router";
 const info = ref()
 async function GetInfo() {
     info.value = await Axios.GetPublisherByID(props.id)
+}
+
+async function DeleteInfo() {
+    const message = await Axios.DeletePublisherByID(props.id)
+    alert(message.message)
+    useRouter().go(-1)
+}
+
+async function UpdateInfo(){
+    if(!info.value.TenNXB) alert("Không Thể Để Trống Tên NXB")
+    const result = await Axios.UpdatePuclisher(props.id , info.value)
+    alert("Cập Nhật Thành Công")
+    useRouter().go(-1)
 }
 GetInfo()
 

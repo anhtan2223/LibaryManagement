@@ -32,18 +32,10 @@
                     <div class="input-container">
                         <div class="row">
                             <div class="col-4 text-start">
-                                <h4>Mã NXB</h4>
-                            </div>
-                            <div class="col-8">
-                                <input type="text" class="form-control" placeholder="Mã nhà xuất bản">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 text-start">
                                 <h4>Tên NXB</h4>
                             </div>
                             <div class="col-8">
-                                <input type="text" class="form-control" placeholder="Tên nhà xuất bản">
+                                <input v-model="newInfo.TenNXB" type="text" class="form-control" placeholder="Tên nhà xuất bản">
                             </div>
                         </div>
                         <div class="row">
@@ -51,7 +43,7 @@
                                 <h4>Địa chỉ</h4>
                             </div>
                             <div class="col-8">
-                                <input type="text" class="form-control" placeholder="Địa chỉ">
+                                <input v-model="newInfo.DiaChi" type="text" class="form-control" placeholder="Địa chỉ">
                             </div>
                         </div>
                         <div class="row">
@@ -59,7 +51,7 @@
                                 <h4>Email</h4>
                             </div>
                             <div class="col-8">
-                                <input type="text" class="form-control" placeholder="Email">
+                                <input v-model="newInfo.Email" type="text" class="form-control" placeholder="Email">
                             </div>
                         </div>
                         <div class="row">
@@ -67,14 +59,15 @@
                                 <h4>Tên người đại diện</h4>
                             </div>
                             <div class="col-8">
-                                <input type="text" class="form-control" placeholder="Người đại diện">
+                                <input v-model="newInfo.NguoiDaiDien" type="text" class="form-control" placeholder="Người đại diện">
                             </div>
                         </div>
                     </div>
                     <div class="button-container">
-                        <button @click="() => togglePopup()" class="btn btn-outline-success">Lưu thay đổi</button>
-                        <button @click="() => togglePopup()" class="btn btn-outline-danger">Huỷ</button>
+                        <button @click="createNewInfo" class="btn btn-outline-success">Lưu thay đổi</button>
+                        <button @click="togglePopup" class="btn btn-outline-danger">Huỷ</button>
                     </div>
+                    {{ newInfo }}
                     
                 </Popup>
 
@@ -109,11 +102,7 @@
 import Popup from "../../components/Popup.vue"
 import Sidebar from "../../components/Sidebar.vue"
 import { ref } from "vue";
-import Axios from "../../services/api.service"
-
-function del() {
-    alert("Delete an author!")
-}
+import AxiosAPI from "../../services/api.service"
 
 const popupTrigger = ref(false)
 
@@ -121,9 +110,26 @@ const togglePopup = () => {
     popupTrigger.value = !popupTrigger.value
 }
 
+const newInfo = ref({...pattern})
+async function createNewInfo()
+{
+    if(!newInfo.value.TenNXB) return alert("Không Thể Để Trống Tên NXB")
+    const result = await AxiosAPI.AddPublisher(newInfo.value)
+    alert(result.message)
+    newInfo.value = pattern
+    togglePopup()
+    GetPublisher()
+}
+var pattern = {
+    TenNXB : null ,
+    DiaChi : null ,
+    Email  : null ,
+    NguoiDaiDien : null 
+}
+
 const publisherList = ref([])
 async function GetPublisher() {
-    publisherList.value = await Axios.GetAllPublisher()
+    publisherList.value = await AxiosAPI.GetAllPublisher()
 }
 GetPublisher()
 </script>

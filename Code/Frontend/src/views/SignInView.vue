@@ -97,7 +97,7 @@
           <p style="color : black">Đã Có Tài Khoản ? Đăng Nhập Ngay</p>            
         </router-link>
       </div>
-      {{ data }}
+      <!-- {{ data }} -->
   </form>
   
   </div>

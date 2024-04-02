@@ -35,34 +35,10 @@
                     <div class="input-container">
                         <div class="row">
                             <div class="col-4 text-start">
-                                <h3>Mã sách</h3>
-                            </div>
-                            <div class="col-8">
-                                <input type="text" class="form-control" placeholder="Mã sách">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 text-start">
                                 <h3>Tên sách</h3>
                             </div>
                             <div class="col-8">
-                                <input type="text" class="form-control" placeholder="Tên sách">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 text-start">
-                                <h3>Mã tác giả</h3>
-                            </div>
-                            <div class="col-8">
-                                <input type="text" class="form-control" placeholder="Mã tác giả">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 text-start">
-                                <h3>Mã thể loại</h3>
-                            </div>
-                            <div class="col-8">
-                                <input type="text" class="form-control" placeholder="Mã thể loại">
+                                <input v-model="newInfo.TenSach" type="text" class="form-control" placeholder="Tên sách">
                             </div>
                         </div>
                         <div class="row">
@@ -70,30 +46,70 @@
                                 <h3>Ảnh bìa</h3>
                             </div>
                             <div class="col-8">
-                                <input type="text" class="form-control" placeholder="Đường dẫn...">
+                                <input v-model="newInfo.Image" type="text" class="form-control" placeholder="Đường dẫn...">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-4 text-start">
-                                <h3>Mã NXB</h3>
-                            </div>
-                            <div class="col-8">
-                                <input type="text" class="form-control" placeholder="Mã nhà xuất bản">
-                            </div>
+                            <select class="form-select col-8" v-model="newInfo.MaTL" >
+                                <option :value="0">Chọn Loại Thể Loại</option>
+                                <option 
+                                        v-for='i in categoryList' 
+                                        :key="i.MaTL" 
+                                        :value='i.MaTL'
+                                        > {{ i.TenTL }} 
+                                </option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <select class="form-select col-8" v-model='newInfo.MaTG' >
+                                <option :value="0" >Chọn Loại Tác Giả</option>
+                                <option 
+                                        v-for='i in authorList' 
+                                        :key="i.MaTG" 
+                                        :value='i.MaTG'
+                                        > 
+                                        {{ i.TenTG }} 
+                                </option>
+                            </select>
+
+                        </div>
+                        {{ pub }}
+                        <div class="row">
+                            <select class="form-select col-8"  v-model="newInfo.MaNXB">
+                                <option :value="0">Chọn Loại Nhà Xuất Bản</option>
+                                <option 
+                                        v-for='i in publisherList' 
+                                        :key="i.MaNXB" 
+                                        :value='i.MaNXB'
+                                        > 
+                                        {{ i.TenNXB }} 
+                                </option>
+                            </select>
+                            
                         </div>
                         <div class="row">
                             <div class="col-4 text-start">
                                 <h3>Năm xuất bản</h3>
                             </div>
                             <div class="col-8">
-                                <input type="text" class="form-control" placeholder="Năm xuất bản">
+                                <input v-model="newInfo.NamXB" type="text" class="form-control" placeholder="Năm xuất bản">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 text-start">
+                                <h3>Số Lượng</h3>
+                            </div>
+                            <div class="col-8">
+                                <input v-model="newInfo.number" type="number" class="form-control" placeholder="Năm xuất bản">
                             </div>
                         </div>
                     </div>
                     <div class="button-container">
-                        <button @click="() => togglePopup()" class="btn btn-outline-success">Lưu thay đổi</button>
+                        <button @click="() => createNewInfo()" class="btn btn-outline-primary">Thêm Sách</button>
                         <button @click="() => togglePopup()" class="btn btn-outline-danger">Huỷ</button>
                     </div>
+                    {{ newInfo }}
                     
                 </Popup>
 
@@ -107,19 +123,20 @@
                                 <th scope="col">Tác giả</th>
                                 <th scope="col">Thể loại</th>
                                 <th scope="col">Nhà xuất bản</th>
-                                <th scope="col">Số lượng</th>
+                                <th scope="col">Năm Xuất Bản</th>
                             </tr>
                         </thead>
                         <tbody v-for="(i,index) in bookList" :key="i.TenSach">
 
-                            <tr @click="$router.push(`/admin/book/edit`)">
+                            <!-- @click="$router.push(`/admin/book/edit`)" -->
+                            <tr > 
                                 <th scope="row">{{index+1}}</th>
                                 <td><img :src="i.Image" alt="" id="book-image" style="width: 80px;"/></td>
                                 <td>{{ i.TenSach }}</td>
-                                <td>{{ i.MaTG  }}</td>
-                                <td>{{ i.MaTL }}</td>
-                                <td>{{ i.MaNXB }}</td>
-                                <td>{{ i.SoLuong }} </td>
+                                <td>{{ i.TenTacGia  }}</td>
+                                <td>{{ i.TenNhaXuatBan }}</td>
+                                <td>{{ i.TenTheLoai }}</td>
+                                <td>{{ i.NamXB }} </td>
                             </tr>
                             
                         </tbody>
@@ -143,13 +160,45 @@ async function GetAllBook() {
     bookList.value = await Axios.GetAllBook()
 }
 GetAllBook()
+var pattern = {
+        "TenSach": null,
+        "MaTG": 0 ,
+        "MaTL": 0 ,
+        "MaNXB": 0 ,
+        "NamXB": null ,
+        "Image": null ,
+        "number" : 1 
+    }
 
+const newInfo = ref({...pattern})
+const authorList = ref([])
+const publisherList = ref([])
+const categoryList = ref([])
 
 const popupTrigger = ref(false)
+
+
+async function createNewInfo()
+{
+    if(!newInfo.value.TenSach) return alert("Không Thể Để Trống Tên Sách")
+    const result = await Axios.AddBook(newInfo.value)
+    alert(result.message)
+    newInfo.value = pattern
+    togglePopup()
+    GetAllBook()
+}
 
 const togglePopup = () => {
     popupTrigger.value = !popupTrigger.value
 }
+
+async function GetList() {
+    categoryList.value = await Axios.GetAllCategories()
+    publisherList.value = await Axios.GetAllPublisher()
+    authorList.value = await Axios.GetAllAuthor()
+}
+GetList()
+
 </script>
 
 <style scoped>

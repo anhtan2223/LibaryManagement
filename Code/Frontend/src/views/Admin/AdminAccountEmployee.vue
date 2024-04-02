@@ -25,50 +25,59 @@
                         <div class="popup-title"><h3>Thêm tài khoản nhân viên</h3></div>
                         <div class="input-container">
                             <div class="row">
-                                <div class="col-4 text-start">
-                                    <h3>Tên tài khoản</h3>
+                                <div class="col-4 text-start mb-3">
+                                    <h4>Tên tài khoản</h4>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" class="form-control" placeholder="Tên tài khoản">
+                                    <input v-model="newInfo.username" type="text" class="form-control" placeholder="Tên tài khoản">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 text-start mb-3">
+                                    <h4>Mật khẩu</h4>
+                                </div>
+                                <div class="col-8">
+                                    <input v-model="newInfo.password" type="text" class="form-control" placeholder="Mật khẩu">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 text-start mb-3">
+                                    <h4>Họ và tên</h4>
+                                </div>
+                                <div class="col-8">
+                                    <input v-model="newInfo.HoTen" type="text" class="form-control" placeholder="Họ và tên">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 text-start mb-3">
+                                    <h4>Số điện thoại</h4>
+                                </div>
+                                <div class="col-8">
+                                    <input v-model="newInfo.SDT" type="text" class="form-control" placeholder="Số Điện Thoại">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 text-start mb-3">
+                                    <h4>Địa chỉ</h4>
+                                </div>
+                                <div class="col-8">
+                                    <input v-model="newInfo.DiaChi" type="text" class="form-control" placeholder="Địa Chỉ">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-4 text-start">
-                                    <h3>Mật khẩu</h3>
+                                    <h4>Email</h4>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" class="form-control" placeholder="Mật khẩu">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-4 text-start">
-                                    <h3>Họ và tên</h3>
-                                </div>
-                                <div class="col-8">
-                                    <input type="text" class="form-control" placeholder="Họ và tên">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-4 text-start">
-                                    <h3>Số điện thoại</h3>
-                                </div>
-                                <div class="col-8">
-                                    <input type="text" class="form-control" placeholder="Mật khẩu">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-4 text-start">
-                                    <h3>Địa chỉ</h3>
-                                </div>
-                                <div class="col-8">
-                                    <input type="text" class="form-control" placeholder="Mật khẩu">
+                                    <input v-model="newInfo.Email" type="text" class="form-control" placeholder="Email">
                                 </div>
                             </div>
                         </div>
                         <div class="button-container">
-                            <button @click="() => togglePopup()" class="btn btn-outline-success">Lưu thay đổi</button>
+                            <button @click="() => createNewInfo()" class="btn btn-outline-success">Lưu thay đổi</button>
                             <button @click="() => togglePopup()" class="btn btn-outline-danger">Huỷ</button>
                         </div>
+                        {{ newInfo }}
                     </Popup>
 
                     <div class="table-responsive">
@@ -149,7 +158,7 @@ button {
     margin-left: 5%;
     margin-top: 3%;
     margin-bottom: 0;
-    width: 70%;
+    width: 80%;
 }.popup-title {
     margin: 2% 0;
     text-align: center;
@@ -177,6 +186,28 @@ const popupTrigger = ref(false)
 
 const togglePopup = () => {
     popupTrigger.value = !popupTrigger.value
+}
+var pattern = {
+        "HoTen": null,
+        "DiaChi": null,
+        "SDT": null ,
+        "Email": null ,
+        "username": null ,
+        "password": null ,
+        "IsActive": 1 ,
+        "RoleID" : 2
+    }
+
+const newInfo = ref({...pattern})
+async function createNewInfo()
+{
+    if(!newInfo.value.username) return alert("Không Thể Để Trống username")
+    if(!newInfo.value.password) return alert("Không Thể Để Trống password")
+    await Axios.Register(newInfo.value)
+    alert("Tạo Tài Khoản Nhân Viên Thành Công")
+    newInfo.value = pattern
+    togglePopup()
+    GetUser()
 }
 
 const userList = ref([])

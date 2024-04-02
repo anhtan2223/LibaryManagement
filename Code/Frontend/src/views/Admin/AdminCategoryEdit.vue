@@ -33,6 +33,7 @@
                                 <input
                                     type="text"
                                     v-model="info.TenTL"
+                                    @keydown.enter="UpdateInfo"
                                     id="name"
                                     class="form-control"/>
                             </div>
@@ -43,8 +44,16 @@
                         <div class="d-grid gap-3 d-md-flex justify-content-md-around">
                             <button
                                 class="btn btn-outline-success"
+                                @click="UpdateInfo"
                                 type="button">
                                 Xác Nhận
+                            </button>
+
+                            <button
+                                class="btn btn-outline-danger"
+                                @click="DeleteInfo"
+                                type="button">
+                                Xoá 
                             </button>
         
                             <!-- <button class="btn btn-outline-primary" type="button" @click="$router.push('/employee/info')">
@@ -79,9 +88,24 @@ import { ref } from "vue";
 
 const props = defineProps(["id"])
 import Axios from "../../services/api.service"
+import { useRouter } from "vue-router";
 const info = ref()
 async function GetCato() {
     info.value = await Axios.GetCategoryByID(props.id)
+}
+
+async function DeleteInfo() {
+    const message = await Axios.DeleteCategoryByID(props.id)
+    alert(message.message)
+    useRouter().go(-1)
+}
+
+async function UpdateInfo(){
+    if(!info.value.TenTL) alert("Không Thể Để Trống Tên Thể Loại")
+    const result = await Axios.UpdateCategory(props.id , info.value)
+    alert("Cập Nhật Thành Công")
+    useRouter().go(-1)
+
 }
 GetCato()
 </script>

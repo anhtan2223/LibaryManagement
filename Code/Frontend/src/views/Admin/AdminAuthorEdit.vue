@@ -34,19 +34,21 @@
                                     type="text"
                                     id="name"
                                     v-model="info.TenTG"
+                                    @keydown.enter="UpdateInfo"
                                     class="form-control"/>
                             </div>
                         </div>
         
                         <div class="row align-items-center m-3">
                             <div class="col-2">
-                                <label for="email" class="col-form-label">Email</label>
+                                <label for="email" class="col-form-label">Website</label>
                             </div>
                             <div class="col-4">
                                 <input
                                     type="text"
                                     id="email"
                                     v-model="info.Website"
+                                    @keydown.enter="UpdateInfo"
                                     class="form-control"/>
                             </div>
                         </div>
@@ -63,6 +65,7 @@
                                     type="text"
                                     id="note"
                                     v-model="info.GhiChu"
+                                    @keydown.enter="UpdateInfo"
                                     class="form-control"/>
                             </div>
                         </div>
@@ -72,8 +75,16 @@
                         <div class="d-grid gap-3 d-md-flex justify-content-md-around">
                             <button
                                 class="btn btn-outline-success"
+                                @click="UpdateInfo()"
                                 type="button">
                                 Xác Nhận
+                            </button>
+
+                            <button
+                                class="btn btn-outline-danger"
+                                @click="DeleteInfo"
+                                type="button">
+                                Xoá 
                             </button>
         
                             <!-- <button class="btn btn-outline-primary" type="button" @click="$router.push('/employee/info')">
@@ -88,7 +99,7 @@
                                 </button>
                             </router-link>
                         </div>
-                        {{ info }}
+                        <!-- {{ info }} -->
                     </div>
                 </div>
             </div>
@@ -107,12 +118,27 @@ import Sidebar from "../../components/Sidebar.vue";
 import { ref } from "vue";
 
 
+
 const props = defineProps(["id"])
 import Axios from "../../services/api.service"
+import { useRouter } from "vue-router";
 const info = ref()
 async function GetAuthor() {
     info.value = await Axios.GetAuthorByID(props.id)
 }
-GetAuthor()
 
+async function DeleteInfo() {
+    const message = await Axios.DeleteAuthorByID(props.id)
+    alert(message.message)
+    useRouter().go(-1)
+}
+
+async function UpdateInfo(){
+    if(!info.value.TenTG) alert("Không Thể Để Trống Tên Tác Giả")
+    const result = await Axios.UpdateAuthor(props.id , info.value)
+    alert("Cập Nhật Thành Công")
+    useRouter().go(-1)
+}
+
+GetAuthor()
 </script>

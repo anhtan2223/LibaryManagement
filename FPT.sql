@@ -159,15 +159,15 @@ DELIMITER ;
 
 -- -------------------------------------------------------------------------
 
+
 DELIMITER //
 DROP TRIGGER IF EXISTS CreateTheThuVienAfterInsert;
 CREATE TRIGGER CreateTheThuVienAfterInsert
 AFTER INSERT ON NguoiDung
 FOR EACH ROW
 BEGIN
-    INSERT INTO TheThuVien (MaDG, NgayBD, NgayKT, GhiChu)
-    VALUES (NEW.UID, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 1 YEAR), CONCAT('Thẻ hết hạn vào ngày ', DATE_ADD(CURDATE(), INTERVAL 1 YEAR)));
-    UPDATE NguoiDung SET IsActive = FALSE WHERE UID = NEW.UID;
+    INSERT INTO TheThuVien (MaDG, NgayBD, NgayKT, GhiChu , isactive )
+    VALUES (NEW.UID, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 1 YEAR), CONCAT('Thẻ hết hạn vào ngày ', DATE_ADD(CURDATE(), INTERVAL 1 YEAR)) , false);
 END;
 //
 DELIMITER ;

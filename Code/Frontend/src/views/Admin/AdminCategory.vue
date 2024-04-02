@@ -33,34 +33,19 @@
                 <Popup v-if="popupTrigger" :Toggle="()=> togglePopup()">
                     <div class="popup-title"><h3>Thêm thể loại sách</h3></div>
                     <div class="input-container">
-                        <div class="row">
-                            <div class="col-4 text-start">
-                                <h3>Mã thể loại</h3>
-                            </div>
-                            <div class="col-8">
-                                <input type="text" class="form-control" placeholder="Mã thể loại">
-                            </div>
-                        </div>
+                        
                         <div class="row">
                             <div class="col-4 text-start">
                                 <h3>Tên thể loại</h3>
                             </div>
                             <div class="col-8">
-                                <input type="text" class="form-control" placeholder="Tên thể loại">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <label for="textArea" style="font-size: larger;"><b>Ghi chú</b></label>
-                                <div class="form-floating">
-                                    <textarea id="textArea" style="width:100%;" rows="7" placeholder="Ghi chú"></textarea>
-                                </div>
+                                <input v-model="newInfo.TenTL" type="text" class="form-control" placeholder="Tên thể loại">
                             </div>
                         </div>
                     </div>
                     <div class="button-container">
-                        <button @click="() => togglePopup()" class="btn btn-outline-success">Lưu thay đổi</button>
-                        <button @click="() => togglePopup()" class="btn btn-outline-danger">Huỷ</button>
+                        <button @click="createNewInfo" class="btn btn-outline-success">Lưu thay đổi</button>
+                        <button @click="togglePopup" class="btn btn-outline-danger">Huỷ</button>
                     </div>
                 </Popup>
 
@@ -160,9 +145,25 @@ const togglePopup = () => {
     popupTrigger.value = !popupTrigger.value
 }
 
+
+var pattern = {
+    TenTL : null ,
+}
+const newInfo = ref({...pattern})
+async function createNewInfo()
+{
+    if(!newInfo.value.TenTL) return alert("Không Thể Để Trống Tên Thể Loại")
+    const result = await Axios.AddCategory(newInfo.value)
+    alert(result.message)
+    newInfo.value = pattern
+    togglePopup()
+    GetCategoryList()
+}
+
 const categoriesList = ref([])
 async function GetCategoryList() {
     categoriesList.value = await Axios.GetAllCategories()
 }
 GetCategoryList()
+
 </script>

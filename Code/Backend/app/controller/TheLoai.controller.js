@@ -35,7 +35,7 @@ exports.updateTheLoai = async (req , res , next) =>{
         SET
         ${data.TenTL != undefined ? "TenTL = '"+data.TenTL+"'" : ""} 
         WHERE matl = ${req.params.id}`
-            connection.query(command , (err, result , field)=>{
+            connection.query(command , (err, result , field) => {
             if(!err){
                 return res.json(result)
             }
@@ -56,7 +56,7 @@ exports.deleteTheLoai = async (req , res , next) =>{
             if(!err){
                 if(!err){
                     if(result.affectedRows != 0)
-                        return res.json({message : `Delete ${result.affectedRows} TheLoai success `})
+                        return res.json({message : `Xoá ${result.affectedRows} Thể Loại ID = ${req.params.id} Thành Công`})
                     return res.json({message : "TheLoai Not Found"})
                 }
             }
