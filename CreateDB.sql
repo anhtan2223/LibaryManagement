@@ -128,7 +128,7 @@ VALUES
     (1,'Lê Thị Thanh', '1414 Đường Lý Thường Kiệt, Quận Hải Châu, Thành phố Đà Nẵng', '0987654324', 'lethithanh', '123', TRUE, 'lethithanh@gmail.com'),
     (1,'Hoàng Thị Hà', '1515 Đường Nguyễn Sinh Sắc, Quận Liên Chiểu, Thành phố Đà Nẵng', '0369842154', 'hoangthiha', '123', TRUE, 'hoangthiha@gmail.com'),
     (1,'Vũ Thị Thủy', '1616 Đường Hoàng Hoa Thám, Quận Ba Đình, Thành phố Hà Nội', '0123456785', 'vuthithuy', '123', TRUE, 'vuthithuy@gmail.com'),
-    (1,'Phạm Thị Hồng', '1717 Đường Trần Phú, Quận Hồng Bàng, Thành phố Hải Phòng', '0987654325', 'phamthihong', '123', TRUE, 'phamthihong@gmail.com'),
+    (1,'Phạm Thị Hồng', '1717 Đường Trần Phú, Quận Hồng Bàng, Thành phố Hải Phòng', '0987654325', 'reader', '123', TRUE, 'phamthihong@gmail.com'),
     (1,'Nguyễn Thị Tâm','1818 Đường Hùng Vương, Quận Ngô Quyền, Thành phố Hải Phòng', '0369842155', 'nguyenthitam', '123', TRUE, 'nguyenthitam@gmail.com'),
     (1,'Trần Thị Trang', '1919 Đường Nguyễn Trãi, Quận Hoàn Kiếm, Thành phố Hà Nội', '0123456786', 'tranthitrang', '123', TRUE, 'tranthitrang@gmail.com'),
     (1,'Lê Thị Thu', '2020 Đường Lê Lợi, Quận 1, Thành phố Hồ Chí Minh', '0987654326', 'lethithu', '123', TRUE, 'lethithu@gmail.com');
@@ -191,5 +191,63 @@ VALUES
     (3, 6, 'Ghi chú cho sách 6', FALSE, NULL);
 
 select * from CT_MuonTra ;
+
+delimiter @
+drop procedure if exists GetStatistic @
+create procedure GetStatistic()
+begin
+	drop table if exists Statistic;
+	create table Statistic (
+		ReaderCount int,
+		BookCount int,
+        BorrowedCount int,
+        ExpiredCount int
+	);
+    insert into Statistic (ReaderCount, BookCount, BorrowedCount, ExpiredCount)
+	select
+    (select COUNT(*) from nguoidung where RoleID = 1) as ReaderCount,
+    (select COUNT(*) from sach) as BookCount,
+    (select COUNT(*) from sach, ct_muontra where sach.MaSach = ct_muontra.MaSach) as BorrowedCount,
+    (
+		select count(*) from ct_muontra, muontra
+		where ct_muontra.MaMT = muontra.MaMT and DaTra = 0 and datediff(now(), NgayMuon) > 7
+    ) as ExpiredcCount;
+	select * from Statistic;
+end @
+delimiter ;
+
+call GetStatistic();
+
+delimiter @
+drop procedure if exists GetRecentBorrowed@
+create procedure GetRecentBorrowed() 
+begin
+	select distinct HoTen, TenSach, date((date_add(NgayMuon, INTERVAL 7 DAY))) as NgayHetHan 
+	from ct_muontra, muontra, thethuvien, nguoidung, sach
+	where ct_muontra.DaTra = 0 
+		and ct_muontra.MaMT = muontra.MaMT 
+		and muontra.MaTTV = thethuvien.MaTTV
+		and nguoidung.UID = thethuvien.MaDG
+		and sach.MaSach = ct_muontra.MaSach;
+end@
+delimiter ;
+
+call GetRecentBorrowed()
+
+delimiter @
+drop procedure if exists GetOverExpired@
+create procedure GetOverExpired() 
+begin
+	select HoTen, TenSach, datediff(now(), date_add(NgayMuon, INTERVAL 7 DAY)) as SoNgayQuaHan
+	from ct_muontra, muontra, thethuvien, nguoidung, sach
+	where ct_muontra.DaTra = 0 
+		and ct_muontra.MaMT = muontra.MaMT 
+		and muontra.MaTTV = thethuvien.MaTTV
+		and nguoidung.UID = thethuvien.MaDG
+		and sach.MaSach = ct_muontra.MaSach;
+end@
+delimiter ;
+
+call GetOverExpired();
 
 

@@ -14,12 +14,22 @@
                 </li>
                 <li class="sidebar-item">
                     <a
-                        @click="$router.push('/admin/account')"
+                        @click="$router.push('/admin/account/reader')"
                         class="sidebar-link">
                         <i class="lni lni-user"></i>
-                        <span> Quản lý người dùng</span>
+                        <span> Quản lý Độc Giả</span>
                     </a>
                 </li>
+
+                <li class="sidebar-item">
+                    <a
+                        @click="$router.push('/admin/account/employee')"
+                        class="sidebar-link">
+                        <i class="lni lni-user"></i>
+                        <span> Quản lý Nhân Viên</span>
+                    </a>
+                </li>
+
                 <li class="sidebar-item">
                     <a
                         @click="$router.push('/admin/book')"

@@ -4,7 +4,7 @@
         <!-- Nav pills -->
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link " @click="$router.push('./card')">Quản lý thẻ mượn</a>
+                <a class="nav-link " @click="$router.push('./card')">Quản lý Thẻ</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active">Quản Lý Sách</a>

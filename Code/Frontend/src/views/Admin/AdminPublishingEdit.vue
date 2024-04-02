@@ -49,7 +49,7 @@
                                     type="text"
                                     id="represent"
                                     class="form-control"
-                                    v-model="info.TenNXB"
+                                    v-model="info.NguoiDaiDien"
                                     />
                             </div>
                             <div class="col-2">
@@ -101,7 +101,7 @@
                                 </button>
                             </router-link>
                         </div>
-                        <!-- {{ root }} -->
+                        <!-- {{ info }} -->
                     </div>
                 </div>
             </div>

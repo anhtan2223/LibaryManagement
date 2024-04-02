@@ -33,30 +33,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-                    <h3 class="table-name">Danh sách nhân viên</h3>
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Tên nhân viên</th>
-                                    <th scope="col">Tên tài khoản</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Số điện thoại</th>
-                                    <th scope="col">Địa chỉ</th>
-                                </tr>
-                            </thead>
-                            <tbody v-if="userList.length != 0">
-                                <tr v-for="i in userList" :key="i.UID" @click="$router.push(`/admin/account/${i.UID}`)" >
-                                    <td v-if="i.RoleID == 2">{{ i.HoTen }}</td>
-                                    <td v-if="i.RoleID == 2">{{ i.username }}</td>
-                                    <td v-if="i.RoleID == 2">{{ i.Email }}</td>
-                                    <td v-if="i.RoleID == 2">{{ i.SDT }}</td>
-                                    <td v-if="i.RoleID == 2">{{ i.DiaChi }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    </div>  
                 </div>
                 <!-- end tables -->
             </div>

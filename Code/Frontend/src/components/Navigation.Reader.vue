@@ -41,7 +41,7 @@ import { ref } from "vue";
 
 const data = ref({
     nav1: { name: "Thư Viện", to: "/reader", icon: "fas fa-book" },
-    nav2: { name: "Thẻ Mượn Sách", to: "/reader", icon: "fa-solid fa-id-card" },
+    nav2: { name: "Thẻ Mượn Sách", to: "/reader/card", icon: "fa-solid fa-id-card" },
     nav3: { name: "Tài Khoản", to: "/reader/info", icon: "fa-solid fa-user" },
 });
 </script>

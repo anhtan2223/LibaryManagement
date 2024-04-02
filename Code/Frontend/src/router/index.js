@@ -40,9 +40,15 @@ const router = createRouter({
       props : true ,
     },
     {
-      path: '/admin/account',
-      name: 'AccountFromAdmin',
-      component: () => import('../views/Admin/AdminAccount.vue') ,
+      path: '/admin/account/reader',
+      name: 'ReaderFromAdmin',
+      component: () => import('../views/Admin/AdminAccountReader.vue') ,
+      props : true ,
+    },
+    {
+      path: '/admin/account/employee',
+      name: 'EmployeeFromAdmin',
+      component: () => import('../views/Admin/AdminAccountEmployee.vue') ,
       props : true ,
     },
     {
@@ -149,9 +155,9 @@ const router = createRouter({
       props : true ,
     } ,
     {
-      path: '/reader/borrowhistory',
+      path: '/reader/card',
       name: 'ReaderBorrowHistory',
-      component: () => import('../views/Reader/BorrowHistory.Reader.vue') ,
+      component: () => import('../views/Reader/Card.Reader.vue') ,
       props : true ,
     },
     {
@@ -159,7 +165,7 @@ const router = createRouter({
       name: 'ReaderBorrowDetail',
       component: () => import('../views/Reader/BorrowDetail.Reader.vue') ,
       props : true ,
-    },
+    }
   ]
 })
 
