@@ -45,7 +45,7 @@
           <input type="text" id="registerName" 
           class="form-control" 
           placeholder="Tài Khoản"
-          v-model="data.name" />
+          v-model="data.HoTen" />
           <label class="form-label" for="registerName">Họ và Tên</label>
       </div>
 
@@ -54,7 +54,7 @@
       <input type="text" id="registerEmail"
        class="form-control" 
        placeholder="Địa Chỉ Email"
-       v-model="data.email"/>
+       v-model="data.Email"/>
       <label class="form-label" for="registerEmail">Email</label>
     </div>
 
@@ -63,7 +63,7 @@
       <input type="phone" id="registerPhone" 
       class="form-control" 
       placeholder="Số Điện Thoại"
-      v-model="data.phone"
+      v-model="data.SDT"
       />
       <label class="form-label" for="registerPhone">Số Điện Thoại</label>
     </div>
@@ -72,7 +72,7 @@
       <input type="phone" id="registerAddress" 
       class="form-control" 
       placeholder="Số Điện Thoại"
-      v-model="data.address"
+      v-model="data.DiaChi"
       />
       <label class="form-label" for="registerAddress">Địa Chỉ</label>
     </div>
@@ -97,6 +97,7 @@
           <p style="color : black">Đã Có Tài Khoản ? Đăng Nhập Ngay</p>            
         </router-link>
       </div>
+      {{ data }}
   </form>
   
   </div>
@@ -113,10 +114,11 @@ import router from '@/router'
     {
       "username": undefined,
       "password": undefined,
-      "name": undefined,
-      "phone": undefined,
-      "email": undefined,
-      "role": 1
+      "HoTen": undefined,
+      "SDT": undefined,
+      "Email": undefined,
+      "RoleID": 1 , 
+      'IsActive' : 1
     })
   
   function checkPass()
@@ -129,25 +131,25 @@ import router from '@/router'
   }
   async function checkUsername()
   {
-    // const result = await AxiosAPI.Login(data.value.username)
-    // if(result.isAvailable)
-    // {
-    //   data.value.username = ''
-    //   alert("Tài Khoản Đã Tồn Tại")
-    // }
-    // return result.isAvailable
+    const result = await AxiosAPI.Login(data.value.username)
+    if(result.isAvailable)
+    {
+      data.value.username = ''
+      alert("Tài Khoản Đã Tồn Tại")
+    }
+    return result.isAvailable
   }
   async function DangKi() 
   {
-    // if (!data.value.username) return alert('Vui Lòng Nhập Tài Khoản')
-    // if (!data.value.password) return alert('Vui Lòng Nhập Mật Khẩu')
-    // if (!rePass.value) return alert('Vui Lòng Nhập Lại Mật Khẩu')
-    // if (!data.value.name) return alert('Vui Lòng Nhập Tên')
-    // if (!data.value.email) return alert('Vui Lòng Nhập Email')
-    // if (!data.value.phone) return alert('Vui Lòng Nhập Số Điện Thoại')
-    // await AxiosAPI.Register(data.value)
-    // data.value = {role : 1}
-    // rePass.value = ""
+    if (!data.value.username) return alert('Vui Lòng Nhập Tài Khoản')
+    if (!data.value.password) return alert('Vui Lòng Nhập Mật Khẩu')
+    if (!rePass.value) return alert('Vui Lòng Nhập Lại Mật Khẩu')
+    if (!data.value.HoTen) return alert('Vui Lòng Nhập Tên')
+    if (!data.value.Email) return alert('Vui Lòng Nhập Email')
+    if (!data.value.SDT) return alert('Vui Lòng Nhập Số Điện Thoại')
+    await AxiosAPI.Register(data.value)
+    data.value = {RoleID : 1}
+    rePass.value = ""
     router.push('/login')
     return alert("Đăng Kí Thành Công")
   }

@@ -96,6 +96,13 @@ const router = createRouter({
       props : true ,
     },
     {
+      path: '/employee/password',
+      name: 'EmployeeChangePassword',
+      component: () => import('../views/Employee/Pass.Employee.vue') ,
+      props : true ,
+    } ,
+
+    {
       path: '/reader',
       name: 'Reader',
       component: () => import('../views/Reader/Home.Reader.vue') ,

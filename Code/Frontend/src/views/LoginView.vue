@@ -40,8 +40,6 @@
           >Đăng Nhập</button>               
       </div>
     </form>
-    {{ inputData }}
-    {{ result }}
   </div>
   </div>
 </template>
@@ -60,10 +58,16 @@ import Navigation from '../components/Navigation.vue'
 
   const router = useRouter()
   const result = ref("Init")
+  const roleTable = {
+        1 : "reader" , 
+        2 : "employee" ,
+        3 : "admin"
+      }
 
   if(sessionStorage.isLogin)
     router.push(`${sessionStorage.isLogin}`)
 
+  
   async function Login()
   {
       result.value = await AxiosAPI.Login(inputData.value.username,inputData.value.password)
@@ -80,14 +84,8 @@ import Navigation from '../components/Navigation.vue'
         return alert('Nhập Sai Mật Khẩu Vui Lòng Nhập Lại')
       }
 
-      const roleTable = {
-          1 : "reader" , 
-          2 : "employee" ,
-          3 : "admin"
-      }
-
-      sessionStorage.info = JSON.stringify(result.value.infomation)
-      sessionStorage.isLogin = roleTable[result.value.infomation.RoleID]
+      sessionStorage.info = JSON.stringify(result.value.information)
+      sessionStorage.isLogin = roleTable[result.value.information.RoleID]
       
       router.push(`/${sessionStorage.isLogin}`)
   }

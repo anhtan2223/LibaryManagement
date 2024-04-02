@@ -88,12 +88,12 @@ const info = ref({...root})
 const isLogin = sessionStorage.isLogin
 const isSetting = ref(false)
 
- function UpdateInfo() 
+async function UpdateInfo() 
 {
     isSetting.value = !isSetting.value 
-    // await AxiosAPI.UpdateAccount(root._id , info.value)
-    // alert("Cập Nhật Thông Tin Tài Khoản Thành Công")
-    // sessionStorage.info = JSON.stringify({"_id" : root._id , ...info.value})
+    await AxiosAPI.UpdateAccount(root.UID , info.value)
+    alert("Cập Nhật Thông Tin Tài Khoản Thành Công")
+    sessionStorage.info = JSON.stringify({"UID" : root.UID , ...info.value})
 }
 function DangXuat()
 {

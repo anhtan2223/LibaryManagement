@@ -59,7 +59,7 @@ exports.register = async (req , res , next) =>{
     try {
         const connection = MySQL.connection
         const data = req.body
-        const command = `INSERT INTO NguoiDung (RoleID , HoTen, DiaChi, SDT, Username, Password, IsActive , email) VALUES (${data.RoleID},'${data.HoTen}', '${data.DiaChi}', '${data.SDT}', '${data.username}', '${data.password}', ${data.isActive} , '${data.Email}') `
+        const command = `INSERT INTO NguoiDung (RoleID , HoTen, DiaChi, SDT, Username, Password, IsActive , email) VALUES (${data.RoleID},'${data.HoTen}', '${data.DiaChi}', '${data.SDT}', '${data.username}', '${data.password}', ${data.IsActive} , '${data.Email}') `
             connection.query(command , (err, result , field)=>{
             if(!err){
                 return res.json({message : `Thêm vào thành công người dùng có ID là : ${result.insertId}`})
@@ -77,14 +77,15 @@ exports.updateUser = async (req , res , next) =>{
     try {
         const connection = MySQL.connection
         const data = req.body
+
         const command = `UPDATE nguoidung
             SET
-            ${data.HoTen != undefined ? "HoTen = '"+data.HoTen+"'" : ""} 
+            uid = ${req.params.uid}
+            ${data.HoTen != undefined ? ",HoTen = '"+data.HoTen+"'" : ""} 
             ${data.DiaChi != undefined? ",DiaChi = '"+data.DiaChi + "'" : ""} 
             ${data.SDT!= undefined ? ",SDT = '"+data.SDT + "'" : ""}
             ${data.Email != undefined? ",Email = '"+data.Email + "'" : ""}
             ${data.isActive != undefined? ",isActive = "+data.isActive : ""}
-            ${data.username != undefined? ",username = '"+data.username + "'" : ""}
             ${data.password != undefined? ",password = '"+data.password + "'" : ""}
             WHERE uid = ${req.params.uid};`
 

@@ -92,10 +92,11 @@ const router = useRouter()
 
 async function ChangePassword()
 {
-    // if(!pass.value) return alert("Vui Lòng Nhập Mật Khẩu Cũ")
-    // if(!newData.value.password) return alert("Vui Lòng Nhập Mật Khẩu Mới")
-    // if(!reNewPass.value) return alert("Vui Lòng Nhập Lại Mật Khẩu Mới")
-    // await AxiosAPI.UpdateAccount(props.info._id , newData.value)
+    if(!pass.value) return alert("Vui Lòng Nhập Mật Khẩu Cũ")
+    if(!newData.value.password) return alert("Vui Lòng Nhập Mật Khẩu Mới")
+    if(!reNewPass.value) return alert("Vui Lòng Nhập Lại Mật Khẩu Mới")
+    const result = await AxiosAPI.UpdateAccount(props.info.UID , newData.value)
+    alert(result)
     alert("Đổi Mật Khẩu Thành Công")
     return router.go(-1)
 }
