@@ -107,7 +107,7 @@
                                 </tr>
                             </thead>
                             <tbody v-if="normalizedBorrowed.length != 0">
-                                <tr v-for="(i, index) in normalizedBorrowed">
+                                <tr v-for="(i, index) in normalizedBorrowed" :key="i.TenSach">
                                     <th scope="row">{{ index+1 }}</th>
                                     <td>{{ i.HoTen }}</td>
                                     <td>{{ i.TenSach }}</td>
@@ -128,7 +128,7 @@
                                 </tr>
                             </thead>
                             <tbody v-if="normalizedOverExpired.length != 0">
-                                <tr v-for="(i, index) in normalizedOverExpired">
+                                <tr v-for="(i, index) in normalizedOverExpired" :key="i.TenSach">
                                     <th scope="row">{{ index+1 }}</th>
                                     <td>{{ i.HoTen }}</td>
                                     <td>{{ i.TenSach }}</td>
