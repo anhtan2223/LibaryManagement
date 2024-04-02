@@ -122,3 +122,53 @@ exports.deleteUser = async (req , res , next) =>{
         return next(new ErrorAPI(400 , "Get Error"))
     }   
 }
+
+exports.GetStatistic = async (req , res , next) =>{
+    try {
+        const connection = MySQL.connection
+        const command = `call GetStatistic();`
+            connection.query(command , (err, result , field)=>{
+            if(!err){
+                return res.json(result)
+            }
+            console.log(err)
+            return next(new ErrorAPI(400 , "Get Error When Query"))
+        })
+    } catch (error) {
+        return next(new ErrorAPI(400 , "Get Error"))
+    }   
+}
+
+exports.GetRecentBorrowed = async (req , res , next) =>{
+    try {
+        const connection = MySQL.connection
+        const command = `call GetRecentBorrowed();`
+            connection.query(command , (err, result , field)=>{
+            if(!err){
+                return res.json(result)
+            }
+            console.log(err)
+            return next(new ErrorAPI(400 , "Get Error When Query"))
+        })
+    } catch (error) {
+        return next(new ErrorAPI(400 , "Get Error"))
+    }   
+}
+
+exports.GetOverExpired = async (req , res , next) =>{
+    try {
+        const connection = MySQL.connection
+        const command = `call GetOverExpired();`
+            connection.query(command , (err, result , field)=>{
+            if(!err){
+                return res.json(result)
+            }
+            console.log(err)
+            return next(new ErrorAPI(400 , "Get Error When Query"))
+        })
+    } catch (error) {
+        return next(new ErrorAPI(400 , "Get Error"))
+    }   
+}
+
+

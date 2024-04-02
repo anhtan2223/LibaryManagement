@@ -96,5 +96,5 @@ async function GetUser() {
     userList.value = await Axios.GetAllAccount()
 }
 GetUser()
-console.log(userList)
+
 </script>

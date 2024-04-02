@@ -52,6 +52,18 @@ class AxiosAPI
     async GetAllAccount() {
         return (await this.api.get('/api/user')).data
     }
+
+    async GetStatistic() {
+        return (await this.api.get('/api/user/statistic')).data
+    }
+
+    async GetRecentBorrowed() {
+        return (await this.api.get('/api/user/borrowed')).data
+    }
+
+    async GetOverExpired() {
+        return (await this.api.get('/api/user/expired')).data
+    }
     async GetAccountByID(id) {
         return (await this.api.get(`/api/user/${id}`)).data
     } 
@@ -63,5 +75,6 @@ class AxiosAPI
         return (await this.api.get(`/api/sach/${id}`)).data
     } 
 }
+    
 
 export default new AxiosAPI()

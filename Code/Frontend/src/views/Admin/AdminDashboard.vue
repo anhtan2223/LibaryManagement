@@ -20,7 +20,7 @@
                                 </div>
                                 <div class="row align-items-center mb-2 d-flex">
                                     <div class="col-8">
-                                        <h2 class="d-flex align-items-center mb-0"><!-- count the number of user here -->123</h2> 
+                                        <h2 class="d-flex align-items-center mb-0">{{ statistic[0][0].ReaderCount }}</h2> 
                                     </div>
                                 </div>
                             </div>
@@ -39,7 +39,7 @@
                                     <div class="col-8">
                                         <h2
                                             class="d-flex align-items-center mb-0">
-                                            <!-- count the number of books here -->1234
+                                            {{ statistic[0][0].BookCount }}
                                         </h2>
                                     </div>
                                 </div>
@@ -61,7 +61,7 @@
                                     <div class="col-8">
                                         <h2
                                             class="d-flex align-items-center mb-0">
-                                            <!-- count the number of borrowed books here -->578
+                                            {{ statistic[0][0].BorrowedCount }}
                                         </h2>
                                     </div>
                                 </div>
@@ -83,7 +83,7 @@
                                     <div class="col-8">
                                         <h2
                                             class="d-flex align-items-center mb-0">
-                                            <!-- count the number of expired books here -->12
+                                            {{ statistic[0][0].ExpiredCount }}
                                         </h2>
                                     </div>
                                 </div>
@@ -95,67 +95,50 @@
 
                 <!-- begin tables -->
                 <div class="row" id="dashboard-table">
-                    <div class="table-responsive col-md-6">
+                    <div class="table-responsive col-md-6"> 
+                        <h4>Sách đang được mượn</h4>
                         <table class="table table-bordered">
                             <thead>
-                                <tr>
-                                    <h4>Sách mượn gần đây</h4>
-                                </tr>
-                            </thead>
-                            <tbody>
                                 <tr>
                                     <th scope="col"></th>
                                     <th scope="col">Người mượn</th>
                                     <th scope="col">Tên sách</th>
                                     <th scope="col">Ngày hết hạn</th>
                                 </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
+                            </thead>
+                            <tbody v-if="normalizedBorrowed.length != 0">
+                                <tr v-for="(i, index) in normalizedBorrowed">
+                                    <th scope="row">{{ index+1 }}</th>
+                                    <td>{{ i.HoTen }}</td>
+                                    <td>{{ i.TenSach }}</td>
+                                    <td>{{ i.NgayHetHan }}</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="table-responsive col-md-6">
+                        <h4>Sách quá hạn</h4>
                         <table class="table table-bordered">
                             <thead>
-                                <tr>
-                                    <h4>Sách quá hạn trả</h4>
-                                </tr>
-                            </thead>
-                            <tbody>
                                 <tr>
                                     <th scope="col"></th>
                                     <th scope="col">Người mượn</th>
                                     <th scope="col">Tên sách</th>
-                                    <th scope="col">Ngày hết hạn</th>
+                                    <th scope="col">Số ngày trễ</th>
                                 </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
+                            </thead>
+                            <tbody v-if="normalizedOverExpired.length != 0">
+                                <tr v-for="(i, index) in normalizedOverExpired">
+                                    <th scope="row">{{ index+1 }}</th>
+                                    <td>{{ i.HoTen }}</td>
+                                    <td>{{ i.TenSach }}</td>
+                                    <td>{{ i.SoNgayQuaHan }} ngày</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <!-- end tables -->
-
             </div>
         </div>
     </div>
@@ -265,4 +248,51 @@
 
 <script setup>
 import Sidebar from "../../components/Sidebar.vue";
-</script>
+import { ref } from "vue";
+import Axios from "../../services/api.service"
+
+const statistic = ref(0)
+async function GetCount() {
+    statistic.value = await Axios.GetStatistic()
+}
+GetCount()
+
+const borrowed = ref([])
+const normalizedBorrowed = ref([])
+async function GetBorrowed() {
+    borrowed.value = await Axios.GetRecentBorrowed()
+    // alert(borrowed._rawValue[0].length)
+    for(var i = 0; i < borrowed._rawValue[0].length; i++) {
+        // normalizedBorrowed.push(borrowed._rawValue[0][i])
+        var name = borrowed._rawValue[0][i].HoTen
+        var book = borrowed._rawValue[0][i].TenSach
+        var expire = borrowed._rawValue[0][i].NgayHetHan
+        
+        var date = new Date(expire)
+        var formattedDate = date.toLocaleDateString()
+        // alert(name + " " + book + " " + formattedDate)
+        normalizedBorrowed.value.push({"HoTen": name, "TenSach": book, "NgayHetHan": formattedDate})
+    }
+    // alert(JSON.stringify(normalizedBorrowed.value))
+}
+GetBorrowed()
+
+const overExpired = ref([])
+const normalizedOverExpired = ref([])
+async function GetExpired() {
+    overExpired.value = await Axios.GetOverExpired()
+    // alert(borrowed._rawValue[0].length)
+    for(var i = 0; i < overExpired._rawValue[0].length; i++) {
+        // normalizedBorrowed.push(borrowed._rawValue[0][i])
+        var name = overExpired._rawValue[0][i].HoTen
+        var book = overExpired._rawValue[0][i].TenSach
+        var expire = overExpired._rawValue[0][i].SoNgayQuaHan
+        
+        // alert(name + " " + book + " " + expire)
+        normalizedOverExpired.value.push({"HoTen": name, "TenSach": book, "SoNgayQuaHan": expire})
+    }
+    // alert(JSON.stringify(normalizedOverExpired.value))
+}
+GetExpired()
+
+</script>   
