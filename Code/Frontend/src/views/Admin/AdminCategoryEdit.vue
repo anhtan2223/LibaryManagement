@@ -20,6 +20,8 @@
                                 <input
                                     type="text"
                                     id="code"
+                                    v-model="info.MaTL"
+                                    disabled
                                     class="form-control"/>
                             </div>
                             <div class="col-2">
@@ -30,6 +32,7 @@
                             <div class="col-4">     
                                 <input
                                     type="text"
+                                    v-model="info.TenTL"
                                     id="name"
                                     class="form-control"/>
                             </div>
@@ -52,12 +55,11 @@
                                 <button
                                     class="btn btn-outline-danger"
                                     type="button"
-                                    @click="">
+                                    @click="$router.go(-1)">
                                     Huỷ
                                 </button>
                             </router-link>
                         </div>
-                        <!-- {{ root }} -->
                     </div>
                 </div>
             </div>
@@ -75,13 +77,11 @@
 import Sidebar from "../../components/Sidebar.vue";
 import { ref } from "vue";
 
-function del() {
-    alert("Delete an author!");
+const props = defineProps(["id"])
+import Axios from "../../services/api.service"
+const info = ref()
+async function GetCato() {
+    info.value = await Axios.GetCategoryByID(props.id)
 }
-
-const popupTrigger = ref(false);
-
-const togglePopup = () => {
-    popupTrigger.value = !popupTrigger.value;
-};
+GetCato()
 </script>

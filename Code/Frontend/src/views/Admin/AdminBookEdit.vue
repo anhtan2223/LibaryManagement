@@ -139,13 +139,12 @@
 import Sidebar from "../../components/Sidebar.vue";
 import { ref } from "vue";
 
-function del() {
-    alert("Delete an author!");
-}
+// const props = defineProps(["id"])
+// import Axios from "../../services/api.service"
+// const info = ref()
+// async function GetAuthor() {
+//     info.value = await Axios.GetBookByID(props.id)
+// }
+// GetAuthor()
 
-const popupTrigger = ref(false);
-
-const togglePopup = () => {
-    popupTrigger.value = !popupTrigger.value;
-};
 </script>

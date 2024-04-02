@@ -32,7 +32,7 @@
                     <div class="input-container">
                         <div class="row">
                             <div class="col-4 text-start">
-                                <h3>Mã NXB</h3>
+                                <h4>Mã NXB</h4>
                             </div>
                             <div class="col-8">
                                 <input type="text" class="form-control" placeholder="Mã nhà xuất bản">
@@ -40,7 +40,7 @@
                         </div>
                         <div class="row">
                             <div class="col-4 text-start">
-                                <h3>Tên NXB</h3>
+                                <h4>Tên NXB</h4>
                             </div>
                             <div class="col-8">
                                 <input type="text" class="form-control" placeholder="Tên nhà xuất bản">
@@ -48,7 +48,7 @@
                         </div>
                         <div class="row">
                             <div class="col-4 text-start">
-                                <h3>Địa chỉ</h3>
+                                <h4>Địa chỉ</h4>
                             </div>
                             <div class="col-8">
                                 <input type="text" class="form-control" placeholder="Địa chỉ">
@@ -56,7 +56,7 @@
                         </div>
                         <div class="row">
                             <div class="col-4 text-start">
-                                <h3>Email</h3>
+                                <h4>Email</h4>
                             </div>
                             <div class="col-8">
                                 <input type="text" class="form-control" placeholder="Email">
@@ -64,7 +64,7 @@
                         </div>
                         <div class="row">
                             <div class="col-4 text-start">
-                                <h3>Tên người đại diện</h3>
+                                <h4>Tên người đại diện</h4>
                             </div>
                             <div class="col-8">
                                 <input type="text" class="form-control" placeholder="Người đại diện">
@@ -90,7 +90,7 @@
                             </tr>
                         </thead>
                         <tbody v-if="publisherList.length != 0">
-                            <tr @click="$router.push('/admin/publisher/edit')" v-for="i in publisherList">
+                            <tr @click="$router.push(`/admin/publisher/${i.MaNXB}`)" v-for="i in publisherList" :key="i.MaNXB">
                                 <td>{{ i.MaNXB }}</td>
                                 <td>{{ i.TenNXB }}</td>
                                 <td>{{ i.DiaChi }}</td>
@@ -105,6 +105,28 @@
         </div>
     </div>
 </template>
+<script setup>
+import Popup from "../../components/Popup.vue"
+import Sidebar from "../../components/Sidebar.vue"
+import { ref } from "vue";
+import Axios from "../../services/api.service"
+
+function del() {
+    alert("Delete an author!")
+}
+
+const popupTrigger = ref(false)
+
+const togglePopup = () => {
+    popupTrigger.value = !popupTrigger.value
+}
+
+const publisherList = ref([])
+async function GetPublisher() {
+    publisherList.value = await Axios.GetAllPublisher()
+}
+GetPublisher()
+</script>
 <style scoped>
 .container {
     padding: 0 3%;
@@ -170,25 +192,3 @@ button {
     margin-right: 30%;
 }
 </style>
-<script setup>
-import Popup from "../../components/Popup.vue"
-import Sidebar from "../../components/Sidebar.vue"
-import { ref } from "vue";
-import Axios from "../../services/api.service"
-
-function del() {
-    alert("Delete an author!")
-}
-
-const popupTrigger = ref(false)
-
-const togglePopup = () => {
-    popupTrigger.value = !popupTrigger.value
-}
-
-const publisherList = ref([])
-async function GetPublisher() {
-    publisherList.value = await Axios.GetAllPublisher()
-}
-GetPublisher()
-</script>

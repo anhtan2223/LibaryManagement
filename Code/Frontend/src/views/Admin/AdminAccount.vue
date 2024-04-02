@@ -24,12 +24,12 @@
                                 </tr>
                             </thead>
                             <tbody v-if="userList.length != 0">
-                                <tr v-for="i in userList" @click="$router.push('/admin/account/edit')">
-                                    <td v-if="i.RoleID == 3">{{ i.HoTen }}</td>
-                                    <td v-if="i.RoleID == 3">{{ i.username }}</td>
-                                    <td v-if="i.RoleID == 3">{{ i.Email }}</td>
-                                    <td v-if="i.RoleID == 3">{{ i.SDT }}</td>
-                                    <td v-if="i.RoleID == 3">{{ i.DiaChi }}</td>
+                                <tr v-for="i in userList" :key="i.UID"  @click="$router.push(`/admin/account/${i.UID}`)">
+                                    <td v-if="i.RoleID == 1">{{ i.HoTen }}</td>
+                                    <td v-if="i.RoleID == 1">{{ i.username }}</td>
+                                    <td v-if="i.RoleID == 1">{{ i.Email }}</td>
+                                    <td v-if="i.RoleID == 1">{{ i.SDT }}</td>
+                                    <td v-if="i.RoleID == 1">{{ i.DiaChi }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -47,7 +47,7 @@
                                 </tr>
                             </thead>
                             <tbody v-if="userList.length != 0">
-                                <tr v-for="i in userList" >
+                                <tr v-for="i in userList" :key="i.UID" @click="$router.push(`/admin/account/${i.UID}`)" >
                                     <td v-if="i.RoleID == 2">{{ i.HoTen }}</td>
                                     <td v-if="i.RoleID == 2">{{ i.username }}</td>
                                     <td v-if="i.RoleID == 2">{{ i.Email }}</td>
@@ -106,7 +106,7 @@ button {
     margin-left: 4%;
     margin-top: 3%;
     margin-bottom: 0;
-    width: 20vw;
+    width: 50vw;
 }
 </style>
 

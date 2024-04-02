@@ -16,14 +16,16 @@
                                     <label for="name" class="col-form-label">Họ và Tên</label>
                                 </div>
                                 <div class="col-4">
-                                    <input type="text" id="name" class="form-control ">
+                                    <input type="text" id="name" class="form-control " v-model="info.HoTen">
                                 </div>
+
                                 <div class="col-2">
-                                    <label for="phone" class="col-form-label">Số Điện Thoại</label>
+                                    <label for="phone" class="col-form-label">Vai Trò</label>
                                 </div>
                                 <div class="col-4">
-                                    <input type="text" id="phone" class="form-control ">
+                                        {{ mappingTable[info.RoleID] }}
                                 </div>
+                                
                         </div>
 
                         <div class="row align-items-center m-3">
@@ -31,13 +33,13 @@
                                     <label for="username" class="col-form-label">Tài Khoản</label>
                                 </div>
                                 <div class="col-4">
-                                    <input type="text" id="username" class="form-control " disabled>
+                                    <input type="text" id="username" class="form-control " disabled v-model="info.username">
                                 </div>
                                 <div class="col-2">
                                     <label for="password" class="col-form-label">Mật khẩu</label>
                                 </div>
                                 <div class="col-4">
-                                    <input type="text" id="password" class="form-control " disabled>
+                                    <input type="text" id="password" class="form-control" v-model="newPassword" >
                                 </div>
                         </div>
 
@@ -46,7 +48,13 @@
                                     <label for="email" class="col-form-label">Email</label>
                                 </div>
                                 <div class="col-4">
-                                    <input type="text" id="email" class="form-control " >
+                                    <input type="text" id="email" class="form-control" v-model="info.Email" >
+                                </div>
+                                <div class="col-2">
+                                    <label for="phone" class="col-form-label">Số Điện Thoại</label>
+                                </div>
+                                <div class="col-4">
+                                    <input type="text" id="phone" class="form-control " v-model="info.SDT">
                                 </div>
                         </div>
 
@@ -56,7 +64,7 @@
                                 </div>
 
                                 <div class="col-10" >
-                                    <input type="text" id="email" class="form-control ">
+                                    <input type="text" id="email" class="form-control " v-model="info.DiaChi">
                                 </div>
 
                         </div>
@@ -65,9 +73,9 @@
                     <div class="footer-element m-4">
                         <div class="d-grid gap-3 d-md-flex justify-content-md-around">
                             <button class="btn btn-outline-primary" type="button" >Sửa Thông Tin </button>
-                            <button class="btn btn-outline-success"
+                            <button class="btn btn-outline-danger"
                                 type="button" 
-                                @click="UpdateInfo"> Xác Nhận  
+                                @click="LockAccount"> Khoá Tài Khoản  
                             </button>
 
                             <!-- <button class="btn btn-outline-primary" type="button" @click="$router.push('/employee/info')">
@@ -76,8 +84,7 @@
                             
                             <router-link to="/admin/account">
                                 <button class="btn btn-outline-danger " type="button" >
-                                    Huỷ
-                                </button>
+                                    Quay Về</button>
                             </router-link>
                         </div>
                             <!-- {{ root }} -->
@@ -98,13 +105,22 @@
 import Sidebar from "../../components/Sidebar.vue";
 import { ref } from "vue";
 
-function del() {
-    alert("Delete an author!");
+const mappingTable = [
+    "Hello" , "Độc Giả" , "Nhân Viên" , "Quản Lý"
+]
+
+const props = defineProps(["id"])
+import Axios from "../../services/api.service"
+const info = ref()
+const isSetting = ref(false)
+const newPassword = ref("")
+async function GetInfo() {
+    info.value = await Axios.GetAccountByID(props.id)
+}
+GetInfo()
+async function UpdateAccount()
+{
+    alert("Setting")
 }
 
-const popupTrigger = ref(false);
-
-const togglePopup = () => {
-    popupTrigger.value = !popupTrigger.value;
-};
 </script>

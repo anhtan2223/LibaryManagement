@@ -53,7 +53,7 @@
                             <div class="col-12">
                                 <label for="textArea" style="font-size: larger;"><b>Ghi chú</b></label>
                                 <div class="form-floating">
-                                    <textarea id="textArea" cols="100" rows="7" placeholder="Ghi chú"></textarea>
+                                    <textarea id="textArea" style="width:100%;" rows="7" placeholder="Ghi chú"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                             </tr>
                         </thead>
                         <tbody v-if="categoriesList.length != 0">
-                            <tr @click="$router.push('/admin/category/edit')" v-for="i in categoriesList">
+                            <tr @click="$router.push(`/admin/category/${i.MaTL}`)" v-for="i in categoriesList" :key="i.TenTL">
                                 <td>{{ i.MaTL }}</td>
                                 <td>{{ i.TenTL }}</td>
                             </tr>

@@ -3,7 +3,7 @@ const ErrorAPI = require('../ErrorAPI')
 
 exports.getAllBook = async (req , res , next) =>{
         const connection = MySQL.connection
-        const command = "select count(MaSach) as SoLuong , TenSach , MaTG , MaTL , NamXB  from sach group by TenSach , MaTG , MaTL , NamXB"
+        const command = "select count(MaSach) as SoLuong , TenSach , MaTG , MaTL , MaNXB , NamXB  from sach group by TenSach , MaTG , MaTL , MaNXB , NamXB"
         connection.query(command,(err, result , field)=>{
             if(err)
                 return next(new ErrorAPI(400 , "Get All Book Error"))

@@ -111,6 +111,7 @@ body {
     background-color: #0e2238;
     display: flex;
     flex-direction: column;
+    z-index: 0 ;
 }
 
 #sidebar-title {

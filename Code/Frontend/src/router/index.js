@@ -46,7 +46,7 @@ const router = createRouter({
       props : true ,
     },
     {
-      path: '/admin/account/edit',
+      path: '/admin/account/:id',
       name: 'AccountEditAdmin',
       component: () => import('../views/Admin/AdminAccountEdit.vue') ,
       props : true ,
@@ -58,7 +58,7 @@ const router = createRouter({
       props : true ,
     },
     {
-      path: '/admin/book/edit',
+      path: '/admin/book/:id',
       name: 'BookEditAdmin',
       component: () => import('../views/Admin/AdminBookEdit.vue') ,
       props : true ,
@@ -70,7 +70,7 @@ const router = createRouter({
       props : true ,
     },
     {
-      path: '/admin/category/edit',
+      path: '/admin/category/:id',
       name: 'CategoryEditAdmin',
       component: () => import('../views/Admin/AdminCategoryEdit.vue') ,
       props : true ,
@@ -82,7 +82,7 @@ const router = createRouter({
       props : true ,
     },
     {
-      path: '/admin/author/edit',
+      path: '/admin/author/:id',
       name: 'AuthorEditAdmin',
       component: () => import('../views/Admin/AdminAuthorEdit.vue') ,
       props : true ,
@@ -94,7 +94,7 @@ const router = createRouter({
       props : true ,
     },
     {
-      path: '/admin/publisher/edit',
+      path: '/admin/publisher/:id',
       name: 'PublisherEditAdmin',
       component: () => import('../views/Admin/AdminPublishingEdit.vue') ,
       props : true ,

@@ -20,6 +20,8 @@
                                 <input
                                     type="text"
                                     id="code"
+                                    v-model="info.MaNXB"
+                                    disabled
                                     class="form-control"/>
                             </div>
                             <div class="col-2">
@@ -31,6 +33,7 @@
                                 <input
                                     type="text"
                                     id="name"
+                                    v-model = "info.TenNXB"
                                     class="form-control"/>
                             </div>
                         </div>
@@ -46,6 +49,7 @@
                                     type="text"
                                     id="represent"
                                     class="form-control"
+                                    v-model="info.TenNXB"
                                     />
                             </div>
                             <div class="col-2">
@@ -55,6 +59,7 @@
                                 <input
                                     type="text"
                                     id="email"
+                                    v-model="info.Email"
                                     class="form-control"/>
                             </div>
                         </div>
@@ -70,6 +75,7 @@
                                 <input
                                     type="text"
                                     id="address"
+                                    v-model = "info.DiaChi"
                                     class="form-control"/>
                             </div>
                         </div>
@@ -80,9 +86,9 @@
                             <button
                                 class="btn btn-outline-success"
                                 type="button">
-                                Xác Nhận
+                                Xác Nhận 
                             </button>
-        
+                            
                             <!-- <button class="btn btn-outline-primary" type="button" @click="$router.push('/employee/info')">
                             Lịch Sử Mượn Trả
                         </button> -->
@@ -113,13 +119,13 @@
 import Sidebar from "../../components/Sidebar.vue";
 import { ref } from "vue";
 
-function del() {
-    alert("Delete an author!");
+
+const props = defineProps(["id"])
+import Axios from "../../services/api.service"
+const info = ref()
+async function GetInfo() {
+    info.value = await Axios.GetPublisherByID(props.id)
 }
+GetInfo()
 
-const popupTrigger = ref(false);
-
-const togglePopup = () => {
-    popupTrigger.value = !popupTrigger.value;
-};
 </script>

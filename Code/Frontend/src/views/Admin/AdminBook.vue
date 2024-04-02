@@ -103,7 +103,6 @@
                             <tr>
                                 <th scope="col"></th>
                                 <th scope="col">Ảnh bìa</th>
-                                <th scope="col">Mã sách</th>
                                 <th scope="col">Tên</th>
                                 <th scope="col">Tác giả</th>
                                 <th scope="col">Thể loại</th>
@@ -111,16 +110,16 @@
                                 <th scope="col">Số lượng</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr @click="$router.push('/admin/book/edit')">
-                                <th scope="row">1</th>
+                        <tbody v-for="(i,index) in bookList" :key="i.TenSach">
+
+                            <tr @click="$router.push(`/admin/book/edit`)">
+                                <th scope="row">{{index+1}}</th>
                                 <td><img src="https://m.media-amazon.com/images/I/61tsrsmR7aS._SL1254_.jpg" alt="" id="book-image" style="width: 80px;"/></td>
-                                <td>ABC</td>
-                                <td>Essential Computer Science</td>
-                                <td>Paul D. Crutcher</td>
-                                <td>Khoa học</td>
-                                <td>NXB Kim Đồng</td>
-                                <td>9</td>
+                                <td>{{ i.TenSach }}</td>
+                                <td>{{ i.MaTG  }}</td>
+                                <td>{{ i.MaTL }}</td>
+                                <td>{{ i.MaNXB }}</td>
+                                <td>{{ i.SoLuong }} </td>
                             </tr>
                             
                         </tbody>
@@ -131,6 +130,28 @@
         <!-- end category content -->
     </div>
 </template>
+
+<script setup>
+import Popup from "../../components/Popup.vue"
+import Sidebar from "../../components/Sidebar.vue"
+import { ref } from "vue";
+import Axios from '../../services/api.service'
+
+const bookList = ref([])
+
+async function GetAllBook() {
+    bookList.value = await Axios.GetAllBook()
+}
+GetAllBook()
+
+
+const popupTrigger = ref(false)
+
+const togglePopup = () => {
+    popupTrigger.value = !popupTrigger.value
+}
+</script>
+
 <style scoped>
 .container {
     padding: 0 3%;
@@ -195,20 +216,4 @@ button {
     margin-left: 40%;
     margin-right: 30%;
 }
-
 </style>
-<script setup>
-import Popup from "../../components/Popup.vue"
-import Sidebar from "../../components/Sidebar.vue"
-import { ref } from "vue";
-
-function del() {
-    alert("Delete an author!")
-}
-
-const popupTrigger = ref(false)
-
-const togglePopup = () => {
-    popupTrigger.value = !popupTrigger.value
-}
-</script>

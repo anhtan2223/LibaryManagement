@@ -24,7 +24,7 @@
                         class="button_in_search_container btn btn-primary">
                         <i class="fas fa-plus" style="color: #ffffff"></i>
                     </button>
-                    </div>
+                    </div>  
                 </div>
 
                 <Popup v-if="popupTrigger" :Toggle="()=> togglePopup()">
@@ -58,7 +58,7 @@
                             <div class="col-12">
                                 <label for="textArea" style="font-size: larger;"><b>Ghi chú</b></label>
                                 <div class="form-floating">
-                                    <textarea id="textArea" cols="100" rows="7" placeholder="Ghi chú về tác giả"></textarea>
+                                    <textarea id="textArea" style="width: 100%;" rows="7" placeholder="Ghi chú về tác giả"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -81,11 +81,11 @@
                             </tr>
                         </thead>
                         <tbody v-if="authorList.length != 0">
-                            <tr @click="$router.push('/admin/author/edit')" v-for="i in authorList" >
+                            <tr @click="$router.push(`/admin/author/${i.MaTG}`)" v-for="i in authorList" :key="i.MaTG">
                                 <td>{{ i.MaTG }}</td>
                                 <td>{{ i.TenTG }}</td>
-                                <td>example.com</td>
-                                <td>ghi chú gì đó</td>
+                                <td>{{ i.Website || "-----" }}</td>
+                                <td>{{ i.GhiChu || "-----" }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -166,17 +166,16 @@ button {
 import Popup from "../../components/Popup.vue"
 import Sidebar from "../../components/Sidebar.vue"
 import { ref } from "vue";
-import Axios from "../../services/api.service"
-
 const popupTrigger = ref(false)
-
 const togglePopup = () => {
     popupTrigger.value = !popupTrigger.value
 }
 
+import Axios from "../../services/api.service"
 const authorList = ref([])
 async function GetAuthor() {
     authorList.value = await Axios.GetAllAuthor()
 }
 GetAuthor()
+
 </script>

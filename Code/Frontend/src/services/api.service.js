@@ -31,18 +31,37 @@ class AxiosAPI
     async GetAllAuthor() {
         return (await this.api.get('/api/tacgia')).data
     }
+    async GetAuthorByID(id) {
+        return (await this.api.get(`/api/tacgia/${id}`)).data
+    } 
 
     async GetAllCategories() {
         return (await this.api.get('/api/theloai')).data
     }
+    async GetCategoryByID(id) {
+        return (await this.api.get(`/api/theloai/${id}`)).data
+    } 
 
     async GetAllPublisher() {
         return (await this.api.get('/api/nxb')).data
     }
+    async GetPublisherByID(id) {
+        return (await this.api.get(`/api/nxb/${id}`)).data
+    } 
 
     async GetAllAccount() {
         return (await this.api.get('/api/user')).data
     }
+    async GetAccountByID(id) {
+        return (await this.api.get(`/api/user/${id}`)).data
+    } 
+
+    async GetAllBook(){
+        return (await this.api.get('/api/sach')).data
+    }
+    async GetBookByID(id) {
+        return (await this.api.get(`/api/sach/${id}`)).data
+    } 
 }
 
 export default new AxiosAPI()

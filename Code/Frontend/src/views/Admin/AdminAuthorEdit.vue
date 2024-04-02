@@ -20,6 +20,8 @@
                                 <input
                                     type="text"
                                     id="code"
+                                    v-model="info.MaTG"
+                                    disabled
                                     class="form-control"/>
                             </div>
                             <div class="col-2">
@@ -31,6 +33,7 @@
                                 <input
                                     type="text"
                                     id="name"
+                                    v-model="info.TenTG"
                                     class="form-control"/>
                             </div>
                         </div>
@@ -43,6 +46,7 @@
                                 <input
                                     type="text"
                                     id="email"
+                                    v-model="info.Website"
                                     class="form-control"/>
                             </div>
                         </div>
@@ -58,6 +62,7 @@
                                 <input
                                     type="text"
                                     id="note"
+                                    v-model="info.GhiChu"
                                     class="form-control"/>
                             </div>
                         </div>
@@ -83,7 +88,7 @@
                                 </button>
                             </router-link>
                         </div>
-                        <!-- {{ root }} -->
+                        {{ info }}
                     </div>
                 </div>
             </div>
@@ -101,13 +106,13 @@
 import Sidebar from "../../components/Sidebar.vue";
 import { ref } from "vue";
 
-function del() {
-    alert("Delete an author!");
+
+const props = defineProps(["id"])
+import Axios from "../../services/api.service"
+const info = ref()
+async function GetAuthor() {
+    info.value = await Axios.GetAuthorByID(props.id)
 }
+GetAuthor()
 
-const popupTrigger = ref(false);
-
-const togglePopup = () => {
-    popupTrigger.value = !popupTrigger.value;
-};
 </script>
