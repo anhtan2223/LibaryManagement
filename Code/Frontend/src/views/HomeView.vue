@@ -26,12 +26,7 @@
                         class="form-select"
                         aria-label="Default select example">
                         <option selected><b>Tất cả thể loại</b></option>
-                        <option value="1">Giáo dục</option>
-                        <option value="2">Khoa học</option>
-                        <option value="2">Viễn tưởng</option>
-                        <option value="2">Trinh thám</option>
-                        <option value="2">Sách thiếu nhi</option>
-                        <option value="2">Lịch sử</option>
+                        <option v-for="(i,index) in categoryList" :value="index+1">{{ i.TenTL }}</option>
                     </select>
                 </div>
             </div>
@@ -50,75 +45,15 @@
 
         <div class="displayed-book">
             <div class="row">
-                <div class="single-book col-4">
+                <div class="single-book col-4" v-for="i in bookList">
                     <div class="card">
-                        <img src="https://m.media-amazon.com/images/I/61tsrsmR7aS._SL1254_.jpg"  alt="..." />
+                        <img :src="i.Image"  height="475px" width="310px"/>
                         <div class="card-body">
-                            <div class="category">Khoa học</div>
-                            <h5 class="card-title">Essential Computer Science</h5>
-                            <div class="author">Paul D. Crutcher</div>
+                            <div class="category">{{ i.TenTL }}</div>
+                            <h5 class="card-title">{{ i.TenSach }}</h5>
+                            <div class="author">{{ i.TenTG }}</div>
                             <div class="status">Trạng thái: {{ "Có sẵn" }}</div>
-                            <a class="btn btn-primary see-detail">Xem chi tiết</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="single-book col-4">
-                    <div class="card">
-                        <img src="https://m.media-amazon.com/images/I/61tsrsmR7aS._SL1254_.jpg"  alt="..." />
-                        <div class="card-body">
-                            <div class="category">Khoa học</div>
-                            <h5 class="card-title">Essential Computer Science</h5>
-                            <div class="author">Paul D. Crutcher</div>
-                            <div class="status">Trạng thái: {{ "Có sẵn" }}</div>
-                            <a class="btn btn-primary see-detail">Xem chi tiết</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="single-book col-4">
-                    <div class="card">
-                        <img src="https://m.media-amazon.com/images/I/61tsrsmR7aS._SL1254_.jpg"  alt="..." />
-                        <div class="card-body">
-                            <div class="category">Khoa học</div>
-                            <h5 class="card-title">Essential Computer Science</h5>
-                            <div class="author">Paul D. Crutcher</div>
-                            <div class="status">Trạng thái: {{ "Có sẵn" }}</div>
-                            <a class="btn btn-primary see-detail">Xem chi tiết</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="single-book col-4">
-                    <div class="card">
-                        <img src="https://m.media-amazon.com/images/I/61tsrsmR7aS._SL1254_.jpg"  alt="..." />
-                        <div class="card-body">
-                            <div class="category">Khoa học</div>
-                            <h5 class="card-title">Essential Computer Science</h5>
-                            <div class="author">Paul D. Crutcher</div>
-                            <div class="status">Trạng thái: {{ "Có sẵn" }}</div>
-                            <a class="btn btn-primary see-detail">Xem chi tiết</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="single-book col-4">
-                    <div class="card">
-                        <img src="https://m.media-amazon.com/images/I/61tsrsmR7aS._SL1254_.jpg"  alt="..." />
-                        <div class="card-body">
-                            <div class="category">Khoa học</div>
-                            <h5 class="card-title">Essential Computer Science</h5>
-                            <div class="author">Paul D. Crutcher</div>
-                            <div class="status">Trạng thái: {{ "Có sẵn" }}</div>
-                            <a class="btn btn-primary see-detail">Xem chi tiết</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="single-book col-4">
-                    <div class="card">
-                        <img src="https://m.media-amazon.com/images/I/61tsrsmR7aS._SL1254_.jpg"  alt="..." />
-                        <div class="card-body">
-                            <div class="category">Khoa học</div>
-                            <h5 class="card-title">Essential Computer Science</h5>
-                            <div class="author">Paul D. Crutcher</div>
-                            <div class="status">Trạng thái: {{ "Có sẵn" }}</div>
-                            <a class="btn btn-primary see-detail">Xem chi tiết</a>
+                            <!-- <a class="btn btn-primary see-detail">Xem chi tiết</a> -->
                         </div>
                     </div>
                 </div>
@@ -156,7 +91,6 @@
 }
 
 .card img {
-    width: 100%;
     border-radius: 15px;
     padding: 3%
 }
@@ -188,4 +122,18 @@
 
 <script setup>
 import Navigation from "../components/Navigation.vue";
+import { ref } from "vue";
+import Axios from '../services/api.service'
+
+const bookList = ref([])
+async function GetAllBook() {
+    bookList.value = await Axios.GetBookHome()
+}
+GetAllBook()
+
+const categoryList = ref([])
+async function GetAllCategory() {
+    categoryList.value = await Axios.GetAllCategories()
+}
+GetAllCategory()
 </script>

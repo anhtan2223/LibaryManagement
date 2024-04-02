@@ -82,10 +82,10 @@
                                 Lịch Sử Mượn Trả
                             </button> -->
                             
-                            <router-link to="/admin/account">
-                                <button class="btn btn-outline-danger " type="button" >
+                            <!-- <router-link to="/admin/account"> -->
+                                <button class="btn btn-outline-danger " type="button" @click="$router.go(-1)">
                                     Quay Về</button>
-                            </router-link>
+                            <!-- </router-link> -->
                         </div>
                             <!-- {{ root }} -->
                         </div>

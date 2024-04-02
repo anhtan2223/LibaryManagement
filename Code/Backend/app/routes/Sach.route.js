@@ -6,6 +6,8 @@ router.route('/')
     .get(controller.getAllBook)
     .post(controller.importBook)
 
+router.route('/home').get(controller.GetBookHomeView)
+
 router.route('/:bid')
     .get(controller.getBookByID)
     .delete(controller.deleteBook)

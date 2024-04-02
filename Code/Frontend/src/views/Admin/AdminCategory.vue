@@ -94,9 +94,6 @@
     scale: 100%;
     margin: 5px 5px 5px 3px;
 }
-.form-control {
-    width: 500px;
-}
 .search-container {
     display: flex;
     justify-content: flex-end;

@@ -74,6 +74,10 @@ class AxiosAPI
     async GetBookByID(id) {
         return (await this.api.get(`/api/sach/${id}`)).data
     } 
+
+    async GetBookHome() {
+        return (await this.api.get('/api/sach/home')).data
+    }
 }
     
 

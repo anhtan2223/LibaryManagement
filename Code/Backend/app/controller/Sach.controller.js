@@ -3,7 +3,7 @@ const ErrorAPI = require('../ErrorAPI')
 
 exports.getAllBook = async (req , res , next) =>{
         const connection = MySQL.connection
-        const command = "select count(MaSach) as SoLuong , TenSach , MaTG , MaTL , MaNXB , NamXB  from sach group by TenSach , MaTG , MaTL , MaNXB , NamXB"
+        const command = "select count(MaSach) as SoLuong , TenSach , MaTG , MaTL , MaNXB , NamXB, Image  from sach group by TenSach , MaTG , MaTL , MaNXB , NamXB, Image;"
         connection.query(command,(err, result , field)=>{
             if(err)
                 return next(new ErrorAPI(400 , "Get All Book Error"))
@@ -68,6 +68,23 @@ exports.deleteBook = async (req , res , next) =>{
         }   
     }
 
+exports.GetBookHomeView = async (req , res , next) =>{
+    try {
+        const connection = MySQL.connection
+        const command = `select TenTL, TenSach, TenTG, Image
+                        from tacgia, sach, theloai
+                        where tacgia.MaTG = sach.MaTG and theloai.MaTL = sach.MaTL;`
+            connection.query(command , (err, result , field)=>{
+            if(!err){
+                return res.json(result)
+            }
+            console.log(err)
+            return next(new ErrorAPI(400 , "Get Error When Query"))
+        })
+    } catch (error) {
+        return next(new ErrorAPI(400 , "Get Error"))
+    }   
+}
 
 // exports.example = async (req , res , next) =>{
 //     try {

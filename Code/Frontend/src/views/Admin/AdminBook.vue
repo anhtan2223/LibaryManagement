@@ -6,7 +6,7 @@
             <div class="topbar">
                 <!-- just here for the top bar, nothing else -->
             </div>
-
+            <!-- <img :src="'{{ bookList[0].Image }}'" alt=""> -->
             <!-- category content -->
             <div class="container">
                 <div id="author-title"><h2>Quản lý sách</h2></div>
@@ -114,7 +114,7 @@
 
                             <tr @click="$router.push(`/admin/book/edit`)">
                                 <th scope="row">{{index+1}}</th>
-                                <td><img src="https://m.media-amazon.com/images/I/61tsrsmR7aS._SL1254_.jpg" alt="" id="book-image" style="width: 80px;"/></td>
+                                <td><img :src="i.Image" alt="" id="book-image" style="width: 80px;"/></td>
                                 <td>{{ i.TenSach }}</td>
                                 <td>{{ i.MaTG  }}</td>
                                 <td>{{ i.MaTL }}</td>
@@ -160,9 +160,6 @@ const togglePopup = () => {
 .button_in_search_container {
     scale: 100%;
     margin: 5px 5px 5px 3px;
-}
-.form-control {
-    width: 500px;
 }
 .search-container {
     display: flex;
