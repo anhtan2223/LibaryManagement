@@ -8,6 +8,10 @@ router.route('/')
 
 router.route('/home').get(controller.GetBookHomeView)
 
+router.route('/home/asc').get(controller.SortAscend)
+
+router.route('/search/:name').get(controller.SearchBookByName)
+
 router.route('/:bid')
     .get(controller.getBookByID)
     .delete(controller.deleteBook)

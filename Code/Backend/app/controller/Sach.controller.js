@@ -66,7 +66,7 @@ exports.deleteBook = async (req , res , next) =>{
 
                 if(!err){
                     if(result.affectedRows != 0)
-                        return res.json({message : `Delete ${result.affectedRows} book success `})
+                        return res.json(...result)
                     return res.json({message : "Book Not Found"})
                 }
                 console.log(err);
@@ -94,6 +94,39 @@ exports.GetBookHomeView = async (req , res , next) =>{
         return next(new ErrorAPI(400 , "Get Error"))
     }   
 }
+
+exports.SortAscend = async (req , res , next) =>{
+    try {
+        const connection = MySQL.connection
+        const command = `CALL getBooksOrdered('', 'name_asc');`
+            connection.query(command , (err, result , field)=>{
+            if(!err){
+                return res.json(result)
+            }
+            console.log(err)
+            return next(new ErrorAPI(400 , "Get Error When Query"))
+        })
+    } catch (error) {
+        return next(new ErrorAPI(400 , "Get Error"))
+    }   
+}
+exports.SearchBookByName = async (req , res , next) =>{
+    try {
+        const connection = MySQL.connection
+        const command = `select theloai.TenTL, sach.TenSach, tacgia.TenTG, sach.Image 
+                        from sach, theloai,tacgia 
+                        where TenSach like "%${req.params.name}%" and tacgia.MaTG = sach.MaTG and theloai.MaTL = sach.MaTL`
+                        connection.query(command , (err, result , field)=>{
+                            if(!err){
+                                return res.json(result)
+                            }
+                            console.log(err)
+                            return next(new ErrorAPI(400 , "Get Error When Query"))
+                        })
+                    } catch (error) {
+                        return next(new ErrorAPI(400 , "Get Error"))
+                    }   
+                }
 
 // exports.example = async (req , res , next) =>{
 //     try {
