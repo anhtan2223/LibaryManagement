@@ -190,64 +190,6 @@ VALUES
     (3, 5, 'Ghi chú cho sách 5', true, '2024-03-28'),
     (3, 6, 'Ghi chú cho sách 6', FALSE, NULL);
 
-select * from CT_MuonTra ;
-
-delimiter @
-drop procedure if exists GetStatistic @
-create procedure GetStatistic()
-begin
-	drop table if exists Statistic;
-	create table Statistic (
-		ReaderCount int,
-		BookCount int,
-        BorrowedCount int,
-        ExpiredCount int
-	);
-    insert into Statistic (ReaderCount, BookCount, BorrowedCount, ExpiredCount)
-	select
-    (select COUNT(*) from nguoidung where RoleID = 1) as ReaderCount,
-    (select COUNT(*) from sach) as BookCount,
-    (select COUNT(*) from sach, ct_muontra where sach.MaSach = ct_muontra.MaSach) as BorrowedCount,
-    (
-		select count(*) from ct_muontra, muontra
-		where ct_muontra.MaMT = muontra.MaMT and DaTra = 0 and datediff(now(), NgayMuon) > 7
-    ) as ExpiredcCount;
-	select * from Statistic;
-end @
-delimiter ;
-
-call GetStatistic();
-
-delimiter @
-drop procedure if exists GetRecentBorrowed@
-create procedure GetRecentBorrowed() 
-begin
-	select distinct HoTen, TenSach, date((date_add(NgayMuon, INTERVAL 7 DAY))) as NgayHetHan 
-	from ct_muontra, muontra, thethuvien, nguoidung, sach
-	where ct_muontra.DaTra = 0 
-		and ct_muontra.MaMT = muontra.MaMT 
-		and muontra.MaTTV = thethuvien.MaTTV
-		and nguoidung.UID = thethuvien.MaDG
-		and sach.MaSach = ct_muontra.MaSach;
-end@
-delimiter ;
-
-call GetRecentBorrowed()
-
-delimiter @
-drop procedure if exists GetOverExpired@
-create procedure GetOverExpired() 
-begin
-	select HoTen, TenSach, datediff(now(), date_add(NgayMuon, INTERVAL 7 DAY)) as SoNgayQuaHan
-	from ct_muontra, muontra, thethuvien, nguoidung, sach
-	where ct_muontra.DaTra = 0 
-		and ct_muontra.MaMT = muontra.MaMT 
-		and muontra.MaTTV = thethuvien.MaTTV
-		and nguoidung.UID = thethuvien.MaDG
-		and sach.MaSach = ct_muontra.MaSach;
-end@
-delimiter ;
-
-call GetOverExpired();
+-- select * from CT_MuonTra ;
 
 
