@@ -117,7 +117,7 @@
                                 <button
                                     class="btn btn-outline-danger"
                                     type="button">
-                                    Đăng Xuất
+                                    Huỷ
                                 </button>
                             </router-link>
                         </div>
