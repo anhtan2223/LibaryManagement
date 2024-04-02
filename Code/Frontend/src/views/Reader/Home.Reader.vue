@@ -26,7 +26,7 @@
                         class="form-select"
                         aria-label="Default select example">
                         <option selected><b>Tất cả thể loại</b></option>
-                        <option v-for="(i,index) in categoryList" :value="index+1">{{ i.TenTL }}</option>
+                        <option v-for="(i,index) in categoryList" :key="i.TenTL" :value="index+1">{{ i.TenTL }}</option>
                     </select>
                 </div>
             </div>
@@ -45,7 +45,7 @@
 
         <div class="displayed-book">
             <div class="row">
-                <div class="single-book col-4" v-for="i in bookList">
+                <div class="single-book col-4" v-for="i in bookList" :key="i.TenSach">
                     <div class="card">
                         <img :src="i.Image"  height="475px" width="310px"/>
                         <div class="card-body">

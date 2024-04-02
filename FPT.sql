@@ -1,4 +1,63 @@
-use quanlythuvien;
+use QuanLyThuVien ;
+
+delimiter @
+ drop procedure if exists GetStatistic @
+ create procedure GetStatistic()
+ begin
+ 	drop table if exists Statistic;
+ 	create table Statistic (
+ 		ReaderCount int,
+ 		BookCount int,
+         BorrowedCount int,
+         ExpiredCount int
+ 	);
+     insert into Statistic (ReaderCount, BookCount, BorrowedCount, ExpiredCount)
+ 	select
+     (select COUNT(*) from nguoidung where RoleID = 1) as ReaderCount,
+     (select COUNT(*) from sach) as BookCount,
+     (select COUNT(*) from sach, ct_muontra where sach.MaSach = ct_muontra.MaSach) as BorrowedCount,
+     (
+ 		select count(*) from ct_muontra, muontra
+ 		where ct_muontra.MaMT = muontra.MaMT and DaTra = 0 and datediff(now(), NgayMuon) > 7
+     ) as ExpiredcCount;
+ 	select * from Statistic;
+ end @
+ delimiter ;
+
+-- -------------------------------------------------------------------------
+
+ delimiter @
+ drop procedure if exists GetRecentBorrowed@
+ create procedure GetRecentBorrowed() 
+ begin
+ 	select distinct HoTen, TenSach, date((date_add(NgayMuon, INTERVAL 7 DAY))) as NgayHetHan 
+ 	from ct_muontra, muontra, thethuvien, nguoidung, sach
+ 	where ct_muontra.DaTra = 0 
+ 		and ct_muontra.MaMT = muontra.MaMT 
+ 		and muontra.MaTTV = thethuvien.MaTTV
+ 		and nguoidung.UID = thethuvien.MaDG
+ 		and sach.MaSach = ct_muontra.MaSach;
+ end@
+ delimiter ;
+
+-- -------------------------------------------------------------------------
+
+ delimiter @
+ drop procedure if exists GetOverExpired@
+ create procedure GetOverExpired() 
+ begin
+ 	select HoTen, TenSach, datediff(now(), date_add(NgayMuon, INTERVAL 7 DAY)) as SoNgayQuaHan
+ 	from ct_muontra, muontra, thethuvien, nguoidung, sach
+ 	where ct_muontra.DaTra = 0 
+ 		and ct_muontra.MaMT = muontra.MaMT 
+ 		and muontra.MaTTV = thethuvien.MaTTV
+ 		and nguoidung.UID = thethuvien.MaDG
+ 		and sach.MaSach = ct_muontra.MaSach;
+ end@
+ delimiter ;
+ 
+ -- -------------------------------------------------------------------------
+
 DELIMITER //
 DROP PROCEDURE IF EXISTS getBooksOrdered;
 CREATE PROCEDURE getBooksOrdered(IN searchString VARCHAR(124), IN orderType VARCHAR(20))
@@ -12,7 +71,7 @@ BEGIN
         TenNhaXuatBan VARCHAR(100),
         TenTheLoai VARCHAR(100),
         NamXB YEAR,
-        Image VARCHAR(100)
+        Image VARCHAR(1000)
     );
 
     -- Populate the temporary table with the result set
@@ -98,6 +157,8 @@ BEGIN
 END //
 DELIMITER ;
 
+-- -------------------------------------------------------------------------
+
 DELIMITER //
 DROP TRIGGER IF EXISTS CreateTheThuVienAfterInsert;
 CREATE TRIGGER CreateTheThuVienAfterInsert
@@ -110,6 +171,8 @@ BEGIN
 END;
 //
 DELIMITER ;
+
+-- -------------------------------------------------------------------------
 
 DELIMITER //
 
@@ -125,7 +188,7 @@ BEGIN
         TenNhaXuatBan VARCHAR(100),
         TenTheLoai VARCHAR(100),
         NamXB YEAR,
-        Image VARCHAR(100)
+        Image VARCHAR(1000)
     );
 
     -- Populate the temporary table with the result set
@@ -158,6 +221,8 @@ BEGIN
     SELECT * FROM TempBooks;
 END //
 DELIMITER ;
+
+-- -------------------------------------------------------------------------
 
 DELIMITER //
 DROP PROCEDURE IF EXISTS getAuthorsList;
@@ -192,6 +257,8 @@ BEGIN
 END //
 DELIMITER ;
 
+-- -------------------------------------------------------------------------
+
 DELIMITER //
 DROP PROCEDURE IF EXISTS SearchCategory;
 CREATE PROCEDURE SearchCategory(IN searchString VARCHAR(100))
@@ -216,6 +283,8 @@ END;
 //
 DELIMITER ;
 
+-- -------------------------------------------------------------------------
+
 DELIMITER //
 DROP PROCEDURE IF EXISTS getRestBooksList;
 CREATE PROCEDURE getRestBooksList()
@@ -231,7 +300,7 @@ BEGIN
         TenTL VARCHAR(100),
         TenNXB VARCHAR(100),
         NamXB YEAR,
-        Image VARCHAR(100),
+        Image VARCHAR(1000),
         NumAvailable INT
     );
 
@@ -280,3 +349,5 @@ BEGIN
 END;
 //
 DELIMITER ;
+
+-- -------------------------------------------------------------------------

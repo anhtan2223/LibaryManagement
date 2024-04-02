@@ -67,22 +67,38 @@ create table Sach(
     MaTL int ,
     MaNXB int not null ,
     NamXB year not null ,
-    Image varchar(100) ,
+    Image varchar(1000) ,
     constraint hello primary key(MaSach , TenSach , MaTG , MaNXB , namXB ) ,
     foreign key (MaTG) references TacGia(MaTG) on delete cascade ,
     foreign key (MaNXB) references NhaXuatBan(MaNXB) on delete cascade , 
     foreign key (MaTL) references TheLoai(MaTL) on delete cascade
 );
-insert into Sach(TenSach,MaTL,MaTG,MaNXB,NamXB) value
-	("Dế Mèn Phiêu Lưu Ký",2,1,1,2024) ,
-    ("Chuyện Xứ Lang Biang",1,2,2,2024) ,
-    ("Tắt Đèn",1,3,6,2024) ,
-    ("Lược Sử Thời Gian",4,4,4,2024) ,
-    ("Những Ngày Thứ Ba với Thầy Morrie",5,5,2,2024) ,
-    ("Tôi Thấy Hoa Vàng Trên Cỏ Xanh",1,6,5,2024) ,
-    ("Hoa Trôi Trên Sóng Nước",2,6,1,2024) ,
-    ("Hồn Trương Ba Da Hàng Thịt",1,7,5,2024) ,
-    ("300 Bài Code Thiếu Nhi",8,8,1,2024) 
+insert into Sach(TenSach,MaTL,MaTG,MaNXB,NamXB,Image) value
+	("Dế Mèn Phiêu Lưu Ký",2,1,1,2024,'https://static.8cache.com/cover/o/eJzLyTDW1_VIzDROLfM3Noh31A8LM8zQLQlx8Uj11HeEgrw8V_0o5-Ck1IDyQEf3bP1yI0NT3QxjIyMARh4SLA==/de-men-phieu-luu-ky.jpg') ,
+    ("Chuyện Xứ Lang Biang",1,2,2,2024, 'https://www.dtv-ebook.com/images/truyen-online/ebook-chuyen-xu-langbiang-prc-pdf-epub-1.jpg') ,
+    ("Tắt Đèn",1,3,6,2024, 'https://bizweb.dktcdn.net/100/370/339/products/tat-den.jpg?v=1588518084007') ,
+    ("Lược Sử Thời Gian",4,4,4,2024, 'https://www.nxbtre.com.vn/Images/Book/copy_27_nxbtre_full_21022016_100217.jpg') ,
+    ("Những Ngày Thứ Ba với Thầy Morrie",5,5,2,2024, 'https://product.hstatic.net/200000343865/product/nhung-ngay-thu-ba-voi-thay-morrie_6cba4e499407490e96661cfabf2b2ebe_master.jpg') ,
+    ("Tôi Thấy Hoa Vàng Trên Cỏ Xanh",1,6,5,2024, 'https://sachtruyen.net/covers/toi-thay-hoa-vang-tren-co-xanh.3f827.cover.jpg') ,
+    ("Hoa Trôi Trên Sóng Nước",2,6,1,2024, 'https://firstnews.com.vn/public/uploads/products/thumb-0129.jpg') ,
+    ("Hồn Trương Ba Da Hàng Thịt",1,7,5,2024, 'https://www.quandoannguhanhson.org.vn/uploads/images/posts/2023-04-23_14-51-36slYlpA_h%E1%BB%93n%20tr%C6%B0%C6%A1ng%20ba%20da%20h%C3%A0ng%20th%E1%BB%8Bt.png') ,
+    ("300 Bài Code Thiếu Nhi",8,8,1,2024, 'https://product.bachkhoa-aptech.edu.vn:33/Resources/Data/Screenshot%202021-07-14%20105743.png') ,
+	("Bố Già", 5, 4, 4, 2021, 'https://cdn0.fahasa.com/media/catalog/product/8/9/8936071673381.jpg'),
+	("Nhà Giả Kim", 6, 5, 5, 2020, 'https://thuviensach.vn/img/news/2022/09/larger/255-nha-gia-kim-1.jpg?v=7958'),
+	("Đắc Nhân Tâm", 7, 6, 6, 2019, 'https://cdn0.fahasa.com/media/catalog/product/d/n/dntttttuntitled.jpg'),
+	("Harry Potter và Hòn Đá Phù Thủy", 8, 7, 6, 2018, 'https://cdn0.fahasa.com/media/catalog/product/8/9/8934974179672.jpg'),
+	("Anna Karenina", 9, 8, 6, 2017, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeZG8tCwQrZ8EguCGf7UhD-1sqUa5Eqpslb48qAZzP-Q&s'),
+	("Cuốn Theo Chiều Gió", 10, 8, 6, 2016, 'https://salt.tikicdn.com/cache/w1200/ts/product/a6/1e/c9/bb2b006d46f1c6c54f9c66eac99ca7ae.jpg'),
+	("1984", 11, 2, 5, 2015, 'https://upload.wikimedia.org/wikipedia/vi/c/c3/1984first.jpg'),
+	("Mắt Biếc", 10, 4, 6, 2014, 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1691147319i/11273677.jpg'),
+	("Người Mẹ", 11, 2, 2, 2013, 'https://www.khaitam.com/Data/Sites/1/Product/14105/nguoi-me.png'),
+	("Tâm Tư", 4, 3, 5, 2012, 'https://www.khaitam.com/Data/Sites/1/Product/7757/tam-tu.jpg'),
+	("Huyền Thoại Về Rồng", 5, 4, 4, 2011, 'https://www.netabooks.vn/Data/Sites/1/Product/69458/cuu-toc-quyen-1-huyen-thoai-ve-rong-tuyet-.jpg'),
+	("Muôn Kiếp Nhân Sinh", 6, 3, 5, 2010, 'https://bizweb.dktcdn.net/100/180/408/products/muon-kiep-nhan-sinh-1-3b2bfd88-6d50-4850-af3d-58d69cde9081.png?v=1620314231893'),
+	("Cuộc Phiêu Lưu Của Tom Sawyer", 6, 5, 5, 2021, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGQwmhDg-_Uqwjs4bpDtylJ2GMnbKfXbO6D7E6r6-qjA&s'),
+	("Cô Gái Trong Trang Sách", 7, 6, 6, 2021, 'https://static.8cache.com/cover/o/eJzLyTDW1zVOdsoocAoML04u1g-rqAhNyksOLM_11HeEAj8DA_3EUCMfJ1_fggiP_ChvC6-SUv_AyDwzo0oPy0CLymA3w3Jn53z9YgMACtkZSA==/co-gai-trong-trang-sach.jpg'),
+	("Tôi Đi Học", 8, 7, 3, 2021, 'https://muasachhay.vn/wp-content/uploads/2016/10/toi-di-hoc-mua-sach-hay.jpg'),
+	("Cô Gái Trên Tàu", 9, 8, 6, 2021, 'https://bizweb.dktcdn.net/100/283/734/products/0fa815d2fb416be1e8a0a76d24b456d1.jpg?v=1536659572753')
     ;
 
 -- select * from tacgia ;
