@@ -46,9 +46,21 @@ const router = createRouter({
       props : true ,
     },
     {
+      path: '/admin/account/edit',
+      name: 'AccountEditAdmin',
+      component: () => import('../views/Admin/AdminAccountEdit.vue') ,
+      props : true ,
+    },
+    {
       path: '/admin/book',
       name: 'BookFromAdmin',
       component: () => import('../views/Admin/AdminBook.vue') ,
+      props : true ,
+    },
+    {
+      path: '/admin/book/edit',
+      name: 'BookEditAdmin',
+      component: () => import('../views/Admin/AdminBookEdit.vue') ,
       props : true ,
     },
     {
@@ -57,20 +69,36 @@ const router = createRouter({
       component: () => import('../views/Admin/AdminCategory.vue') ,
       props : true ,
     },
-    
+    {
+      path: '/admin/category/edit',
+      name: 'CategoryEditAdmin',
+      component: () => import('../views/Admin/AdminCategoryEdit.vue') ,
+      props : true ,
+    },
     {
       path: '/admin/author',
       name: 'AdminAuthor',
       component: () => import('../views/Admin/AdminAuthor.vue') ,
       props : true ,
-    }
-    ,
+    },
+    {
+      path: '/admin/author/edit',
+      name: 'AuthorEditAdmin',
+      component: () => import('../views/Admin/AdminAuthorEdit.vue') ,
+      props : true ,
+    },
     {
       path: '/admin/publisher',
       name: 'AdminPublisher',
       component: () => import('../views/Admin/AdminPublishing.vue') ,
       props : true ,
-    } ,
+    },
+    {
+      path: '/admin/publisher/edit',
+      name: 'PublisherEditAdmin',
+      component: () => import('../views/Admin/AdminPublishingEdit.vue') ,
+      props : true ,
+    },
     {
       path: '/employee',
       name: 'EmployeeHome',

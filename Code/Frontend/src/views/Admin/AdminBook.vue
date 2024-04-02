@@ -98,11 +98,12 @@
                 </Popup>
 
                 <div class="table-responsive">
-                    <table class="table table-bordered caption-top">
+                    <table class="table table-bordered table-hover caption-top">
                         <thead>
                             <tr>
                                 <th scope="col"></th>
                                 <th scope="col">Ảnh bìa</th>
+                                <th scope="col">Mã sách</th>
                                 <th scope="col">Tên</th>
                                 <th scope="col">Tác giả</th>
                                 <th scope="col">Thể loại</th>
@@ -111,56 +112,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr @click="$router.push('/admin/book/edit')">
                                 <th scope="row">1</th>
                                 <td><img src="https://m.media-amazon.com/images/I/61tsrsmR7aS._SL1254_.jpg" alt="" id="book-image" style="width: 80px;"/></td>
+                                <td>ABC</td>
                                 <td>Essential Computer Science</td>
                                 <td>Paul D. Crutcher</td>
                                 <td>Khoa học</td>
                                 <td>NXB Kim Đồng</td>
                                 <td>9</td>
-                                <td class="action_button">
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="fas fa-wrench" style="color: #ffffff"></i>
-                                    </button>
-                                    <button class="btn btn-primary" type="submit" @click="">
-                                        <i class="fas fa-trash" style="color: #ffffff"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td><img src="https://m.media-amazon.com/images/I/61tsrsmR7aS._SL1254_.jpg" alt="" id="book-image" style="width: 80px;"/></td>
-                                <td>Essential Computer Science</td>
-                                <td>Paul D. Crutcher</td>
-                                <td>Khoa học</td>
-                                <td>NXB Kim Đồng</td>
-                                <td>9</td>
-                                <td class="action_button">
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="fas fa-wrench" style="color: #ffffff"></i>
-                                    </button>
-                                    <button class="btn btn-primary" type="submit" @click="">
-                                        <i class="fas fa-trash" style="color: #ffffff"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td><img src="https://m.media-amazon.com/images/I/61tsrsmR7aS._SL1254_.jpg" alt="" id="book-image" style="width: 80px;"/></td>
-                                <td>Essential Computer Science</td>
-                                <td>Paul D. Crutcher</td>
-                                <td>Khoa học</td>
-                                <td>NXB Kim Đồng</td>
-                                <td>9</td>
-                                <td class="action_button">
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="fas fa-wrench" style="color: #ffffff"></i>
-                                    </button>
-                                    <button class="btn btn-primary" type="submit" @click="">
-                                        <i class="fas fa-trash" style="color: #ffffff"></i>
-                                    </button>
-                                </td>
                             </tr>
                             
                         </tbody>

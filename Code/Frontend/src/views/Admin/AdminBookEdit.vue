@@ -7,89 +7,95 @@
             </div>
             <div class="container">
                 <div class="user bg-white">
-                    <h3 class="text-center mt-3 mb-3">Thông Tin Tài Khoản</h3>
+                    <h3 class="text-center mt-3 mb-3">Thông Tin Sách</h3>
                     <hr />
                     <div class="body-div">
                         <div class="row align-items-center m-3">
                             <div class="col-2">
-                                <label for="name" class="col-form-label"
-                                    >Họ và Tên</label
+                                <label for="code" class="col-form-label"
+                                    >Mã sách</label
                                 >
                             </div>
                             <div class="col-4">
                                 <input
                                     type="text"
-                                    id="name"
-                                    class="form-control"
-                                    disabled />
-                                <input
-                                    type="text"
-                                    id="name"
+                                    id="code"
                                     class="form-control"/>
                             </div>
                             <div class="col-2">
-                                <label for="phone" class="col-form-label"
-                                    >Số Điện Thoại</label
+                                <label for="name" class="col-form-label"
+                                    >Tên sách</label
                                 >
                             </div>
                             <div class="col-4">
                                 <input
                                     type="text"
-                                    id="phone"
-                                    class="form-control"
-                                    disabled/>
-                                <input
-                                    type="text"
-                                    id="phone"
+                                    id="name"
                                     class="form-control"/>
                             </div>
                         </div>
         
                         <div class="row align-items-center m-3">
                             <div class="col-2">
-                                <label for="username" class="col-form-label"
-                                    >Tài Khoản</label
+                                <label for="cover-img" class="col-form-label"
+                                    >Ảnh bìa</label
                                 >
                             </div>
                             <div class="col-4">
                                 <input
                                     type="text"
-                                    id="username"
+                                    id="cover-img"
                                     class="form-control"
-                                    disabled/>
+                                    />
                             </div>
                             <div class="col-2">
-                                <label for="email" class="col-form-label">Email</label>
+                                <label for="author" class="col-form-label">Tác giả</label>
                             </div>
                             <div class="col-4">
                                 <input
                                     type="text"
-                                    id="email"
-                                    class="form-control"
-                                    disabled />
-                                <input
-                                    type="text"
-                                    id="email"
+                                    id="author"
                                     class="form-control"/>
                             </div>
                         </div>
         
                         <div class="row align-items-center m-3" >
                             <div class="col-2">
-                                <label for="email" class="col-form-label"
-                                    >Địa Chỉ</label
+                                <label for="category" class="col-form-label"
+                                    >Thể loại</label
                                 >
                             </div>
         
-                            <div class="col-10">
+                            <div class="col-4">
                                 <input
                                     type="text"
-                                    id="email"
-                                    class="form-control"
-                                    disabled />
+                                    id="category"
+                                    class="form-control"/>
+                            </div>
+                            <div class="col-2">
+                                <label for="publisher" class="col-form-label"
+                                    >Nhà xuất bản</label
+                                >
+                            </div>
+        
+                            <div class="col-4">
                                 <input
                                     type="text"
-                                    id="email"
+                                    id="publisher"
+                                    class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="row align-items-center m-3" >
+                            <div class="col-2">
+                                <label for="quantity" class="col-form-label"
+                                    >Số lượng</label
+                                >
+                            </div>
+        
+                            <div class="col-4">
+                                <input
+                                    type="number"
+                                    id="quantity"
                                     class="form-control"/>
                             </div>
                         </div>
@@ -98,31 +104,19 @@
                     <div class="footer-element m-4">
                         <div class="d-grid gap-3 d-md-flex justify-content-md-around">
                             <button
-                                class="btn btn-outline-primary"
-                                type="button">
-                                Sửa Thông Tin
-                            </button>
-                            <button
                                 class="btn btn-outline-success"
                                 type="button">
                                 Xác Nhận
-                            </button>
-                            <button
-                                class="btn btn-outline-primary"
-                                type="button"
-                                @click="$router.push('/employee/password')">
-                                Đổi Mật Khẩu
                             </button>
         
                             <!-- <button class="btn btn-outline-primary" type="button" @click="$router.push('/employee/info')">
                             Lịch Sử Mượn Trả
                         </button> -->
         
-                            <router-link to="/login">
+                            <router-link to="/admin/book">
                                 <button
                                     class="btn btn-outline-danger"
-                                    type="button"
-                                    @click="DangXuat">
+                                    type="button">
                                     Đăng Xuất
                                 </button>
                             </router-link>
@@ -142,7 +136,7 @@
 }
 </style>
 <script setup>
-import Sidebar from "./Sidebar.vue";
+import Sidebar from "../../components/Sidebar.vue";
 import { ref } from "vue";
 
 function del() {

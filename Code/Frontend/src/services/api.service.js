@@ -27,6 +27,22 @@ class AxiosAPI
         const result = (await this.api.post('/api/user',data)).data
         return result
     }
+
+    async GetAllAuthor() {
+        return (await this.api.get('/api/tacgia')).data
+    }
+
+    async GetAllCategories() {
+        return (await this.api.get('/api/theloai')).data
+    }
+
+    async GetAllPublisher() {
+        return (await this.api.get('/api/nxb')).data
+    }
+
+    async GetAllAccount() {
+        return (await this.api.get('/api/user')).data
+    }
 }
 
 export default new AxiosAPI()

@@ -71,61 +71,21 @@
                 </Popup>
 
                 <div class="table-responsive">
-                    <table class="table table-bordered caption-top">
+                    <table class="table table-bordered table-hover caption-top">
                         <thead>
                             <tr>
-                                <th scope="col"></th>
                                 <th scope="col">Mã tác giả</th>
                                 <th scope="col">Tên tác giả</th>
                                 <th scope="col">Website</th>
                                 <th scope="col">Ghi chú</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>A123</td>
-                                <td>Otto</td>
+                        <tbody v-if="authorList.length != 0">
+                            <tr @click="$router.push('/admin/author/edit')" v-for="i in authorList" >
+                                <td>{{ i.MaTG }}</td>
+                                <td>{{ i.TenTG }}</td>
                                 <td>example.com</td>
                                 <td>ghi chú gì đó</td>
-                                <td class="action_button">
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="fas fa-wrench" style="color: #ffffff"></i>
-                                    </button>
-                                    <button class="btn btn-primary" type="submit" @click="del">
-                                        <i class="fas fa-trash" style="color: #ffffff"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>example.com</td>
-                                <td>ghi chú gì đó</td>
-                                <td class="action_button">
-                                    <button class="btn btn-primary" type="submit" @click="del">
-                                        <i class="fas fa-wrench" style="color: #ffffff"></i>
-                                    </button>
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="fas fa-trash" style="color: #ffffff"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>example.com</td>
-                                <td>ghi chú gì đó</td>
-                                <td class="action_button">
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="fas fa-wrench" style="color: #ffffff"></i>
-                                    </button>
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="fas fa-trash" style="color: #ffffff" @click="del"></i>
-                                    </button>
-                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -206,14 +166,17 @@ button {
 import Popup from "../../components/Popup.vue"
 import Sidebar from "../../components/Sidebar.vue"
 import { ref } from "vue";
-
-function del() {
-    alert("Delete an author!")
-}
+import Axios from "../../services/api.service"
 
 const popupTrigger = ref(false)
 
 const togglePopup = () => {
     popupTrigger.value = !popupTrigger.value
 }
+
+const authorList = ref([])
+async function GetAuthor() {
+    authorList.value = await Axios.GetAllAuthor()
+}
+GetAuthor()
 </script>

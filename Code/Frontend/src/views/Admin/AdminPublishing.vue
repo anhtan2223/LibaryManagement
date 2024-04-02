@@ -79,68 +79,24 @@
                 </Popup>
 
                 <div class="table-responive">
-                    <table class="table table-bordered caption-top">
+                    <table class="table table-bordered table-hover caption-top">
                         <thead>
                             <tr>
-                                <th scope="col">ID</th>
                                 <th scope="col">Mã nhà xuất bản</th>
                                 <th scope="col">Tên nhà xuất bản</th>
                                 <th scope="col">Địa chỉ</th>
                                 <th scope="col">Người đại diện</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Email</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>MB201hx</td>
-                                <td>Nhà Xuất Bản Kim Đồng</td>
-                                <td class="col_3">
-                                    55 Trần Hưng Đạo, Quận Hoàn Kiếm, Hà Nội
-                                </td>
-                                <td class="col_4">info@nxbkimdong.com.vn</td>
-                                <td class="action_button">
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="fas fa-wrench" style="color: #ffffff"></i>
-                                    </button>
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="fas fa-trash" style="color: #ffffff"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td class="col_3">
-                                    55 Trần Hưng Đạo, Quận Hoàn Kiếm, Hà Nội
-                                </td>
-                                <td class="col_4">info@nxbkimdong.com.vn</td>
-                                <td class="action_button">
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="fas fa-wrench" style="color: #ffffff"></i>
-                                    </button>
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="fas fa-trash" style="color: #ffffff"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td class="col_3">
-                                    55 Trần Hưng Đạo, Quận Hoàn Kiếm, Hà Nội
-                                </td>
-                                <td class="col_4">info@nxbkimdong.com.vn</td>
-                                <td class="action_button">
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="fas fa-wrench" style="color: #ffffff"></i>
-                                    </button>
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="fas fa-trash" style="color: #ffffff"></i>
-                                    </button>
-                                </td>
+                        <tbody v-if="publisherList.length != 0">
+                            <tr @click="$router.push('/admin/publisher/edit')" v-for="i in publisherList">
+                                <td>{{ i.MaNXB }}</td>
+                                <td>{{ i.TenNXB }}</td>
+                                <td>{{ i.DiaChi }}</td>
+                                <td v-if="i.NguoiDaiDien != null">{{ i.NguoiDaiDien }}</td>
+                                <td v-else>---</td>
+                                <td>{{ i.Email }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -218,6 +174,7 @@ button {
 import Popup from "../../components/Popup.vue"
 import Sidebar from "../../components/Sidebar.vue"
 import { ref } from "vue";
+import Axios from "../../services/api.service"
 
 function del() {
     alert("Delete an author!")
@@ -228,4 +185,10 @@ const popupTrigger = ref(false)
 const togglePopup = () => {
     popupTrigger.value = !popupTrigger.value
 }
+
+const publisherList = ref([])
+async function GetPublisher() {
+    publisherList.value = await Axios.GetAllPublisher()
+}
+GetPublisher()
 </script>

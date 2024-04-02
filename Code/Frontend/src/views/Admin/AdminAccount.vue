@@ -16,7 +16,6 @@
                             
                             <thead>
                                 <tr>
-                                    <th scope="col"></th>
                                     <th scope="col">Tên độc giả</th>
                                     <th scope="col">Tên tài khoản</th>
                                     <th scope="col">Email</th>
@@ -24,22 +23,13 @@
                                     <th scope="col">Địa chỉ</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr @click="edit">
-                                    <th scope="row">1</th>
-                                    <td>Phong Phạm</td>
-                                    <td>phphong</td>
-                                    <td>phphong@gmail.com</td>
-                                    <td>0192301239</td>
-                                    <td>Can Tho</td>
-                                </tr>
-                                <tr @click="edit">
-                                    <th scope="row">2</th>
-                                    <td>Phong Phạm</td>
-                                    <td>phphong</td>
-                                    <td>phphong@gmail.com</td>
-                                    <td>0192301239</td>
-                                    <td>Can Tho</td>
+                            <tbody v-if="userList.length != 0">
+                                <tr v-for="i in userList" @click="$router.push('/admin/account/edit')">
+                                    <td v-if="i.RoleID == 3">{{ i.HoTen }}</td>
+                                    <td v-if="i.RoleID == 3">{{ i.username }}</td>
+                                    <td v-if="i.RoleID == 3">{{ i.Email }}</td>
+                                    <td v-if="i.RoleID == 3">{{ i.SDT }}</td>
+                                    <td v-if="i.RoleID == 3">{{ i.DiaChi }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -49,7 +39,6 @@
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col"></th>
                                     <th scope="col">Tên nhân viên</th>
                                     <th scope="col">Tên tài khoản</th>
                                     <th scope="col">Email</th>
@@ -57,22 +46,13 @@
                                     <th scope="col">Địa chỉ</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr @click="edit">
-                                    <th scope="row">1</th>
-                                    <td>Phong Phạm</td>
-                                    <td>phphong</td>
-                                    <td>phphong@gmail.com</td>
-                                    <td>0192301239</td>
-                                    <td>Can Tho</td>
-                                </tr>
-                                <tr @click="edit">
-                                    <th scope="row">2</th>
-                                    <td>Phong Phạm</td>
-                                    <td>phphong</td>
-                                    <td>phphong@gmail.com</td>
-                                    <td>0192301239</td>
-                                    <td>Can Tho</td>
+                            <tbody v-if="userList.length != 0">
+                                <tr v-for="i in userList" >
+                                    <td v-if="i.RoleID == 2">{{ i.HoTen }}</td>
+                                    <td v-if="i.RoleID == 2">{{ i.username }}</td>
+                                    <td v-if="i.RoleID == 2">{{ i.Email }}</td>
+                                    <td v-if="i.RoleID == 2">{{ i.SDT }}</td>
+                                    <td v-if="i.RoleID == 2">{{ i.DiaChi }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -85,6 +65,9 @@
 </template>
 
 <style scoped>
+.container {
+    max-width: 100%;
+}
 
 #dashboard-content h1{
     margin-top: 0;
@@ -129,16 +112,13 @@ button {
 
 <script setup>
 import Sidebar from "../../components/Sidebar.vue";
+import { ref } from "vue";
+import Axios from "../../services/api.service"
 
-function add(){
-    alert("add an account")
+const userList = ref([])
+async function GetUser() {
+    userList.value = await Axios.GetAllAccount()
 }
-
-function edit(){
-    alert("edit information")
-}
-
-function del(){
-    alert("delete account")
-}
+GetUser()
+console.log(userList)
 </script>

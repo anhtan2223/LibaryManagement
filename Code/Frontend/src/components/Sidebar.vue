@@ -1,6 +1,6 @@
 <template>
     <body class="wrapper d-flex">
-        <aside id="sidebar">
+        <aside id="sidebar" class="sticky-top">
             <div class="d-flex" id="sidebar-signature">
                 <a href="#" id="sidebar-title"> Library Management </a>
             </div>

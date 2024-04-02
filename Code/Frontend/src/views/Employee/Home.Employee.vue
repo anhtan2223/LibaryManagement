@@ -152,7 +152,6 @@
 }
 
 .card {
-    height: 50vh;
     margin: 5% 0;
 }
 
