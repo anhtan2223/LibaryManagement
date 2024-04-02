@@ -12,11 +12,8 @@
                         type="search"
                         class="form-control rounded"
                         placeholder="Search"
-                        aria-label="Search"
-                        aria-describedby="search-addon" />
-                    <span class="input-group-text border-0" id="search-addon">
-                        <i class="fas fa-search"></i>
-                    </span>
+                        v-model="input"
+                        @keyup.enter="Search"/>
                 </div>
             </div>
 
@@ -34,8 +31,8 @@
                 <div class="sort-btn">
                     <select
                         class="form-select"
-                        aria-label="Default select example">
-                        <option selected><b>Nổi bật</b></option>
+                        aria-label="Default select example" @change="SortAscend">
+                        <option selected>Nổi bật</option>
                         <option value="1">Tên: A - Z</option>
                         <option value="2">Tên: Z - A</option>
                     </select>
@@ -136,4 +133,15 @@ async function GetAllCategory() {
     categoryList.value = await Axios.GetAllCategories()
 }
 GetAllCategory()
+
+
+const input = ref('')
+async function Search() {
+    bookList.value = await Axios.SearchByName(input.value)
+}
+
+async function SortAscend() {
+    bookList.value = await Axios.SortAscend()
+    alert(JSON.stringify(bookList.value))
+}
 </script>

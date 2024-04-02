@@ -116,7 +116,14 @@ class AxiosAPI
     async GetRecentBorrowed() {
         return (await this.api.get('/api/user/borrowed')).data
     }
+
+    async SearchByName(name) {
+        return (await this.api.get(`/api/sach/search/${name}`)).data
+    }
+
+    async SortAscend() {
+        return (await this.api.get('api/sach/home/asc')).data
+    }
 }
-    
 
 export default new AxiosAPI()
