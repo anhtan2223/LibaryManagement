@@ -112,10 +112,12 @@ exports.SortAscend = async (req , res , next) =>{
 }
 exports.SearchBookByName = async (req , res , next) =>{
     try {
+        console.log(req.body.input);
+
         const connection = MySQL.connection
         const command = `select theloai.TenTL, sach.TenSach, tacgia.TenTG, sach.Image 
                         from sach, theloai,tacgia 
-                        where TenSach like "%${req.params.name}%" and tacgia.MaTG = sach.MaTG and theloai.MaTL = sach.MaTL`
+                        where TenSach like "%${req.body.input}%" and tacgia.MaTG = sach.MaTG and theloai.MaTL = sach.MaTL`
                         connection.query(command , (err, result , field)=>{
                             if(!err){
                                 return res.json(result)

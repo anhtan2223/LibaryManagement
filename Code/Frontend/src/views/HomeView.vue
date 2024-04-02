@@ -13,7 +13,7 @@
                         class="form-control rounded"
                         placeholder="Search"
                         v-model="input"
-                        @keyup.enter="Search"/>
+                        @input="Search"/>
                 </div>
             </div>
 
@@ -137,6 +137,7 @@ GetAllCategory()
 
 const input = ref('')
 async function Search() {
+
     bookList.value = await Axios.SearchByName(input.value)
 }
 

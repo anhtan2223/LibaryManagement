@@ -118,7 +118,8 @@ class AxiosAPI
     }
 
     async SearchByName(name) {
-        return (await this.api.get(`/api/sach/search/${name}`)).data
+        const data = { "input" : name}
+        return (await this.api.post(`/api/sach/home/search` , data )).data
     }
 
     async SortAscend() {
