@@ -125,6 +125,9 @@ class AxiosAPI
     async SortAscend() {
         return (await this.api.get('api/sach/home/asc')).data
     }
+    async SortDescend() {
+        return (await this.api.get('api/sach/home/desc')).data
+    }
 }
 
 export default new AxiosAPI()
