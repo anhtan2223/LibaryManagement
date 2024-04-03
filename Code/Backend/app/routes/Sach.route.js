@@ -9,6 +9,7 @@ router.route('/')
 router.route('/home').get(controller.GetBookHomeView)
 
 router.route('/home/asc').get(controller.SortAscend)
+router.route('/home/desc').get(controller.SortDescend)
 
 router.route('/search/:name').get(controller.SearchBookByName)
 

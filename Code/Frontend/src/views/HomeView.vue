@@ -31,10 +31,10 @@
                 <div class="sort-btn">
                     <select
                         class="form-select"
-                        aria-label="Default select example" @change="SortAscend">
-                        <option selected>Nổi bật</option>
-                        <option value="1">Tên: A - Z</option>
-                        <option value="2">Tên: Z - A</option>
+                        aria-label="Default select example" v-model="sortType" @change="Sorting">
+                        <option :value="0">Nổi bật</option>
+                        <option :value="1">Tên: A - Z</option>
+                        <option :value="2">Tên: Z - A</option>
                     </select>
                 </div>
             </div>
@@ -140,8 +140,34 @@ async function Search() {
     bookList.value = await Axios.SearchByName(input.value)
 }
 
+const sortedAscendList = ref([])
 async function SortAscend() {
-    bookList.value = await Axios.SortAscend()
-    alert(JSON.stringify(bookList.value))
+    sortedAscendList.value = await Axios.SortAscend()
+    // alert(JSON.stringify(bookList.value))
+    // bookList.value = bookList[0]
+    bookList.value = sortedAscendList._rawValue[0]
+    console.log(bookList)
+}
+
+const sortedDescendList = ref([])
+async function SortDescend() {
+    sortedDescendList.value = await Axios.SortDescend()
+    // alert(JSON.stringify(bookList.value))
+    // bookList.value = bookList[0]
+    bookList.value = sortedDescendList._rawValue[0]
+    console.log(bookList)
+}
+
+const sortType = ref(0)
+async function Sorting() {
+    if(sortType.value == 1) {
+        await SortAscend()
+    }
+    else if (sortType.value == 2) {
+        await SortDescend()
+    }
+    else {
+        await GetAllBook()
+    }
 }
 </script>
