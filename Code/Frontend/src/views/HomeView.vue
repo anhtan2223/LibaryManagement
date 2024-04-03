@@ -3,6 +3,7 @@
     <div class="container">
         <div class="all-book">
             <h2>DANH MỤC SÁCH</h2>
+            {{ type }}
         </div>
 
         <div class="row">
@@ -21,13 +22,13 @@
                 <div class="sort-category">
                     <select
                         class="form-select"
-                        aria-label="Default select example">
-                        <option selected><b>Tất cả thể loại</b></option>
-                        <option v-for="(i,index) in categoryList" :key="i.TenSach" :value="index+1">{{ i.TenTL }}</option>
+                        aria-label="Default select example" v-model="type" @change="GetBookByType" >
+                        <option selected :value="0"><b>Tất cả thể loại</b></option>
+                        <option v-for="i in categoryList" :key="i.TenTL" :value="i.TenTL">{{ i.TenTL }}</option>
                     </select>
                 </div>
             </div>
-            <div class="search-bar col-md-3">
+            <div class="search-bar col-md-3" >
                 <div class="sort-btn">
                     <select
                         class="form-select"
@@ -42,8 +43,9 @@
 
         <div class="displayed-book">
             <div class="row">
+                
                 <div class="single-book col-4" v-for="i in bookList" :key="i.TenSach">
-                    <div class="card">
+                    <div class="card" v-if="type == 0 || i.TenTL == type">
                         <img :src="i.Image"  height="475px" width="310px"/>
                         <div class="card-body">
                             <div class="category">{{ i.TenTL }}</div>
@@ -123,10 +125,17 @@ import { ref } from "vue";
 import Axios from '../services/api.service'
 
 const bookList = ref([])
+const type = ref(0)
 async function GetAllBook() {
     bookList.value = await Axios.GetBookHome()
 }
 GetAllBook()
+
+async function GetBookByType()
+{
+    await Search()
+    if(type.value != 0) bookList.value = bookList.value.filter( book => book.TenTL == type.value )
+}
 
 const categoryList = ref([])
 async function GetAllCategory() {
@@ -137,7 +146,6 @@ GetAllCategory()
 
 const input = ref('')
 async function Search() {
-
     bookList.value = await Axios.SearchByName(input.value)
 }
 

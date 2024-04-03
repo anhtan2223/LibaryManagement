@@ -127,7 +127,6 @@ exports.SortDescend = async (req , res , next) =>{
 }
 exports.SearchBookByName = async (req , res , next) =>{
     try {
-        console.log(req.body.input);
 
         const connection = MySQL.connection
         const command = `select theloai.TenTL, sach.TenSach, tacgia.TenTG, sach.Image 
